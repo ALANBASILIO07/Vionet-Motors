@@ -6,7 +6,7 @@ import java.io.Serializable;
  *
  * @author Alan Basilio
  */
-public class Sucursales implements Serializable
+public class UsuariosJpaController implements Serializable
 {
     
 }
