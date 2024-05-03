@@ -1,5 +1,6 @@
 package Interface;
 
+import cjb.ci.Validaciones;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,6 +16,7 @@ public class VtnLoginVionet extends javax.swing.JFrame
     public VtnLoginVionet()
     {
         initComponents();
+
     }
 
     /**
@@ -28,7 +30,7 @@ public class VtnLoginVionet extends javax.swing.JFrame
     {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        panelProcesos = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
@@ -47,15 +49,29 @@ public class VtnLoginVionet extends javax.swing.JFrame
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        panelProcesos.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setText("Contraseña");
 
-        password.setText("jPasswordField1");
+        password.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                passwordKeyTyped(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel3.setText("Usuario");
+
+        user.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                userKeyTyped(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -107,44 +123,44 @@ public class VtnLoginVionet extends javax.swing.JFrame
         admin.setBackground(new java.awt.Color(255, 102, 0));
         admin.setText("ADMINISTRADOR");
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelProcesosLayout = new javax.swing.GroupLayout(panelProcesos);
+        panelProcesos.setLayout(panelProcesosLayout);
+        panelProcesosLayout.setHorizontalGroup(
+            panelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProcesosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(139, 139, 139))
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(panelProcesosLayout.createSequentialGroup()
                 .addGap(157, 157, 157)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProcesosLayout.createSequentialGroup()
+                .addGroup(panelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelProcesosLayout.createSequentialGroup()
                         .addGap(95, 95, 95)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(panelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(password, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(user, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelProcesosLayout.createSequentialGroup()
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelProcesosLayout.createSequentialGroup()
                         .addGap(97, 97, 97)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(admin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(client, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(75, 75, 75))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+        panelProcesosLayout.setVerticalGroup(
+            panelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProcesosLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel4)
                 .addGap(41, 41, 41)
@@ -164,13 +180,13 @@ public class VtnLoginVionet extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addGap(51, 51, 51)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jLabel7))
                 .addGap(74, 74, 74))
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 0, 450, 700));
+        jPanel1.add(panelProcesos, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 0, 450, 700));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/Img Login.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 700));
@@ -200,20 +216,42 @@ public class VtnLoginVionet extends javax.swing.JFrame
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButton1MouseClicked
     {//GEN-HEADEREND:event_jButton1MouseClicked
         // admin.isSelected REVISA QUE EL BOTON ESTE SELECCIONADO
-        if ( admin.isSelected() )
+        if (client.isSelected() || admin.isSelected())
         {
-            VtnInicio vc = new VtnInicio();
-            vc.setVisible(true);
-            
-            this.dispose();
-        }else
+            if (user.getText().isEmpty() || String.valueOf(password.getPassword()).isEmpty())
+            {
+                JOptionPane.showMessageDialog(this, "Falta un campo por llenar");
+            } else
+            {
+                if (admin.isSelected())
+                {
+                    VtnAdministrador va  = new VtnAdministrador();
+                    va.setVisible(true);
+                } else if (client.isSelected())
+                {
+                    VtnInicio vc = new VtnInicio();
+                    vc.setVisible(true);
+                }
+                this.dispose();
+            }
+        } else
         {
             user.setText("");
             password.setText("");
-            
-            JOptionPane.showMessageDialog(null, "Datos incorrectos: ");
-        }       
+            JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
+        }
+
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void userKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_userKeyTyped
+    {//GEN-HEADEREND:event_userKeyTyped
+        Validaciones.validaAlfabeticos(evt, 23, user.getText());
+    }//GEN-LAST:event_userKeyTyped
+
+    private void passwordKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_passwordKeyTyped
+    {//GEN-HEADEREND:event_passwordKeyTyped
+        Validaciones.validaAlfanumerico(evt, 25, password.toString());
+    }//GEN-LAST:event_passwordKeyTyped
 
     /**
      * @param args the command line arguments
@@ -273,7 +311,7 @@ public class VtnLoginVionet extends javax.swing.JFrame
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel panelProcesos;
     private javax.swing.JPasswordField password;
     private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables
