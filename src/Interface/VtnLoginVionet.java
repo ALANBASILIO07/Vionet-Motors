@@ -240,7 +240,6 @@ public class VtnLoginVionet extends javax.swing.JFrame
             password.setText("");
             JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
         }
-
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void userKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_userKeyTyped
