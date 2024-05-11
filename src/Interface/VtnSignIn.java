@@ -4,6 +4,9 @@
  */
 package Interface;
 
+import cjb.ci.Validaciones;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Alan Basilio
@@ -30,14 +33,14 @@ public class VtnSignIn extends javax.swing.JFrame
     {
 
         jPanel1 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        admin = new javax.swing.JRadioButton();
+        client = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        userName = new javax.swing.JTextField();
+        cpassword = new javax.swing.JTextField();
+        password = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -49,19 +52,19 @@ public class VtnSignIn extends javax.swing.JFrame
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jRadioButton1.setBackground(new java.awt.Color(255, 102, 0));
-        jRadioButton1.setText("ADMINISTRADOR");
-        jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 210, -1));
+        admin.setBackground(new java.awt.Color(255, 102, 0));
+        admin.setText("ADMINISTRADOR");
+        jPanel1.add(admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 210, -1));
 
-        jRadioButton2.setText("CLIENTE");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener()
+        client.setText("CLIENTE");
+        client.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jRadioButton2ActionPerformed(evt);
+                clientActionPerformed(evt);
             }
         });
-        jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 210, -1));
+        jPanel1.add(client, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 170, 210, -1));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Ingresa un nombre de Usuario");
@@ -74,17 +77,40 @@ public class VtnSignIn extends javax.swing.JFrame
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Ingresa una contraseña");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 210, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 210, -1));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener()
+        userName.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                userNameKeyTyped(evt);
+            }
+        });
+        jPanel1.add(userName, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 210, -1));
+
+        cpassword.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jTextField2ActionPerformed(evt);
+                cpasswordActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, 210, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 210, -1));
+        cpassword.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                cpasswordKeyTyped(evt);
+            }
+        });
+        jPanel1.add(cpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, 210, -1));
+
+        password.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                passwordKeyTyped(evt);
+            }
+        });
+        jPanel1.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 210, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 102, 0));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -115,20 +141,57 @@ public class VtnSignIn extends javax.swing.JFrame
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jRadioButton2ActionPerformed
-    {//GEN-HEADEREND:event_jRadioButton2ActionPerformed
+    private void clientActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_clientActionPerformed
+    {//GEN-HEADEREND:event_clientActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_clientActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextField2ActionPerformed
-    {//GEN-HEADEREND:event_jTextField2ActionPerformed
+    private void cpasswordActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_cpasswordActionPerformed
+    {//GEN-HEADEREND:event_cpasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_cpasswordActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        if (client.isSelected() || admin.isSelected())
+        {
+            if (userName.getText().isEmpty() || password.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(this, "Falta un campo por llenar");
+            } else
+            {
+                // GUARDA LOS REGISTROS
+                if (admin.isSelected())
+                {
+                    
+                } else if (client.isSelected())
+                {
+                    
+                }
+                this.dispose();
+            }
+        } else
+        {
+            userName.setText("");
+            password.setText("");
+            JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void userNameKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_userNameKeyTyped
+    {//GEN-HEADEREND:event_userNameKeyTyped
+        Validaciones.validaAlfabeticos(evt, 23, userName.getText());
+    }//GEN-LAST:event_userNameKeyTyped
+
+    private void passwordKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_passwordKeyTyped
+    {//GEN-HEADEREND:event_passwordKeyTyped
+        Validaciones.validaAlfabeticos(evt, 30, password.getText());
+    }//GEN-LAST:event_passwordKeyTyped
+
+    private void cpasswordKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_cpasswordKeyTyped
+    {//GEN-HEADEREND:event_cpasswordKeyTyped
+        Validaciones.validaAlfabeticos(evt, 30, cpassword.getText());
+    }//GEN-LAST:event_cpasswordKeyTyped
 
     /**
      * @param args the command line arguments
@@ -176,6 +239,9 @@ public class VtnSignIn extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton admin;
+    private javax.swing.JRadioButton client;
+    private javax.swing.JTextField cpassword;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -184,10 +250,7 @@ public class VtnSignIn extends javax.swing.JFrame
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField password;
+    private javax.swing.JTextField userName;
     // End of variables declaration//GEN-END:variables
 }
