@@ -37,7 +37,7 @@ public class VtnAdministrador extends javax.swing.JFrame
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        gestionaAuto = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         transmision = new javax.swing.JTextField();
         modelo = new javax.swing.JTextField();
@@ -129,9 +129,9 @@ public class VtnAdministrador extends javax.swing.JFrame
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 200, 640));
 
-        jTabbedPane1.setBackground(new java.awt.Color(255, 102, 0));
-        jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
-        jTabbedPane1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        gestionaAuto.setBackground(new java.awt.Color(255, 102, 0));
+        gestionaAuto.setForeground(new java.awt.Color(255, 255, 255));
+        gestionaAuto.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -181,7 +181,7 @@ public class VtnAdministrador extends javax.swing.JFrame
         jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 430, 230, 20));
         jPanel3.add(transmision1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 460, 230, 30));
 
-        jTabbedPane1.addTab("Alta Autos", jPanel3);
+        gestionaAuto.addTab("Alta Autos", jPanel3);
 
         jPanel5.setBackground(new java.awt.Color(51, 51, 51));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -228,7 +228,7 @@ public class VtnAdministrador extends javax.swing.JFrame
         jLabel24.setText("Color");
         jPanel5.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 230, 20));
 
-        jTabbedPane1.addTab("Modifica Autos", jPanel5);
+        gestionaAuto.addTab("Modifica Autos", jPanel5);
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -277,7 +277,7 @@ public class VtnAdministrador extends javax.swing.JFrame
         });
         jPanel4.add(eliminaProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 530, -1, -1));
 
-        jTabbedPane1.addTab("Elimina Autos", jPanel4);
+        gestionaAuto.addTab("Elimina Autos", jPanel4);
 
         jPanel6.setBackground(new java.awt.Color(51, 51, 51));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -368,9 +368,9 @@ public class VtnAdministrador extends javax.swing.JFrame
         jLabel34.setText("Fecha de Caducidad");
         jPanel6.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 80, -1, -1));
 
-        jTabbedPane1.addTab("Consulta Autos", jPanel6);
+        gestionaAuto.addTab("Consulta Autos", jPanel6);
 
-        jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 1000, 640));
+        jPanel1.add(gestionaAuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 1000, 640));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -480,6 +480,7 @@ public class VtnAdministrador extends javax.swing.JFrame
     private javax.swing.JButton eliminaProduct;
     private javax.swing.JTextField fabricante;
     private javax.swing.JTextField fabricante1;
+    private javax.swing.JTabbedPane gestionaAuto;
     private javax.swing.JComboBox<String> jComboBox10;
     private javax.swing.JComboBox<String> jComboBox11;
     private javax.swing.JComboBox<String> jComboBox5;
@@ -528,7 +529,6 @@ public class VtnAdministrador extends javax.swing.JFrame
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField modelo;
     private javax.swing.JTextField modelo1;
     private javax.swing.JTextField precio;
