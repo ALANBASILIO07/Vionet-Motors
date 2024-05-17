@@ -20,6 +20,15 @@ public class VtnAdministrador extends javax.swing.JFrame
     {
         initComponents();
     }
+    
+    private String usuario;
+
+    public void setUsuario(String usuario)
+    {
+        this.usuario = usuario;
+        lblUser.setText(usuario);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -95,7 +104,7 @@ public class VtnAdministrador extends javax.swing.JFrame
         jComboBox11 = new javax.swing.JComboBox<>();
         jLabel34 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -378,10 +387,10 @@ public class VtnAdministrador extends javax.swing.JFrame
         jLabel1.setText("VIONET MOTORS");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 310, -1));
 
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel15.setText("USUARIO");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 10, 130, 40));
+        lblUser.setForeground(new java.awt.Color(255, 255, 255));
+        lblUser.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUser.setText("USUARIO");
+        jPanel1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 10, 130, 40));
 
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -493,7 +502,6 @@ public class VtnAdministrador extends javax.swing.JFrame
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -529,6 +537,7 @@ public class VtnAdministrador extends javax.swing.JFrame
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblUser;
     private javax.swing.JTextField modelo;
     private javax.swing.JTextField modelo1;
     private javax.swing.JTextField precio;

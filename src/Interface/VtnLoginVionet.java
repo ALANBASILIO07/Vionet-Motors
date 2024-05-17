@@ -1,5 +1,7 @@
 package Interface;
 
+import Files.Administradores;
+import Files.Clientes;
 import cjb.ci.Validaciones;
 import javax.swing.JOptionPane;
 
@@ -216,29 +218,74 @@ public class VtnLoginVionet extends javax.swing.JFrame
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButton1MouseClicked
     {//GEN-HEADEREND:event_jButton1MouseClicked
         // admin.isSelected REVISA QUE EL BOTON ESTE SELECCIONADO
-        if (client.isSelected() || admin.isSelected())
+        String usuario = user.getText();
+        String contrasenia = "";
+        char[] contra = password.getPassword();
+        // GUARDA LOS REGISTROS
+        if (admin.isSelected())  // REGISTRAR ADMINISTRADOR
         {
-            if (user.getText().isEmpty() || String.valueOf(password.getPassword()).isEmpty())
+            for (int i = 0; i < contra.length; i++)
             {
-                JOptionPane.showMessageDialog(this, "Falta un campo por llenar");
+                contrasenia += contra[i];
+            }
+            if (usuario.isEmpty())
+            {
+                JOptionPane.showMessageDialog(this, "Faltó por llenar el campo usuario", "Alerta", JOptionPane.WARNING_MESSAGE);
+                user.requestFocus();
+            } else if (contrasenia.isEmpty())
+            {
+                JOptionPane.showMessageDialog(this, "Faltó por llenar el campo contraseña", "Alerta", JOptionPane.WARNING_MESSAGE);
+                password.requestFocus();
             } else
             {
-                if (admin.isSelected())
+                int flag;
+                Administradores d = new Administradores();
+                flag = d.buscarUsuario(user);
+                if (flag == 0)
                 {
-                    VtnAdministrador va  = new VtnAdministrador();
-                    va.setVisible(true);
-                } else if (client.isSelected())
+                    JOptionPane.showMessageDialog(this, "Usuario o contraseña son incorrectos", "Alerta", JOptionPane.WARNING_MESSAGE);
+                } else
                 {
-                    VtnInicio vc = new VtnInicio();
-                    vc.setVisible(true);
+                    JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso");
+                    d.setUsuario(usuario);
+                    VtnAdministrador vtnA = new VtnAdministrador();
+                    vtnA.setUsuario(usuario);
+                    vtnA.setVisible(true);
+                    this.dispose();
                 }
-                this.dispose();
             }
-        } else
+        } else if (client.isSelected()) // REGISTRAR CLIENTE
         {
-            user.setText("");
-            password.setText("");
-            JOptionPane.showMessageDialog(null, "Faltan campos por llenar");
+            for (int i = 0; i < contra.length; i++)
+            {
+                contrasenia += contra[i];
+            }
+            if (usuario.isEmpty())
+            {
+                JOptionPane.showMessageDialog(this, "Faltó por llenar el campo usuario", "Alerta", JOptionPane.WARNING_MESSAGE);
+                user.requestFocus();
+            } else if (contrasenia.isEmpty())
+            {
+                JOptionPane.showMessageDialog(this, "Faltó por llenar el campo contraseña", "Alerta", JOptionPane.WARNING_MESSAGE);
+                password.requestFocus();
+            } else
+            {
+                int flag;
+                Clientes c = new Clientes();
+                flag = c.buscarUsuario(user);
+                if (flag == 0)
+                {
+                    JOptionPane.showMessageDialog(this, "Usuario o contraseña son incorrectos", "Alerta", JOptionPane.WARNING_MESSAGE);
+                } else
+                {
+                    JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso");
+                    c.setUsuario(usuario);
+                    VtnInicio vtnI = new VtnInicio();
+                    vtnI.setUsuario(usuario);
+                    vtnI.setVisible(true);
+                    this.dispose();
+                }
+            }
         }
     }//GEN-LAST:event_jButton1MouseClicked
 

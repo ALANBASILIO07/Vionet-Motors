@@ -2,25 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Alan%20Basilio/OneDrive/Documentos/NetBeansProjects/Concesionario/src/Interface/VtnLoginVionet.java</file>
-            <file>file:/C:/Users/Alan%20Basilio/OneDrive/Documentos/NetBeansProjects/Concesionario/src/Interface/Carga.java</file>
-            <file>file:/C:/Users/Alan%20Basilio/OneDrive/Documentos/NetBeansProjects/Concesionario/src/Files/Citas.java</file>
-            <file>file:/C:/Users/Alan%20Basilio/OneDrive/Documentos/NetBeansProjects/Concesionario/src/Interface/VtnAdministrador.java</file>
-            <file>file:/C:/Users/Alan%20Basilio/OneDrive/Documentos/NetBeansProjects/Concesionario/src/Files/Administradores.java</file>
-            <file>file:/C:/Users/Alan%20Basilio/OneDrive/Documentos/NetBeansProjects/Concesionario/src/Interface/VtnInicio.java</file>
-            <file>file:/C:/Users/Alan%20Basilio/OneDrive/Documentos/NetBeansProjects/Concesionario/src/Interface/VtnBusqueda.java</file>
-            <file>file:/C:/Users/Alan%20Basilio/OneDrive/Documentos/NetBeansProjects/Concesionario/src/Files/UsuariosJpaController.java</file>
-            <file>file:/C:/Users/Alan%20Basilio/OneDrive/Documentos/NetBeansProjects/Concesionario/src/Files/Clientes.java</file>
-            <file>file:/C:/Users/Alan%20Basilio/OneDrive/Documentos/NetBeansProjects/Concesionario/src/META-INF/persistence.xml</file>
-            <file>file:/C:/Users/Alan%20Basilio/OneDrive/Documentos/NetBeansProjects/Concesionario/src/Files/Usuarios.java</file>
-            <file>file:/C:/Users/Alan%20Basilio/OneDrive/Documentos/NetBeansProjects/Concesionario/src/Interface/VtnAuto.java</file>
-            <file>file:/C:/Users/Alan%20Basilio/OneDrive/Documentos/NetBeansProjects/Concesionario/src/Files/Autos.java</file>
-            <file>file:/C:/Users/Alan%20Basilio/OneDrive/Documentos/NetBeansProjects/Concesionario/src/Files/Sucursales.java</file>
-            <file>file:/C:/Users/Alan%20Basilio/OneDrive/Documentos/NetBeansProjects/Concesionario/src/Interface/Mensaje_exito.java</file>
-            <file>file:/C:/Users/Alan%20Basilio/OneDrive/Documentos/NetBeansProjects/Concesionario/src/Files/DBConnection.java</file>
-            <file>file:/C:/Users/Alan%20Basilio/OneDrive/Documentos/NetBeansProjects/Concesionario/src/Interface/VtnSignIn.java</file>
-            <file>file:/C:/Users/Alan%20Basilio/OneDrive/Documentos/NetBeansProjects/Concesionario/src/Interface/VtnCitas.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

@@ -18,6 +18,14 @@ public class VtnInicio extends javax.swing.JFrame
     {
         initComponents();
     }
+    
+    private String usuario;
+
+    public void setUsuario(String usuario)
+    {
+        this.usuario = usuario;
+        lblUser.setText(usuario);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,7 +56,7 @@ public class VtnInicio extends javax.swing.JFrame
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -179,10 +187,10 @@ public class VtnInicio extends javax.swing.JFrame
         jLabel14.setText("USER");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 10, 40, 40));
 
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel15.setText("USUARIO");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 10, 130, 40));
+        lblUser.setForeground(new java.awt.Color(255, 255, 255));
+        lblUser.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUser.setText("USUARIO");
+        jPanel1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 10, 130, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 
@@ -272,7 +280,6 @@ public class VtnInicio extends javax.swing.JFrame
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -283,5 +290,6 @@ public class VtnInicio extends javax.swing.JFrame
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblUser;
     // End of variables declaration//GEN-END:variables
 }
