@@ -8,29 +8,43 @@ import java.io.Serializable;
  */
 public class Autos implements Serializable
 {
+    public int ID;
     public String modelo;
-    public String fabricante;
-    public String tipo;
-    public int anio;
     public String transmision;
+    public int anio;
+    public String tipo;
     public double precio;
+    public String fabricante;
+    
+    /*Contraseña base de datos*/
+    String bdpass = "100%Freestyle";
 
     public Autos()
     {
         
     }
 
-    public Autos(String modelo, String fabricante, String tipo, int anio, String transmision, double precio)
+    public Autos(int ID, String modelo, String transmision, int anio, String tipo, double precio, String fabricante)
     {
+        this.ID = ID;
         this.modelo = modelo;
-        this.fabricante = fabricante;
-        this.tipo = tipo;
-        this.anio = anio;
         this.transmision = transmision;
+        this.anio = anio;
+        this.tipo = tipo;
         this.precio = precio;
+        this.fabricante = fabricante;
     }
 
-    
+    public int getID()
+    {
+        return ID;
+    }
+
+    public void setID(int ID)
+    {
+        this.ID = ID;
+    }
+
     public String getModelo()
     {
         return modelo;
@@ -39,36 +53,6 @@ public class Autos implements Serializable
     public void setModelo(String modelo)
     {
         this.modelo = modelo;
-    }
-
-    public String getFabricante()
-    {
-        return fabricante;
-    }
-
-    public void setFabricante(String fabricante)
-    {
-        this.fabricante = fabricante;
-    }
-
-    public String getTipo()
-    {
-        return tipo;
-    }
-
-    public void setTipo(String tipo)
-    {
-        this.tipo = tipo;
-    }
-
-    public int getAnio()
-    {
-        return anio;
-    }
-
-    public void setAnio(int anio)
-    {
-        this.anio = anio;
     }
 
     public String getTransmision()
@@ -81,6 +65,26 @@ public class Autos implements Serializable
         this.transmision = transmision;
     }
 
+    public int getAnio()
+    {
+        return anio;
+    }
+
+    public void setAnio(int anio)
+    {
+        this.anio = anio;
+    }
+
+    public String getTipo()
+    {
+        return tipo;
+    }
+
+    public void setTipo(String tipo)
+    {
+        this.tipo = tipo;
+    }
+
     public double getPrecio()
     {
         return precio;
@@ -90,6 +94,16 @@ public class Autos implements Serializable
     {
         this.precio = precio;
     }
-    
+
+    public String getFabricante()
+    {
+        return fabricante;
+    }
+
+    public void setFabricante(String fabricante)
+    {
+        this.fabricante = fabricante;
+    }
+
     
 }

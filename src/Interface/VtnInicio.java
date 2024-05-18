@@ -195,6 +195,13 @@ public class VtnInicio extends javax.swing.JFrame
         lblUser.setForeground(new java.awt.Color(255, 255, 255));
         lblUser.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblUser.setText("USUARIO");
+        lblUser.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                lblUserMouseClicked(evt);
+            }
+        });
         jPanel1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 20, 130, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
@@ -232,6 +239,11 @@ public class VtnInicio extends javax.swing.JFrame
         VtnAuto va = new VtnAuto();
         va.setVisible(true);
     }//GEN-LAST:event_jLabel9MouseClicked
+
+    private void lblUserMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_lblUserMouseClicked
+    {//GEN-HEADEREND:event_lblUserMouseClicked
+        
+    }//GEN-LAST:event_lblUserMouseClicked
 
     /**
      * @param args the command line arguments

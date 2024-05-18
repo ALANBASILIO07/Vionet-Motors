@@ -92,8 +92,8 @@ public class VtnAuto extends javax.swing.JFrame
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 550, 250, 30));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("LUPA");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 90, -1, 20));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/lupa2.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 80, -1, 40));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener()
         {
@@ -116,7 +116,7 @@ public class VtnAuto extends javax.swing.JFrame
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, -1, 20));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("FLECHA");
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/flecha.png"))); // NOI18N
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
