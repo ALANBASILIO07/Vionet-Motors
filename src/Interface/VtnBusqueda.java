@@ -62,6 +62,7 @@ public class VtnBusqueda extends javax.swing.JFrame
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -120,7 +121,7 @@ public class VtnBusqueda extends javax.swing.JFrame
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("USUARIO");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 30, 230, 30));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 30, 230, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -131,7 +132,7 @@ public class VtnBusqueda extends javax.swing.JFrame
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/user.png"))); // NOI18N
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 20, 60, 50));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 20, 60, 50));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener()
         {
@@ -241,6 +242,17 @@ public class VtnBusqueda extends javax.swing.JFrame
         jLabel25.setText("AUTO 1");
         jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 580, 220, -1));
 
+        jButton3.setBackground(new java.awt.Color(0, 0, 0));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/salir.png"))); // NOI18N
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jButton3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 20, 40, 40));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 
         pack();
@@ -274,6 +286,13 @@ public class VtnBusqueda extends javax.swing.JFrame
         VtnAuto va = new VtnAuto();
         va.setVisible(true);
     }//GEN-LAST:event_jLabel13MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButton3MouseClicked
+    {//GEN-HEADEREND:event_jButton3MouseClicked
+        VtnLoginVionet vtnL = new VtnLoginVionet();
+        vtnL.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -321,6 +340,7 @@ public class VtnBusqueda extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;

@@ -58,6 +58,7 @@ public class VtnInicio extends javax.swing.JFrame
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         lblUser = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -190,7 +191,7 @@ public class VtnInicio extends javax.swing.JFrame
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/user.png"))); // NOI18N
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 10, 50, 50));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 20, 50, 50));
 
         lblUser.setForeground(new java.awt.Color(255, 255, 255));
         lblUser.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -202,7 +203,18 @@ public class VtnInicio extends javax.swing.JFrame
                 lblUserMouseClicked(evt);
             }
         });
-        jPanel1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 20, 130, 40));
+        jPanel1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 30, 130, 30));
+
+        jButton4.setBackground(new java.awt.Color(0, 0, 0));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/salir.png"))); // NOI18N
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jButton4MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 20, 40, 40));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 
@@ -244,6 +256,13 @@ public class VtnInicio extends javax.swing.JFrame
     {//GEN-HEADEREND:event_lblUserMouseClicked
         
     }//GEN-LAST:event_lblUserMouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButton4MouseClicked
+    {//GEN-HEADEREND:event_jButton4MouseClicked
+        VtnLoginVionet vtnL = new VtnLoginVionet();
+        vtnL.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -294,6 +313,7 @@ public class VtnInicio extends javax.swing.JFrame
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
