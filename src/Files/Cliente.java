@@ -1,6 +1,5 @@
 package Files;
 
-import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,14 +13,24 @@ import javax.swing.JTextField;
  *
  * @author Alan Basilio
  */
-public class Clientes implements Serializable
+public class Cliente
 {
-
     private String usuario;
     private String contrasenia;
     
      /*Contraseña base de datos*/
     String bdpass = "100%Freestyle";
+
+    public Cliente()
+    {
+        
+    }
+
+    public Cliente(String usuario, String contrasenia)
+    {
+        this.usuario = usuario;
+        this.contrasenia = contrasenia;
+    }
 
     public String getUsuario()
     {
@@ -43,7 +52,17 @@ public class Clientes implements Serializable
         this.contrasenia = contrasenia;
     }
 
-    public void altaUsuario(JTextField jtf, JPasswordField jpf)
+    public String getBdpass()
+    {
+        return bdpass;
+    }
+
+    public void setBdpass(String bdpass)
+    {
+        this.bdpass = bdpass;
+    }
+    
+     public void altaUsuario(JTextField jtf, JPasswordField jpf)
     {
         usuario = jtf.getText();
         contrasenia = "";

@@ -5,6 +5,7 @@
 package Interface;
 
 import Files.Administradores;
+import Files.Cliente;
 import Files.Clientes;
 import cjb.ci.Validaciones;
 import javax.swing.JOptionPane;
@@ -128,7 +129,7 @@ public class VtnSignIn extends javax.swing.JFrame
             contrasenia += contra[i];
         }
         // GUARDA LOS REGISTROS
-        /*if (admin.isSelected() == true)  // REGISTRAR ADMINISTRADOR
+        if (admin.isSelected() == true)  // REGISTRAR ADMINISTRADOR
         {
             if (usuario.isEmpty())
             {
@@ -154,7 +155,7 @@ public class VtnSignIn extends javax.swing.JFrame
                     this.dispose();
                 }
             }
-        } */ if (client.isSelected() == true) // REGISTRAR CLIENTE
+        } else if (client.isSelected() == true) // REGISTRAR CLIENTE
         {
             if (usuario.isEmpty())
             {
@@ -167,7 +168,7 @@ public class VtnSignIn extends javax.swing.JFrame
             } else
             {
                 int flag2;
-                Clientes c = new Clientes();
+                Cliente c = new Cliente();
                 flag2 = c.buscarCliente(userName);
                 if (flag2 == 1)
                 {

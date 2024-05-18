@@ -1,6 +1,7 @@
 package Interface;
 
 import Files.Administradores;
+import Files.Cliente;
 import Files.Clientes;
 import cjb.ci.Validaciones;
 import javax.swing.JOptionPane;
@@ -271,7 +272,7 @@ public class VtnLoginVionet extends javax.swing.JFrame
             } else
             {
                 int flag;
-                Clientes c = new Clientes();
+                Cliente c = new Cliente();
                 flag = c.buscarCliente(user);
                 if (flag == 0)
                 {
