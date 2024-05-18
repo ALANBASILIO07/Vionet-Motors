@@ -81,14 +81,14 @@ public class Clientes implements Serializable
         }
     }
 
-    public int buscarUsuario(JTextField jtf)
+    public int buscarCliente(JTextField jtf)
     {
         usuario = jtf.getText();
 
         try
         {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass);
-            String sql = "SELECT Nombre FROM usuario WHERE Nombre = ?";
+            String sql = "SELECT Nombre FROM usuario WHERE Nombre = ?;";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, usuario);
             ResultSet rs = stmt.executeQuery();

@@ -56,7 +56,7 @@ public class Administradores implements Serializable
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
         {
             // Sentencia SQL para insertar el platillo
-            String sql = "INSERT INTO admin (ContraseñaAdmin, NombreAdmin) VALUES (?, ?)";
+            String sql = "INSERT INTO admin (NombreAdmin, ContraseñaAdmin) VALUES (?, ?)";
 
             // Crear la declaración preparada
             try (PreparedStatement stmt = conn.prepareStatement(sql))

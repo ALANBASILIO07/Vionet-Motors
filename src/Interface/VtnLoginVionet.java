@@ -272,7 +272,7 @@ public class VtnLoginVionet extends javax.swing.JFrame
             {
                 int flag;
                 Clientes c = new Clientes();
-                flag = c.buscarUsuario(user);
+                flag = c.buscarCliente(user);
                 if (flag == 0)
                 {
                     JOptionPane.showMessageDialog(this, "Usuario o contraseña son incorrectos", "Alerta", JOptionPane.WARNING_MESSAGE);

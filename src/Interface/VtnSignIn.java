@@ -123,13 +123,13 @@ public class VtnSignIn extends javax.swing.JFrame
         String usuario = userName.getText();
         String contrasenia = "";
         char[] contra = password.getPassword();
-        // GUARDA LOS REGISTROS
-        if (admin.isSelected())  // REGISTRAR ADMINISTRADOR
+        for (int i = 0; i < contra.length; i++)
         {
-            for (int i = 0; i < contra.length; i++)
-            {
-                contrasenia += contra[i];
-            }
+            contrasenia += contra[i];
+        }
+        // GUARDA LOS REGISTROS
+        /*if (admin.isSelected() == true)  // REGISTRAR ADMINISTRADOR
+        {
             if (usuario.isEmpty())
             {
                 JOptionPane.showMessageDialog(this, "Faltó por llenar el campo usuario", "Alerta", JOptionPane.WARNING_MESSAGE);
@@ -154,12 +154,8 @@ public class VtnSignIn extends javax.swing.JFrame
                     this.dispose();
                 }
             }
-        } else if (client.isSelected()) // REGISTRAR CLIENTE
+        } */ if (client.isSelected() == true) // REGISTRAR CLIENTE
         {
-            for (int i = 0; i < contra.length; i++)
-            {
-                contrasenia += contra[i];
-            }
             if (usuario.isEmpty())
             {
                 JOptionPane.showMessageDialog(this, "Faltó por llenar el campo usuario", "Alerta", JOptionPane.WARNING_MESSAGE);
@@ -170,10 +166,10 @@ public class VtnSignIn extends javax.swing.JFrame
                 password.requestFocus();
             } else
             {
-                int flag;
+                int flag2;
                 Clientes c = new Clientes();
-                flag = c.buscarUsuario(userName);
-                if (flag == 1)
+                flag2 = c.buscarCliente(userName);
+                if (flag2 == 1)
                 {
                     JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe, pruebe con otro");
                     userName.setText("");
@@ -185,7 +181,6 @@ public class VtnSignIn extends javax.swing.JFrame
                 }
             }
         }
-        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void userNameKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_userNameKeyTyped
