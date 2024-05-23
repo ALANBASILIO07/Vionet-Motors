@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
@@ -120,5 +121,29 @@ public class Cliente
             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
         }
         return 0;
+    }
+    
+    public void modifCliente(JTable jt, JTextField jtf, JTextField jtf2)
+    {
+        String valor;
+        valor = (jt.getValueAt(jt.getSelectedRow(), 0).toString());
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "UPDATE usuario SET Nombre = ?, Contraseña = ? WHERE Nombre = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                // Establecer los parámetros
+                stmt.setString(1, jtf.getText());
+                stmt.setString(2, jtf2.getText());
+                stmt.setString(3, valor);
+
+                // Ejecutar la sentencia
+                stmt.executeUpdate();
+
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
     }
 }

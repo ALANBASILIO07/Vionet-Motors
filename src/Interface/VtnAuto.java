@@ -18,6 +18,14 @@ public class VtnAuto extends javax.swing.JFrame
     {
         initComponents();
     }
+    
+    private String usuario;
+    
+    public void setUsuario(String usuario)
+    {
+        this.usuario = usuario;
+        labelUser.setText(usuario);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,9 +39,8 @@ public class VtnAuto extends javax.swing.JFrame
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        labelUser = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -70,27 +77,35 @@ public class VtnAuto extends javax.swing.JFrame
         jLabel1.setText("VIONET MOTORS");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 310, -1));
 
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel15.setText("USUARIO");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 30, 130, 30));
+        labelUser.setForeground(new java.awt.Color(255, 255, 255));
+        labelUser.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelUser.setText("USUARIO");
+        jPanel1.add(labelUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 30, 130, 30));
 
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/user.png"))); // NOI18N
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 20, 50, 50));
 
-        jButton1.setBackground(new java.awt.Color(255, 102, 0));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("COMPRAR AUTO");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 610, 250, 30));
-
         jButton2.setBackground(new java.awt.Color(255, 102, 0));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("GENERAR CITA");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 550, 250, 30));
+        jButton2.setText("AGENDAR CITA");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 600, 250, 30));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/lupa2.png"))); // NOI18N
@@ -132,7 +147,7 @@ public class VtnAuto extends javax.swing.JFrame
         jLabel5.setText("jLabel5");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 350));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, 500, 350));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 180, 500, 350));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -245,6 +260,18 @@ public class VtnAuto extends javax.swing.JFrame
         this.dispose();
     }//GEN-LAST:event_jButton3MouseClicked
 
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButton2MouseClicked
+    {//GEN-HEADEREND:event_jButton2MouseClicked
+        VtnCitas vc = new VtnCitas();
+        vc.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
+    {//GEN-HEADEREND:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -291,7 +318,6 @@ public class VtnAuto extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -300,7 +326,6 @@ public class VtnAuto extends javax.swing.JFrame
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -318,5 +343,6 @@ public class VtnAuto extends javax.swing.JFrame
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel labelUser;
     // End of variables declaration//GEN-END:variables
 }

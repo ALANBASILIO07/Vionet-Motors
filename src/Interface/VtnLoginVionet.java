@@ -279,6 +279,7 @@ public class VtnLoginVionet extends javax.swing.JFrame
                     JOptionPane.showMessageDialog(this, "Usuario o contraseña son incorrectos", "Alerta", JOptionPane.WARNING_MESSAGE);
                 } else
                 {
+                    //AGREGA EL NOMBRE DE USUARIO DE LA SESIÓN
                     JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso");
                     c.setUsuario(usuario);
                     VtnInicio vtnI = new VtnInicio();

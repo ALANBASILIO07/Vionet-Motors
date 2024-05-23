@@ -18,6 +18,14 @@ public class VtnCitas extends javax.swing.JFrame
     {
         initComponents();
     }
+    
+    private String usuario;
+    
+    public void setUsuario(String usuario)
+    {
+        this.usuario = usuario;
+        labelUser.setText(usuario);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -31,6 +39,11 @@ public class VtnCitas extends javax.swing.JFrame
 
         jPanel1 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        labelUser = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -49,9 +62,48 @@ public class VtnCitas extends javax.swing.JFrame
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 20, 40, 40));
 
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/user.png"))); // NOI18N
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 20, 50, 50));
+
+        labelUser.setForeground(new java.awt.Color(255, 255, 255));
+        labelUser.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelUser.setText("USUARIO");
+        jPanel1.add(labelUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 30, 130, 30));
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/flecha.png"))); // NOI18N
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel4MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, -1, 20));
+
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("REGRESAR");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, -1, 20));
+
+        jButton2.setBackground(new java.awt.Color(255, 102, 0));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("GENERAR CITA");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 550, 250, 30));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButton3MouseClicked
@@ -60,6 +112,18 @@ public class VtnCitas extends javax.swing.JFrame
         vtnL.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel4MouseClicked
+    {//GEN-HEADEREND:event_jLabel4MouseClicked
+        VtnAuto va = new VtnAuto();
+        va.setVisible(true);
+    }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel3MouseClicked
+    {//GEN-HEADEREND:event_jLabel3MouseClicked
+        VtnInicio vi = new VtnInicio();
+        vi.setVisible(true);
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -107,7 +171,12 @@ public class VtnCitas extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelUser;
     // End of variables declaration//GEN-END:variables
 }

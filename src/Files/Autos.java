@@ -1,11 +1,14 @@
 package Files;
 
+import Interface.VtnAutoAdmin;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Year;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -222,8 +225,6 @@ public class Autos implements Serializable
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, modelo);
             ResultSet rs = stmt.executeQuery();
-            //if (rs.next())
-            //{
             while (rs.next())
             {
                 tabla.addRow(new String[]
@@ -248,7 +249,7 @@ public class Autos implements Serializable
 
         ID = Integer.parseInt(tabla.getValueAt(jt.getSelectedRow(), 0).toString());
 
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/medicare", "root", bdpass))
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
         {
             // Sentencia SQL para insertar el platillo
             String sql = "DELETE FROM auto WHERE Modelo = ?";
@@ -274,5 +275,121 @@ public class Autos implements Serializable
         }
         return 0;
 
+    }
+
+    public void modifAuto(JComboBox jcb, JTextField txtID,JTextField jtf, JComboBox jtf2, JTextField jtf3, JComboBox jtf4, JTextField jtf5, JTextField jtf6)
+    {
+        modelo = jtf.getText();
+        transmision = jtf2.getSelectedItem().toString();
+        anio = Integer.parseInt(jtf3.getText());
+        tipo = jtf4.getSelectedItem().toString();
+        precio = Double.parseDouble(jtf5.getText());
+        fabricante = jtf6.getText();
+        
+        String valor;
+        valor = (jcb.getSelectedItem().toString());
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "UPDATE auto SET ID = ?, Modelo = ?, Transmision = ?, Anio = ?, Tipo = ?, Precio = ?, Fabricante = ? WHERE Modelo";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                // Establecer los parámetros
+                stmt.setString(1, txtID.getText()); // Modelo es String
+                stmt.setString(2, modelo); // Modelo es String
+                stmt.setString(3, transmision); // Transmisión es String
+                // Para el año, necesitamos convertir el texto del JTextField a un objeto Year.
+                stmt.setObject(4, anio); // Año es Year
+                stmt.setString(5, tipo); // Tipo es String
+                stmt.setDouble(6, precio); // Precio es Double
+                stmt.setString(7, fabricante); // Fabricante es String
+                stmt.setString(8, valor);
+
+                // Ejecutar la sentencia
+                stmt.executeUpdate();
+
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos:  " + ex.getMessage());
+        }
+    }
+    
+    /*
+    public void selecAuto(JComboBox jcb, JTextField jtf, JComboBox jtf2, JTextField jtf3, JComboBox jtf4, JTextField jtf5, JTextField jtf6)
+    {
+        try 
+        {
+            int filas = jcb.getSelectedIndex();
+            jtf.setText((jcb.(filas, 0).toString()));
+            jtf2.setText((jcb.getValueAt(filas, 1).toString()));
+            jtf.setText((jcb.getValueAt(filas, 0).toString()));
+            jtf2.setText((jcb.getValueAt(filas, 1).toString()));
+            jtf.setText((jcb.getValueAt(filas, 0).toString()));
+            jtf2.setText((jcb.getValueAt(filas, 1).toString()));
+        } catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al seleccionar el auto:  " + ex.getMessage());
+        }
+    }
+    */
+    public void selecAuto(JComboBox<Object[]> jcb, JTextField jtf, JComboBox<String> jtf2, JTextField jtf3, JComboBox<String> jtf4, JTextField jtf5, JTextField jtf6) {
+    try {
+        // Obtener el índice seleccionado del JComboBox
+        int filas = jcb.getSelectedIndex();
+
+        // Verificar si se ha seleccionado un elemento válido
+        if (filas != -1) {
+            // Obtener el elemento seleccionado del JComboBox
+            Object[] selectedItem = jcb.getItemAt(filas);
+
+            // Asignar valores a los campos correspondientes
+            jtf.setText(selectedItem[0].toString()); // Modelo (String)
+            jtf2.setSelectedItem(selectedItem[1].toString()); // Transmisión (String)
+            jtf3.setText(selectedItem[2].toString()); // Año (Year como String)
+            jtf4.setSelectedItem(selectedItem[3].toString()); // Tipo (String)
+            jtf5.setText(selectedItem[4].toString()); // Precio (Double como String)
+            jtf6.setText(selectedItem[5].toString()); // Fabricante (String)
+        } else {
+            throw new Exception("No se ha seleccionado ningún elemento.");
+        }
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(null, "Error al seleccionar el auto: " + ex.getMessage());
+    }
+}
+
+
+    public void consultaGeneralAuto(JTable jt)
+    {
+        DefaultTableModel tabla = (DefaultTableModel) jt.getModel();
+        // Limpiar la tabla actual
+        tabla.setRowCount(0);
+
+        // Conexión a la base de datos y consulta de platillos
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "SELECT * FROM auto";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+
+                ResultSet rs = stmt.executeQuery();
+                // Llenar la tabla con los datos de la base de datos
+                while (rs.next())
+                {
+                    tabla.addRow(new String[]
+                    {
+                        rs.getString("ID"),
+                        rs.getString("Modelo"),
+                        rs.getString("Transmision"),
+                        rs.getString("Anio"),
+                        rs.getString("Tipo"),
+                        rs.getString("Precio"),
+                        rs.getString("Fabricante"),
+                    });
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
     }
 }

@@ -18,6 +18,14 @@ public class VtnBusqueda extends javax.swing.JFrame
     {
         initComponents();
     }
+    
+    private String usuario;
+    
+    public void setUsuario(String usuario)
+    {
+        this.usuario = usuario;
+        labelUser.setText(usuario);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,7 +50,7 @@ public class VtnBusqueda extends javax.swing.JFrame
         jComboBox3 = new javax.swing.JComboBox<>();
         jComboBox4 = new javax.swing.JComboBox<>();
         jComboBox5 = new javax.swing.JComboBox<>();
-        jLabel15 = new javax.swing.JLabel();
+        labelUser = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -82,7 +90,7 @@ public class VtnBusqueda extends javax.swing.JFrame
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 140, -1));
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Color");
+        jLabel6.setText("Tipo");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 160, 30));
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,27 +109,27 @@ public class VtnBusqueda extends javax.swing.JFrame
         jLabel10.setText("Transmisión");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 160, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ford", "Honda", "Toyota", "Lamborghini", "Porsche", "Eclipse", "Jaguar" }));
         jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 160, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "500000", "300000", "200000", "150000", "120000", "70000", "50000", "35000" }));
         jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 160, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Deportivo", "Exotico", "Todoterreno", "Sedan" }));
         jPanel2.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 160, -1));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2023", "2022", "2007", "2005", "2003" }));
         jPanel2.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 160, -1));
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Automatico", " " }));
         jPanel2.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 160, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 200, 630));
 
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel15.setText("USUARIO");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 30, 230, 30));
+        labelUser.setForeground(new java.awt.Color(255, 255, 255));
+        labelUser.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelUser.setText("USUARIO");
+        jPanel1.add(labelUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 30, 230, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -174,7 +182,7 @@ public class VtnBusqueda extends javax.swing.JFrame
         jLabel11.setText("DEPORTIVO");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 200, 30));
 
-        jLabel12.setText("jLabel2");
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/Auto1.jpg"))); // NOI18N
         jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jLabel12.addMouseListener(new java.awt.event.MouseAdapter()
         {
@@ -187,7 +195,7 @@ public class VtnBusqueda extends javax.swing.JFrame
 
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("AUTO 1");
+        jLabel13.setText("Mercedes Benz");
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
@@ -197,50 +205,120 @@ public class VtnBusqueda extends javax.swing.JFrame
         });
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 220, -1));
 
-        jLabel16.setText("jLabel2");
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/Auto4.jpg"))); // NOI18N
         jLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jLabel16.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel16MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 220, 130));
 
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("AUTO 1");
+        jLabel17.setText("Bel Air");
+        jLabel17.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel17MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 570, 220, -1));
 
-        jLabel18.setText("jLabel2");
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/Auto5.jpg"))); // NOI18N
         jLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 440, 220, 130));
+        jLabel18.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel18MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 220, 130));
 
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel19.setText("AUTO 1");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 580, 220, -1));
+        jLabel19.setText("Corvette");
+        jLabel19.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel19MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 570, 220, -1));
 
-        jLabel20.setText("jLabel2");
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/Auto2.jpg"))); // NOI18N
         jLabel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 250, 220, 130));
+        jLabel20.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel20MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 240, 220, 130));
 
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel21.setText("AUTO 1");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, 220, -1));
+        jLabel21.setText("BMW");
+        jLabel21.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel21MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, 220, -1));
 
-        jLabel22.setText("jLabel2");
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/Auto3.jpg"))); // NOI18N
         jLabel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 250, 220, 130));
+        jLabel22.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel22MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 240, 220, 130));
 
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setText("AUTO 1");
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 390, 220, -1));
+        jLabel23.setText("Masserati");
+        jLabel23.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel23MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 380, 220, -1));
 
-        jLabel24.setText("jLabel2");
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/Auto6.jpg"))); // NOI18N
         jLabel24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 440, 220, 130));
+        jLabel24.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel24MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 430, 220, 130));
 
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setText("AUTO 1");
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 580, 220, -1));
+        jLabel25.setText("Mercedes Benz F1");
+        jLabel25.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel25MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 570, 220, -1));
 
         jButton3.setBackground(new java.awt.Color(0, 0, 0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/salir.png"))); // NOI18N
@@ -256,6 +334,7 @@ public class VtnBusqueda extends javax.swing.JFrame
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextField1ActionPerformed
@@ -285,6 +364,7 @@ public class VtnBusqueda extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jLabel13MouseClicked
         VtnAuto va = new VtnAuto();
         va.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel13MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButton3MouseClicked
@@ -293,6 +373,76 @@ public class VtnBusqueda extends javax.swing.JFrame
         vtnL.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jLabel20MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel20MouseClicked
+    {//GEN-HEADEREND:event_jLabel20MouseClicked
+        VtnAuto va = new VtnAuto();
+        va.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel20MouseClicked
+
+    private void jLabel22MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel22MouseClicked
+    {//GEN-HEADEREND:event_jLabel22MouseClicked
+        VtnAuto va = new VtnAuto();
+        va.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel22MouseClicked
+
+    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel16MouseClicked
+    {//GEN-HEADEREND:event_jLabel16MouseClicked
+        VtnAuto va = new VtnAuto();
+        va.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel16MouseClicked
+
+    private void jLabel21MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel21MouseClicked
+    {//GEN-HEADEREND:event_jLabel21MouseClicked
+        VtnAuto va = new VtnAuto();
+        va.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel21MouseClicked
+
+    private void jLabel23MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel23MouseClicked
+    {//GEN-HEADEREND:event_jLabel23MouseClicked
+        VtnAuto va = new VtnAuto();
+        va.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel23MouseClicked
+
+    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel17MouseClicked
+    {//GEN-HEADEREND:event_jLabel17MouseClicked
+        VtnAuto va = new VtnAuto();
+        va.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel17MouseClicked
+
+    private void jLabel18MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel18MouseClicked
+    {//GEN-HEADEREND:event_jLabel18MouseClicked
+        VtnAuto va = new VtnAuto();
+        va.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel18MouseClicked
+
+    private void jLabel19MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel19MouseClicked
+    {//GEN-HEADEREND:event_jLabel19MouseClicked
+        VtnAuto va = new VtnAuto();
+        va.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel19MouseClicked
+
+    private void jLabel24MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel24MouseClicked
+    {//GEN-HEADEREND:event_jLabel24MouseClicked
+        VtnAuto va = new VtnAuto();
+        va.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel24MouseClicked
+
+    private void jLabel25MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel25MouseClicked
+    {//GEN-HEADEREND:event_jLabel25MouseClicked
+        VtnAuto va = new VtnAuto();
+        va.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel25MouseClicked
 
     /**
      * @param args the command line arguments
@@ -352,7 +502,6 @@ public class VtnBusqueda extends javax.swing.JFrame
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -374,5 +523,6 @@ public class VtnBusqueda extends javax.swing.JFrame
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel labelUser;
     // End of variables declaration//GEN-END:variables
 }
