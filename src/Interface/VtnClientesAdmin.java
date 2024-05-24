@@ -83,6 +83,8 @@ public class VtnClientesAdmin extends javax.swing.JPanel
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 102, 0));
+        jTabbedPane1.setForeground(new java.awt.Color(255, 255, 255));
+        jTabbedPane1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 51));
 

@@ -5,6 +5,7 @@
 package Interface;
 
 import Files.Autos;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +21,7 @@ public class VtnAutoAdmin extends javax.swing.JPanel
     public VtnAutoAdmin()
     {
         initComponents();
+        Autos a = new Autos();
     }
 
     /**
@@ -34,10 +36,8 @@ public class VtnAutoAdmin extends javax.swing.JPanel
 
         gestionaAuto = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
-        transmision = new javax.swing.JTextField();
         modelo = new javax.swing.JTextField();
         fabricante = new javax.swing.JTextField();
-        tipo = new javax.swing.JTextField();
         precio = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -47,6 +47,8 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         jLabel17 = new javax.swing.JLabel();
         anio = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        tipo = new javax.swing.JComboBox<>();
+        transmision = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         modifModelo = new javax.swing.JTextField();
@@ -54,7 +56,6 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         modifFabricante = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        modifAnio = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         modifPrecio = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
@@ -65,6 +66,7 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         modifTipo = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         modifID = new javax.swing.JTextField();
+        modifAnio = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         buscaProducto = new javax.swing.JTextField();
@@ -106,10 +108,8 @@ public class VtnAutoAdmin extends javax.swing.JPanel
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel3.add(transmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 230, 30));
         jPanel3.add(modelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 230, 30));
         jPanel3.add(fabricante, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 230, 30));
-        jPanel3.add(tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 360, 230, 30));
         jPanel3.add(precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, 230, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -155,6 +155,12 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         });
         jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 500, -1, 60));
 
+        tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Deportivo", "Exotico", "Todoterreno", "Sedan" }));
+        jPanel3.add(tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 360, 230, 30));
+
+        transmision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Automatico" }));
+        jPanel3.add(transmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 230, 30));
+
         gestionaAuto.addTab("Alta Autos", jPanel3);
 
         jPanel5.setBackground(new java.awt.Color(51, 51, 51));
@@ -181,7 +187,6 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Año");
         jPanel5.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 230, 20));
-        jPanel5.add(modifAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 230, 30));
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
@@ -198,7 +203,13 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         jLabel4.setText("SELECCIONA ALGÚN AUTO");
         jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 230, -1));
 
-        comboAuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mustang", "Civic", "Land Cruiser", "Aventador", "911", "SUPRA", "Subaru", "RX" }));
+        comboAuto.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboAutoItemStateChanged(evt);
+            }
+        });
         jPanel5.add(comboAuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 230, -1));
 
         jButton4.setBackground(new java.awt.Color(51, 51, 51));
@@ -224,6 +235,9 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         jLabel1.setText("Número de Control (ID)");
         jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 230, 30));
         jPanel5.add(modifID, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 230, 30));
+
+        modifAnio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        jPanel5.add(modifAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 230, 30));
 
         gestionaAuto.addTab("Modifica Autos", jPanel5);
 
@@ -355,7 +369,6 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         jLabel34.setText("Fabricante");
         jPanel6.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, 120, -1));
 
-        comboTransmision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Automatico", " " }));
         comboTransmision.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
@@ -365,16 +378,44 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         });
         jPanel6.add(comboTransmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 140, -1));
 
-        comboAnio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2023", "2022", "2007", "2005", "2003" }));
+        comboAnio.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                comboAnioMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt)
+            {
+                comboAnioMouseEntered(evt);
+            }
+        });
         jPanel6.add(comboAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 140, -1));
 
-        comboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Deportivo", "Exotico", "Sedan", "Todoterreno" }));
+        comboTipo.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                comboTipoMouseClicked(evt);
+            }
+        });
         jPanel6.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 140, -1));
 
-        comboPrecio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "500000", "300000", "200000", "150000", "120000", "70000", "50000", "35000" }));
+        comboPrecio.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                comboPrecioMouseClicked(evt);
+            }
+        });
         jPanel6.add(comboPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 140, -1));
 
-        comboFabricante.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ford", "Honda", "Toyota", "Lamborghini", "Porsche", "Eclipse", "Jaguar" }));
+        comboFabricante.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                comboFabricanteMouseClicked(evt);
+            }
+        });
         jPanel6.add(comboFabricante, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 100, 140, -1));
 
         gestionaAuto.addTab("Consulta Autos", jPanel6);
@@ -400,16 +441,6 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         {
             JOptionPane.showMessageDialog(this, "Año invalido", "Alerta", JOptionPane.WARNING_MESSAGE);
             precio.requestFocus();
-        } else if (transmision.getText()
-            .isEmpty())
-        {
-            JOptionPane.showMessageDialog(this, "Faltó por llenar el campo Transmisión", "Alerta", JOptionPane.WARNING_MESSAGE);
-            transmision.requestFocus();
-        } else if (tipo.getText()
-            .isEmpty())
-        {
-            JOptionPane.showMessageDialog(this, "Faltó por llenar el campo Tipo", "Alerta", JOptionPane.WARNING_MESSAGE);
-            tipo.requestFocus();
         } else
         {
             Autos a = new Autos();
@@ -428,9 +459,9 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         {
             Autos a = new Autos();
             a.modifAuto(comboAuto, modifID, modifModelo, modifTransmision, modifAnio, modifTipo, modifPrecio, modifFabricante);
-            /*
-            a.consultaGeneralUser(tblConsultaUsers);
-            */
+            JOptionPane.showMessageDialog(this, "Auto modificado con éxito");
+            a.consultaGeneralAuto(verAutos);
+            modifID.setText("");
             modifModelo.setText("");
             modifAnio.setText("");
             modifFabricante.setText("");
@@ -490,20 +521,73 @@ public class VtnAutoAdmin extends javax.swing.JPanel
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnActualizarActionPerformed
     {//GEN-HEADEREND:event_btnActualizarActionPerformed
-        //despProductos();
+        Autos a = new Autos();
+        a.activarTodosCombos(comboTransmision, comboAnio, comboTipo, comboPrecio, comboFabricante);
+        a.consultaGeneralAuto(verAutos);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void gestionaAutoMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_gestionaAutoMouseClicked
     {//GEN-HEADEREND:event_gestionaAutoMouseClicked
         Autos a = new Autos();
         a.consultaGeneralAuto(verAutos);
+        a.agregaCombo(comboAuto);
+        a.agregaComboFabricante(comboFabricante);
+        a.agregaComboAnio(comboAnio);
+        a.agregaComboPrecio(comboPrecio);
+        a.agregaComboTipo(comboTipo);
+        a.agregaComboTransmision(comboTransmision);
     }//GEN-LAST:event_gestionaAutoMouseClicked
 
     private void comboTransmisionMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_comboTransmisionMouseClicked
     {//GEN-HEADEREND:event_comboTransmisionMouseClicked
-        String select = (String) comboAuto.getSelectedItem();
-        
+        Autos a = new Autos();
+        String campoFiltrado = "Transmision"; // Campo por el cual filtrar
+        String valorFiltrado = (String) comboTransmision.getSelectedItem(); // Valor a filtrar
+        a.desactivarOtrosCombos(verAutos, campoFiltrado, valorFiltrado, comboTransmision, comboTransmision, comboAnio, comboTipo, comboPrecio, comboFabricante);
     }//GEN-LAST:event_comboTransmisionMouseClicked
+
+    private void comboAutoItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboAutoItemStateChanged
+    {//GEN-HEADEREND:event_comboAutoItemStateChanged
+        Autos a = new Autos();
+        a.selecAuto(comboAuto, modifID, modifModelo, modifTransmision, modifAnio, modifTipo, modifPrecio, modifFabricante);
+    }//GEN-LAST:event_comboAutoItemStateChanged
+
+    private void comboAnioMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_comboAnioMouseClicked
+    {//GEN-HEADEREND:event_comboAnioMouseClicked
+        Autos a = new Autos();
+        String campoFiltrado = "Anio"; // Campo por el cual filtrar
+        String valorFiltrado = (String) comboAnio.getSelectedItem(); // Valor a filtrar
+        a.desactivarOtrosCombos(verAutos, campoFiltrado, valorFiltrado, comboAnio, comboTransmision, comboAnio, comboTipo, comboPrecio, comboFabricante);
+    }//GEN-LAST:event_comboAnioMouseClicked
+
+    private void comboTipoMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_comboTipoMouseClicked
+    {//GEN-HEADEREND:event_comboTipoMouseClicked
+        Autos a = new Autos();
+        String campoFiltrado = "Tipo"; // Campo por el cual filtrar
+        String valorFiltrado = (String) comboTipo.getSelectedItem(); // Valor a filtrar
+        a.desactivarOtrosCombos(verAutos, campoFiltrado, valorFiltrado, comboTipo, comboTransmision, comboAnio, comboTipo, comboPrecio, comboFabricante);
+    }//GEN-LAST:event_comboTipoMouseClicked
+
+    private void comboPrecioMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_comboPrecioMouseClicked
+    {//GEN-HEADEREND:event_comboPrecioMouseClicked
+        Autos a = new Autos();
+        String campoFiltrado = "Precio"; // Campo por el cual filtrar
+        String valorFiltrado = (String) comboPrecio.getSelectedItem(); // Valor a filtrar
+        a.desactivarOtrosCombos(verAutos, campoFiltrado, valorFiltrado, comboPrecio, comboTransmision, comboAnio, comboTipo, comboPrecio, comboFabricante);
+    }//GEN-LAST:event_comboPrecioMouseClicked
+
+    private void comboFabricanteMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_comboFabricanteMouseClicked
+    {//GEN-HEADEREND:event_comboFabricanteMouseClicked
+        Autos a = new Autos();
+        String campoFiltrado = "Fabricante"; // Campo por el cual filtrar
+        String valorFiltrado = (String) comboFabricante.getSelectedItem(); // Valor a filtrar
+        a.desactivarOtrosCombos(verAutos, campoFiltrado, valorFiltrado, comboFabricante, comboTransmision, comboAnio, comboTipo, comboPrecio, comboFabricante);
+    }//GEN-LAST:event_comboFabricanteMouseClicked
+
+    private void comboAnioMouseEntered(java.awt.event.MouseEvent evt)//GEN-FIRST:event_comboAnioMouseEntered
+    {//GEN-HEADEREND:event_comboAnioMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboAnioMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -553,7 +637,7 @@ public class VtnAutoAdmin extends javax.swing.JPanel
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField modelo;
-    private javax.swing.JTextField modifAnio;
+    private javax.swing.JFormattedTextField modifAnio;
     private javax.swing.JTextField modifFabricante;
     private javax.swing.JTextField modifID;
     private javax.swing.JTextField modifModelo;
@@ -561,8 +645,8 @@ public class VtnAutoAdmin extends javax.swing.JPanel
     private javax.swing.JComboBox<String> modifTipo;
     private javax.swing.JComboBox<String> modifTransmision;
     private javax.swing.JTextField precio;
-    private javax.swing.JTextField tipo;
-    private javax.swing.JTextField transmision;
+    private javax.swing.JComboBox<String> tipo;
+    private javax.swing.JComboBox<String> transmision;
     private javax.swing.JTable verAutos;
     // End of variables declaration//GEN-END:variables
 }

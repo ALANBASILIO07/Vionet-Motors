@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Year;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -118,12 +120,12 @@ public class Autos implements Serializable
         this.fabricante = fabricante;
     }
 
-    public void altaAuto(JTextField jtf, JTextField jtf2, JTextField jtf3, JTextField jtf4, JTextField jtf5, JTextField jtf6)
+    public void altaAuto(JTextField jtf, JComboBox jtf2, JTextField jtf3, JComboBox jtf4, JTextField jtf5, JTextField jtf6)
     {
         modelo = jtf.getText();
-        transmision = jtf2.getText();
+        transmision = jtf2.getSelectedItem().toString();
         anio = Integer.parseInt(jtf3.getText());
-        tipo = jtf4.getText();
+        tipo = jtf4.getSelectedItem().toString();
         precio = Double.parseDouble(jtf5.getText());
         fabricante = jtf6.getText();
 
@@ -149,9 +151,9 @@ public class Autos implements Serializable
                 if (rowsAffected > 0)
                 {
                     jtf.setText("");
-                    jtf2.setText("");
+                    //jtf2.setText("");
                     jtf3.setText("");
-                    jtf4.setText("");
+                    //jtf4.setText("");
                     jtf5.setText("");
                     jtf6.setText("");
                 }
@@ -252,7 +254,7 @@ public class Autos implements Serializable
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
         {
             // Sentencia SQL para insertar el platillo
-            String sql = "DELETE FROM auto WHERE Modelo = ?";
+            String sql = "DELETE FROM auto WHERE ID = ?";
             // Crear la declaración preparada
             try (PreparedStatement stmt = conn.prepareStatement(sql))
             {
@@ -277,7 +279,7 @@ public class Autos implements Serializable
 
     }
 
-    public void modifAuto(JComboBox jcb, JTextField txtID,JTextField jtf, JComboBox jtf2, JTextField jtf3, JComboBox jtf4, JTextField jtf5, JTextField jtf6)
+    public void modifAuto(JComboBox jcb, JTextField txtID, JTextField jtf, JComboBox jtf2, JTextField jtf3, JComboBox jtf4, JTextField jtf5, JTextField jtf6)
     {
         modelo = jtf.getText();
         transmision = jtf2.getSelectedItem().toString();
@@ -285,12 +287,12 @@ public class Autos implements Serializable
         tipo = jtf4.getSelectedItem().toString();
         precio = Double.parseDouble(jtf5.getText());
         fabricante = jtf6.getText();
-        
+
         String valor;
         valor = (jcb.getSelectedItem().toString());
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
         {
-            String sql = "UPDATE auto SET ID = ?, Modelo = ?, Transmision = ?, Anio = ?, Tipo = ?, Precio = ?, Fabricante = ? WHERE Modelo";
+            String sql = "UPDATE auto SET ID = ?, Modelo = ?, Transmision = ?, Anio = ?, Tipo = ?, Precio = ?, Fabricante = ? WHERE Modelo = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql))
             {
                 // Establecer los parámetros
@@ -313,50 +315,50 @@ public class Autos implements Serializable
             JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos:  " + ex.getMessage());
         }
     }
-    
-    /*
-    public void selecAuto(JComboBox jcb, JTextField jtf, JComboBox jtf2, JTextField jtf3, JComboBox jtf4, JTextField jtf5, JTextField jtf6)
+
+    public void selecAuto(JComboBox<String> jcb, JTextField txtID, JTextField jtf, JComboBox<String> jtf2, JTextField jtf3, JComboBox<String> jtf4, JTextField jtf5, JTextField jtf6)
     {
-        try 
-        {
-            int filas = jcb.getSelectedIndex();
-            jtf.setText((jcb.(filas, 0).toString()));
-            jtf2.setText((jcb.getValueAt(filas, 1).toString()));
-            jtf.setText((jcb.getValueAt(filas, 0).toString()));
-            jtf2.setText((jcb.getValueAt(filas, 1).toString()));
-            jtf.setText((jcb.getValueAt(filas, 0).toString()));
-            jtf2.setText((jcb.getValueAt(filas, 1).toString()));
-        } catch (Exception ex)
-        {
-            JOptionPane.showMessageDialog(null, "Error al seleccionar el auto:  " + ex.getMessage());
-        }
-    }
-    */
-    public void selecAuto(JComboBox<Object[]> jcb, JTextField jtf, JComboBox<String> jtf2, JTextField jtf3, JComboBox<String> jtf4, JTextField jtf5, JTextField jtf6) {
-    try {
-        // Obtener el índice seleccionado del JComboBox
-        int filas = jcb.getSelectedIndex();
+        // Obtener el modelo seleccionado del JComboBox
+        String modeloSeleccionado = (String) jcb.getSelectedItem();
 
         // Verificar si se ha seleccionado un elemento válido
-        if (filas != -1) {
-            // Obtener el elemento seleccionado del JComboBox
-            Object[] selectedItem = jcb.getItemAt(filas);
+        if (modeloSeleccionado != null && !modeloSeleccionado.isEmpty())
+        {
+            // Conexión a la base de datos y consulta de datos del auto
+            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+            {
+                String sql = "SELECT * FROM Auto WHERE Modelo = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(sql))
+                {
+                    stmt.setString(1, modeloSeleccionado);
+                    ResultSet rs = stmt.executeQuery();
 
-            // Asignar valores a los campos correspondientes
-            jtf.setText(selectedItem[0].toString()); // Modelo (String)
-            jtf2.setSelectedItem(selectedItem[1].toString()); // Transmisión (String)
-            jtf3.setText(selectedItem[2].toString()); // Año (Year como String)
-            jtf4.setSelectedItem(selectedItem[3].toString()); // Tipo (String)
-            jtf5.setText(selectedItem[4].toString()); // Precio (Double como String)
-            jtf6.setText(selectedItem[5].toString()); // Fabricante (String)
-        } else {
-            throw new Exception("No se ha seleccionado ningún elemento.");
+                    // Verificar si se ha encontrado el registro correspondiente
+                    if (rs.next())
+                    {
+                        txtID.setText(rs.getString("ID")); // ID (String)
+                        jtf.setText(rs.getString("Modelo")); // Modelo (String)
+                        jtf2.setSelectedItem(rs.getString("Transmision")); // Transmisión (String)
+
+                        // Obtener solo el año (primeros 4 caracteres)
+                        String fechaCompleta = rs.getString("Anio");
+                        String anio = fechaCompleta.substring(0, 4);
+                        jtf3.setText(anio); // Año (solo el año como String)
+
+                        jtf4.setSelectedItem(rs.getString("Tipo")); // Tipo (String)
+                        jtf5.setText(rs.getString("Precio")); // Precio (Double como String)
+                        jtf6.setText(rs.getString("Fabricante")); // Fabricante (String)
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(null, "No se encontró el auto con el modelo seleccionado.");
+                    }
+                }
+            } catch (SQLException ex)
+            {
+                JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+            }
         }
-    } catch (Exception ex) {
-        JOptionPane.showMessageDialog(null, "Error al seleccionar el auto: " + ex.getMessage());
     }
-}
-
 
     public void consultaGeneralAuto(JTable jt)
     {
@@ -364,23 +366,26 @@ public class Autos implements Serializable
         // Limpiar la tabla actual
         tabla.setRowCount(0);
 
-        // Conexión a la base de datos y consulta de platillos
+        // Conexión a la base de datos y consulta de autos
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
         {
-            String sql = "SELECT * FROM auto";
+            String sql = "SELECT * FROM Auto";
             try (PreparedStatement stmt = conn.prepareStatement(sql))
             {
-
                 ResultSet rs = stmt.executeQuery();
                 // Llenar la tabla con los datos de la base de datos
                 while (rs.next())
                 {
+                    // Obtener solo el año (primeros 4 caracteres)
+                    String fechaCompleta = rs.getString("Anio");
+                    String anio = fechaCompleta.substring(0, 4);
+
                     tabla.addRow(new String[]
                     {
                         rs.getString("ID"),
                         rs.getString("Modelo"),
                         rs.getString("Transmision"),
-                        rs.getString("Anio"),
+                        anio, // Solo el año
                         rs.getString("Tipo"),
                         rs.getString("Precio"),
                         rs.getString("Fabricante"),
@@ -392,4 +397,448 @@ public class Autos implements Serializable
             JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
         }
     }
+
+    public void agregaCombo(JComboBox<String> jcb)
+    {
+        // Limpiar el ComboBox actual
+        jcb.removeAllItems();
+
+        // Conexión a la base de datos y consulta de platillos
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "SELECT * FROM Auto";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                ResultSet rs = stmt.executeQuery();
+                // Llenar el ComboBox con los datos de la base de datos
+                while (rs.next())
+                {
+                    jcb.addItem(rs.getString("Modelo"));
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+
+    public void agregaComboTransmision(JComboBox<String> jcb)
+    {
+        // Limpiar el ComboBox actual
+        jcb.removeAllItems();
+
+        // Usar un HashSet para asegurarse de que solo se agreguen transmisiones únicas
+        Set<String> transmisionesUnicas = new HashSet<>();
+
+        // Conexión a la base de datos y consulta de platillos
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "SELECT Transmision FROM Auto";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                ResultSet rs = stmt.executeQuery();
+                // Llenar el ComboBox con los datos de la base de datos
+                while (rs.next())
+                {
+                    String transmision = rs.getString("Transmision");
+                    // Agregar solo transmisiones únicas al ComboBox
+                    if (transmisionesUnicas.add(transmision))
+                    {
+                        jcb.addItem(transmision);
+                    }
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+
+    public void agregaComboTipo(JComboBox<String> jcb)
+    {
+        // Limpiar el ComboBox actual
+        jcb.removeAllItems();
+
+        // Usar un HashSet para asegurarse de que solo se agreguen transmisiones únicas
+        Set<String> tipoUnico = new HashSet<>();
+
+        // Conexión a la base de datos y consulta de platillos
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "SELECT Tipo FROM Auto";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                ResultSet rs = stmt.executeQuery();
+                // Llenar el ComboBox con los datos de la base de datos
+                while (rs.next())
+                {
+                    String tipo = rs.getString("Tipo");
+                    // Agregar solo transmisiones únicas al ComboBox
+                    if (tipoUnico.add(tipo))
+                    {
+                        jcb.addItem(tipo);
+                    }
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+
+    public void agregaComboAnio(JComboBox<String> jcb)
+    {
+        // Limpiar el ComboBox actual
+        jcb.removeAllItems();
+
+        // Usar un HashSet para asegurarse de que solo se agreguen años únicos
+        Set<String> aniosUnicos = new HashSet<>();
+
+        // Conexión a la base de datos y consulta de platillos
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "SELECT Anio FROM Auto";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                ResultSet rs = stmt.executeQuery();
+                // Llenar el ComboBox con los datos de la base de datos
+                while (rs.next())
+                {
+                    String fechaCompleta = rs.getString("Anio");
+                    // Obtener solo el año (primeros 4 caracteres)
+                    String anio = fechaCompleta.substring(0, 4);
+                    // Agregar solo años únicos al ComboBox
+                    if (aniosUnicos.add(anio))
+                    {
+                        jcb.addItem(anio);
+                    }
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+
+    public void agregaComboPrecio(JComboBox<String> jcb)
+    {
+        // Limpiar el ComboBox actual
+        jcb.removeAllItems();
+
+        // Usar un HashSet para asegurarse de que solo se agreguen transmisiones únicas
+        Set<String> preciosUnicos = new HashSet<>();
+
+        // Conexión a la base de datos y consulta de platillos
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "SELECT Precio FROM Auto";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                ResultSet rs = stmt.executeQuery();
+                // Llenar el ComboBox con los datos de la base de datos
+                while (rs.next())
+                {
+                    String precio = rs.getString("Precio");
+                    // Agregar solo transmisiones únicas al ComboBox
+                    if (preciosUnicos.add(precio))
+                    {
+                        jcb.addItem(precio);
+                    }
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+
+    public void agregaComboFabricante(JComboBox<String> jcb)
+    {
+        // Limpiar el ComboBox actual
+        jcb.removeAllItems();
+
+        // Usar un HashSet para asegurarse de que solo se agreguen transmisiones únicas
+        Set<String> fabricanteUnico = new HashSet<>();
+
+        // Conexión a la base de datos y consulta de platillos
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "SELECT Fabricante FROM Auto";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                ResultSet rs = stmt.executeQuery();
+                // Llenar el ComboBox con los datos de la base de datos
+                while (rs.next())
+                {
+                    String fabricante = rs.getString("Fabricante");
+                    // Agregar solo transmisiones únicas al ComboBox
+                    if (fabricanteUnico.add(fabricante))
+                    {
+                        jcb.addItem(fabricante);
+                    }
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+
+    public void desactivarOtrosCombos(JTable jt, String cf, String vf,JComboBox<String> comboSeleccionado, JComboBox<String> comboTransmision, JComboBox<String> comboAnio, JComboBox<String> comboTipo, JComboBox<String> comboPrecio, JComboBox<String> comboFabricante)
+    {
+        // Desactivar todos los JComboBox excepto el seleccionado
+        comboTransmision.setEnabled(comboSeleccionado == comboTransmision);
+        comboAnio.setEnabled(comboSeleccionado == comboAnio);
+        comboTipo.setEnabled(comboSeleccionado == comboTipo);
+        comboPrecio.setEnabled(comboSeleccionado == comboPrecio);
+        comboFabricante.setEnabled(comboSeleccionado == comboFabricante);
+        
+        consultaFiltrada(jt, cf, vf);
+    }
+
+    // Método para activar todos los JComboBox
+    public void activarTodosCombos(JComboBox<String> comboTransmision, JComboBox<String> comboAnio, JComboBox<String> comboTipo, JComboBox<String> comboPrecio, JComboBox<String> comboFabricante)
+    {
+        comboTransmision.setEnabled(true);
+        comboAnio.setEnabled(true);
+        comboTipo.setEnabled(true);
+        comboPrecio.setEnabled(true);
+        comboFabricante.setEnabled(true);
+    }
+
+    public void consultaFiltradaTransmision(JTable jt, String transmisionSeleccionada)
+    {
+        DefaultTableModel tabla = (DefaultTableModel) jt.getModel();
+        // Limpiar la tabla actual
+        tabla.setRowCount(0);
+
+        // Conexión a la base de datos y consulta de autos filtrada por transmisión
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "SELECT * FROM Auto WHERE Transmision = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                stmt.setString(1, transmisionSeleccionada);
+                ResultSet rs = stmt.executeQuery();
+                // Llenar la tabla con los datos de la base de datos
+                while (rs.next())
+                {
+                    // Obtener solo el año (primeros 4 caracteres)
+                    String fechaCompleta = rs.getString("Anio");
+                    String anio = fechaCompleta.substring(0, 4);
+
+                    tabla.addRow(new String[]
+                    {
+                        rs.getString("ID"),
+                        rs.getString("Modelo"),
+                        rs.getString("Transmision"),
+                        anio, // Solo el año
+                        rs.getString("Tipo"),
+                        rs.getString("Precio"),
+                        rs.getString("Fabricante"),
+                    });
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+
+    public void consultaFiltradaAnio(JTable jt, String transmisionSeleccionada)
+    {
+        DefaultTableModel tabla = (DefaultTableModel) jt.getModel();
+        // Limpiar la tabla actual
+        tabla.setRowCount(0);
+
+        // Conexión a la base de datos y consulta de autos filtrada por transmisión
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "SELECT * FROM Auto WHERE Anio = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                stmt.setString(1, transmisionSeleccionada);
+                ResultSet rs = stmt.executeQuery();
+                // Llenar la tabla con los datos de la base de datos
+                while (rs.next())
+                {
+                    // Obtener solo el año (primeros 4 caracteres)
+                    String fechaCompleta = rs.getString("Anio");
+                    String anio = fechaCompleta.substring(0, 4);
+
+                    tabla.addRow(new String[]
+                    {
+                        rs.getString("ID"),
+                        rs.getString("Modelo"),
+                        rs.getString("Transmision"),
+                        anio, // Solo el año
+                        rs.getString("Tipo"),
+                        rs.getString("Precio"),
+                        rs.getString("Fabricante"),
+                    });
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+
+    public void consultaFiltradaPrecio(JTable jt, String transmisionSeleccionada)
+    {
+        DefaultTableModel tabla = (DefaultTableModel) jt.getModel();
+        // Limpiar la tabla actual
+        tabla.setRowCount(0);
+
+        // Conexión a la base de datos y consulta de autos filtrada por transmisión
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "SELECT * FROM Auto WHERE Precio = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                stmt.setString(1, transmisionSeleccionada);
+                ResultSet rs = stmt.executeQuery();
+                // Llenar la tabla con los datos de la base de datos
+                while (rs.next())
+                {
+                    // Obtener solo el año (primeros 4 caracteres)
+                    String fechaCompleta = rs.getString("Anio");
+                    String anio = fechaCompleta.substring(0, 4);
+
+                    tabla.addRow(new String[]
+                    {
+                        rs.getString("ID"),
+                        rs.getString("Modelo"),
+                        rs.getString("Transmision"),
+                        anio, // Solo el año
+                        rs.getString("Tipo"),
+                        rs.getString("Precio"),
+                        rs.getString("Fabricante"),
+                    });
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+
+    public void consultaFiltradaTipo(JTable jt, String transmisionSeleccionada)
+    {
+        DefaultTableModel tabla = (DefaultTableModel) jt.getModel();
+        // Limpiar la tabla actual
+        tabla.setRowCount(0);
+
+        // Conexión a la base de datos y consulta de autos filtrada por transmisión
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "SELECT * FROM Auto WHERE Tipo = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                stmt.setString(1, transmisionSeleccionada);
+                ResultSet rs = stmt.executeQuery();
+                // Llenar la tabla con los datos de la base de datos
+                while (rs.next())
+                {
+                    // Obtener solo el año (primeros 4 caracteres)
+                    String fechaCompleta = rs.getString("Anio");
+                    String anio = fechaCompleta.substring(0, 4);
+
+                    tabla.addRow(new String[]
+                    {
+                        rs.getString("ID"),
+                        rs.getString("Modelo"),
+                        rs.getString("Transmision"),
+                        anio, // Solo el año
+                        rs.getString("Tipo"),
+                        rs.getString("Precio"),
+                        rs.getString("Fabricante"),
+                    });
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+
+    public void consultaFiltradaFabricante(JTable jt, String transmisionSeleccionada)
+    {
+        DefaultTableModel tabla = (DefaultTableModel) jt.getModel();
+        // Limpiar la tabla actual
+        tabla.setRowCount(0);
+
+        // Conexión a la base de datos y consulta de autos filtrada por transmisión
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "SELECT * FROM Auto WHERE Fabricante = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                stmt.setString(1, transmisionSeleccionada);
+                ResultSet rs = stmt.executeQuery();
+                // Llenar la tabla con los datos de la base de datos
+                while (rs.next())
+                {
+                    // Obtener solo el año (primeros 4 caracteres)
+                    String fechaCompleta = rs.getString("Anio");
+                    String anio = fechaCompleta.substring(0, 4);
+
+                    tabla.addRow(new String[]
+                    {
+                        rs.getString("ID"),
+                        rs.getString("Modelo"),
+                        rs.getString("Transmision"),
+                        anio, // Solo el año
+                        rs.getString("Tipo"),
+                        rs.getString("Precio"),
+                        rs.getString("Fabricante"),
+                    });
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+
+    public void consultaFiltrada(JTable jt, String campoFiltrado, String valorFiltrado)
+    {
+        DefaultTableModel tabla = (DefaultTableModel) jt.getModel();
+        // Limpiar la tabla actual
+        tabla.setRowCount(0);
+
+        // Conexión a la base de datos y consulta de autos filtrada por campo
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            // Generar la consulta SQL dinámicamente
+            String sql = "SELECT * FROM Auto WHERE " + campoFiltrado + " = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                stmt.setString(1, valorFiltrado);
+                ResultSet rs = stmt.executeQuery();
+                // Llenar la tabla con los datos de la base de datos
+                while (rs.next())
+                {
+                    // Obtener solo el año (primeros 4 caracteres)
+                    String fechaCompleta = rs.getString("Anio");
+                    String anio = fechaCompleta.substring(0, 4);
+
+                    tabla.addRow(new String[]
+                    {
+                        rs.getString("ID"),
+                        rs.getString("Modelo"),
+                        rs.getString("Transmision"),
+                        anio, // Solo el año
+                        rs.getString("Tipo"),
+                        rs.getString("Precio"),
+                        rs.getString("Fabricante"),
+                    });
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+
 }
