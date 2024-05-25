@@ -115,6 +115,13 @@ public class VtnLoginVionet extends javax.swing.JFrame
         });
 
         client.setText("CLIENTE");
+        client.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                clientMouseClicked(evt);
+            }
+        });
         client.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -125,6 +132,13 @@ public class VtnLoginVionet extends javax.swing.JFrame
 
         admin.setBackground(new java.awt.Color(255, 102, 0));
         admin.setText("ADMINISTRADOR");
+        admin.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                adminMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelProcesosLayout = new javax.swing.GroupLayout(panelProcesos);
         panelProcesos.setLayout(panelProcesosLayout);
@@ -241,7 +255,7 @@ public class VtnLoginVionet extends javax.swing.JFrame
             {
                 int flag;
                 Administradores d = new Administradores();
-                flag = d.buscarUsuario(user);
+                flag = d.buscarAdmin(user);
                 if (flag == 0)
                 {
                     JOptionPane.showMessageDialog(this, "Usuario o contraseña son incorrectos", "Alerta", JOptionPane.WARNING_MESSAGE);
@@ -300,6 +314,22 @@ public class VtnLoginVionet extends javax.swing.JFrame
     {//GEN-HEADEREND:event_passwordKeyTyped
         Validaciones.validaAlfanumerico(evt, 25, password.toString());
     }//GEN-LAST:event_passwordKeyTyped
+
+    private void adminMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_adminMouseClicked
+    {//GEN-HEADEREND:event_adminMouseClicked
+        if (admin.isSelected())
+        {
+            client.setSelected(false);
+        }
+    }//GEN-LAST:event_adminMouseClicked
+
+    private void clientMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_clientMouseClicked
+    {//GEN-HEADEREND:event_clientMouseClicked
+        if (client.isSelected())
+        {
+            admin.setSelected(false);
+        }
+    }//GEN-LAST:event_clientMouseClicked
 
     /**
      * @param args the command line arguments

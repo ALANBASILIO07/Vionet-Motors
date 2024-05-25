@@ -5,6 +5,8 @@
 package Interface;
 
 import Files.Autos;
+import Files.Citas;
+import Files.Cliente;
 import javax.swing.JOptionPane;
 
 /**

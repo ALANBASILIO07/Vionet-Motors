@@ -5,10 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -123,18 +125,50 @@ public class Cliente
         return 0;
     }
     
-    public void modifCliente(JTable jt, JTextField jtf, JTextField jtf2)
+    public void consultaGeneralCliente(JTable jt)
     {
+        DefaultTableModel tabla = (DefaultTableModel) jt.getModel();
+        // Limpiar la tabla actual
+        tabla.setRowCount(0);
+
+        // Conexión a la base de datos y consulta de autos
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "SELECT * FROM usuario";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                ResultSet rs = stmt.executeQuery();
+                // Llenar la tabla con los datos de la base de datos
+                while (rs.next())
+                {
+                    tabla.addRow(new String[]
+                    {
+                        rs.getString("Nombre"),
+                        rs.getString("Contraseña")
+                    });
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+    
+    public void modifCliente(JComboBox jcb, JTextField jtf, JTextField jtf2)
+    {
+        usuario = jtf.getText();
+        contrasenia = jtf2.getText();
+
         String valor;
-        valor = (jt.getValueAt(jt.getSelectedRow(), 0).toString());
+        valor = (jcb.getSelectedItem().toString());
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
         {
             String sql = "UPDATE usuario SET Nombre = ?, Contraseña = ? WHERE Nombre = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql))
             {
                 // Establecer los parámetros
-                stmt.setString(1, jtf.getText());
-                stmt.setString(2, jtf2.getText());
+                stmt.setString(1, usuario); // String
+                stmt.setString(2, contrasenia); // String
                 stmt.setString(3, valor);
 
                 // Ejecutar la sentencia
@@ -143,7 +177,128 @@ public class Cliente
             }
         } catch (SQLException ex)
         {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos:  " + ex.getMessage());
+        }
+    }
+    
+    public void selecCliente(JComboBox<String> jcb, JTextField jtf, JTextField jtf2)
+    {
+        // Obtener el modelo seleccionado del JComboBox
+        String adminSeleccionado = (String) jcb.getSelectedItem();
+
+        // Verificar si se ha seleccionado un elemento válido
+        if (adminSeleccionado != null && !adminSeleccionado.isEmpty())
+        {
+            // Conexión a la base de datos y consulta de datos del auto
+            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+            {
+                String sql = "SELECT * FROM usuario WHERE Nombre = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(sql))
+                {
+                    stmt.setString(1, adminSeleccionado);
+                    ResultSet rs = stmt.executeQuery();
+
+                    // Verificar si se ha encontrado el registro correspondiente
+                    if (rs.next())
+                    {
+                        jtf.setText(rs.getString("Nombre")); // String)
+                        jtf2.setText(rs.getString("Contraseña")); // (String)
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(null, "No se encontró el administrador seleccionado.");
+                    }
+                }
+            } catch (SQLException ex)
+            {
+                JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+            }
+        }
+    }
+    
+    public void agregaCombo(JComboBox<String> jcb)
+    {
+        // Limpiar el ComboBox actual
+        jcb.removeAllItems();
+
+        // Conexión a la base de datos y consulta de platillos
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "SELECT * FROM usuario";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                ResultSet rs = stmt.executeQuery();
+                // Llenar el ComboBox con los datos de la base de datos
+                while (rs.next())
+                {
+                    jcb.addItem(rs.getString("Nombre"));
+                }
+            }
+        } catch (SQLException ex)
+        {
             JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
         }
+    }
+    
+    public int buscaClienteEliminar(JTextField jtf, JTable jt)
+    {
+        DefaultTableModel tabla = (DefaultTableModel) jt.getModel();
+        // Limpiar la tabla actual
+        tabla.setRowCount(0);
+        usuario = jtf.getText();
+
+        try
+        {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass);
+            String sql = "SELECT * FROM usuario WHERE Nombre = ?;";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, usuario);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next())
+            {
+                tabla.addRow(new String[]
+                {
+                    rs.getString("Nombre"),
+                    rs.getString("Contraseña"),
+                });
+                return 1;
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+        }
+        return 0;
+    }
+    
+    public int eliminarCliente(JTextField jtf, JTable jt)
+    {
+        DefaultTableModel tabla = (DefaultTableModel) jt.getModel();
+
+        usuario = tabla.getValueAt(jt.getSelectedRow(), 0).toString();
+
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            // Sentencia SQL para insertar el platillo
+            String sql = "DELETE FROM usuario WHERE Nombre = ?";
+            // Crear la declaración preparada
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                // Establecer los parámetros
+                stmt.setString(1, usuario);
+
+                // Ejecutar la sentencia
+                int rowsAffected = stmt.executeUpdate();
+
+                if (rowsAffected > 0)
+                {
+                    jtf.setText("");
+                    tabla.setRowCount(0);
+                    return 1;
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Ocurrió un error con la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return 0;
     }
 }

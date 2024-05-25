@@ -55,9 +55,23 @@ public class VtnSignIn extends javax.swing.JFrame
 
         admin.setBackground(new java.awt.Color(255, 102, 0));
         admin.setText("ADMINISTRADOR");
+        admin.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                adminMouseClicked(evt);
+            }
+        });
         jPanel1.add(admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 210, -1));
 
         client.setText("CLIENTE");
+        client.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                clientMouseClicked(evt);
+            }
+        });
         client.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -143,7 +157,7 @@ public class VtnSignIn extends javax.swing.JFrame
             {
                 int flag;
                 Administradores d = new Administradores();
-                flag = d.buscarUsuario(userName);
+                flag = d.buscarAdmin(userName);
                 if (flag == 1)
                 {
                     JOptionPane.showMessageDialog(this, "El nombre de usuario ya existe, pruebe con otro");
@@ -151,7 +165,7 @@ public class VtnSignIn extends javax.swing.JFrame
                     password.setText("");
                 } else
                 {
-                    d.altaUsuario(userName, password);
+                    d.altaAdmin(userName, password);
                     this.dispose();
                 }
             }
@@ -188,6 +202,22 @@ public class VtnSignIn extends javax.swing.JFrame
     {//GEN-HEADEREND:event_userNameKeyTyped
         Validaciones.validaAlfabeticos(evt, 23, userName.getText());
     }//GEN-LAST:event_userNameKeyTyped
+
+    private void adminMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_adminMouseClicked
+    {//GEN-HEADEREND:event_adminMouseClicked
+        if (admin.isSelected())
+        {
+            client.setSelected(false);
+        }
+    }//GEN-LAST:event_adminMouseClicked
+
+    private void clientMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_clientMouseClicked
+    {//GEN-HEADEREND:event_clientMouseClicked
+        if (client.isSelected())
+        {
+            admin.setSelected(false);
+        }
+    }//GEN-LAST:event_clientMouseClicked
 
     /**
      * @param args the command line arguments

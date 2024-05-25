@@ -21,7 +21,6 @@ public class VtnAutoAdmin extends javax.swing.JPanel
     public VtnAutoAdmin()
     {
         initComponents();
-        Autos a = new Autos();
     }
 
     /**
@@ -49,6 +48,7 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         jButton1 = new javax.swing.JButton();
         tipo = new javax.swing.JComboBox<>();
         transmision = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         modifModelo = new javax.swing.JTextField();
@@ -67,6 +67,7 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         jLabel1 = new javax.swing.JLabel();
         modifID = new javax.swing.JTextField();
         modifAnio = new javax.swing.JFormattedTextField();
+        jLabel11 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         buscaProducto = new javax.swing.JTextField();
@@ -75,6 +76,7 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         detalleAuto = new javax.swing.JTable();
         eliminaAuto = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         verAutos = new javax.swing.JTable();
@@ -91,6 +93,7 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         comboTipo = new javax.swing.JComboBox<>();
         comboPrecio = new javax.swing.JComboBox<>();
         comboFabricante = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 0, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -108,40 +111,40 @@ public class VtnAutoAdmin extends javax.swing.JPanel
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel3.add(modelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 230, 30));
-        jPanel3.add(fabricante, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 230, 30));
-        jPanel3.add(precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, 230, 30));
+        jPanel3.add(modelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 230, 30));
+        jPanel3.add(fabricante, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 230, 30));
+        jPanel3.add(precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, 230, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Transmisión");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 230, 20));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 230, 20));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Modelo");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 116, 230, 20));
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 230, 20));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Fabricante");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 230, 20));
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 230, 20));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Tipo");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 330, 230, 20));
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 380, 230, 20));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Precio");
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 230, 20));
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 230, 20));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Año");
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 120, 230, 20));
-        jPanel3.add(anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, 230, 30));
+        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, 230, 20));
+        jPanel3.add(anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 200, 230, 30));
 
         jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
@@ -156,10 +159,15 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 500, -1, 60));
 
         tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Deportivo", "Exotico", "Todoterreno", "Sedan" }));
-        jPanel3.add(tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 360, 230, 30));
+        jPanel3.add(tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 410, 230, 30));
 
         transmision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Automatico" }));
-        jPanel3.add(transmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 360, 230, 30));
+        jPanel3.add(transmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 410, 230, 30));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Alta Autos");
+        jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, -1));
 
         gestionaAuto.addTab("Alta Autos", jPanel3);
 
@@ -169,39 +177,39 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Modelo");
-        jPanel5.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, 230, 20));
-        jPanel5.add(modifModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 230, 30));
+        jPanel5.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 230, 20));
+        jPanel5.add(modifModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 230, 30));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Fabricante");
-        jPanel5.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 230, 20));
-        jPanel5.add(modifFabricante, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 230, 30));
+        jPanel5.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 230, 20));
+        jPanel5.add(modifFabricante, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, 230, 30));
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Transmisión");
-        jPanel5.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, 230, 20));
+        jPanel5.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, 230, 20));
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Año");
-        jPanel5.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 230, 20));
+        jPanel5.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 240, 230, 20));
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Tipo");
-        jPanel5.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 400, 230, 20));
-        jPanel5.add(modifPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 320, 230, 30));
+        jPanel5.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 450, 230, 20));
+        jPanel5.add(modifPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 370, 230, 30));
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Precio");
-        jPanel5.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 230, 20));
+        jPanel5.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 340, 230, 20));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("SELECCIONA ALGÚN AUTO");
-        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 230, -1));
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 230, -1));
 
         comboAuto.addItemListener(new java.awt.event.ItemListener()
         {
@@ -210,7 +218,7 @@ public class VtnAutoAdmin extends javax.swing.JPanel
                 comboAutoItemStateChanged(evt);
             }
         });
-        jPanel5.add(comboAuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 60, 230, -1));
+        jPanel5.add(comboAuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 230, -1));
 
         jButton4.setBackground(new java.awt.Color(51, 51, 51));
         jButton4.setForeground(new java.awt.Color(51, 51, 51));
@@ -225,19 +233,24 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 500, -1, 60));
 
         modifTransmision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Automatico" }));
-        jPanel5.add(modifTransmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 430, 230, 30));
+        jPanel5.add(modifTransmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 480, 230, 30));
 
         modifTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Deportivo", "Exotico", "Todoterreno", "Sedan" }));
-        jPanel5.add(modifTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 430, 230, 30));
+        jPanel5.add(modifTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 480, 230, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Número de Control (ID)");
-        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 230, 30));
-        jPanel5.add(modifID, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 230, 30));
+        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 230, 30));
+        jPanel5.add(modifID, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 160, 230, 30));
 
         modifAnio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        jPanel5.add(modifAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 230, 30));
+        jPanel5.add(modifAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 230, 30));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Modifica Autos");
+        jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
 
         gestionaAuto.addTab("Modifica Autos", jPanel5);
 
@@ -247,7 +260,7 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setText("Escriba algún modelo");
-        jPanel4.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 130, -1));
+        jPanel4.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 130, -1));
 
         buscaProducto.addActionListener(new java.awt.event.ActionListener()
         {
@@ -256,13 +269,13 @@ public class VtnAutoAdmin extends javax.swing.JPanel
                 buscaProductoActionPerformed(evt);
             }
         });
-        jPanel4.add(buscaProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 200, -1));
+        jPanel4.add(buscaProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 200, -1));
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel26.setText("Detalles del auto");
-        jPanel4.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 130, -1));
+        jPanel4.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 230, 130, -1));
 
         detalleAuto.setBackground(new java.awt.Color(51, 51, 51));
         detalleAuto.setForeground(new java.awt.Color(255, 255, 255));
@@ -278,7 +291,7 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         ));
         jScrollPane3.setViewportView(detalleAuto);
 
-        jPanel4.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 880, 150));
+        jPanel4.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 880, 150));
 
         eliminaAuto.setText("ELIMINAR AUTO");
         eliminaAuto.addActionListener(new java.awt.event.ActionListener()
@@ -290,7 +303,8 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         });
         jPanel4.add(eliminaAuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 530, -1, -1));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/lupa2.png"))); // NOI18N
+        jButton2.setBackground(new java.awt.Color(51, 51, 51));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/lupa.png"))); // NOI18N
         jButton2.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
@@ -298,9 +312,14 @@ public class VtnAutoAdmin extends javax.swing.JPanel
                 jButton2MouseClicked(evt);
             }
         });
-        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 100, 40, 40));
+        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, -1, 40));
 
-        gestionaAuto.addTab("Elimina Autos", jPanel4);
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Elimina Autos");
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, -1, -1));
+
+        gestionaAuto.addTab("Baja Autos", jPanel4);
 
         jPanel6.setBackground(new java.awt.Color(51, 51, 51));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -319,12 +338,12 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         ));
         jScrollPane2.setViewportView(verAutos);
 
-        jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 930, 360));
+        jPanel6.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 930, 300));
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("Autos Existentes");
-        jPanel6.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 210, 20));
+        jPanel6.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 210, 20));
 
         btnActualizar.setBackground(new java.awt.Color(51, 51, 51));
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/update.png"))); // NOI18N
@@ -336,39 +355,46 @@ public class VtnAutoAdmin extends javax.swing.JPanel
                 btnActualizarActionPerformed(evt);
             }
         });
-        jPanel6.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 80, 60, 50));
+        jPanel6.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 150, 60, 50));
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel28.setForeground(new java.awt.Color(255, 255, 255));
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel28.setText("FILTROS");
-        jPanel6.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 70, -1));
+        jPanel6.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 70, -1));
 
         jLabel29.setForeground(new java.awt.Color(255, 255, 255));
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel29.setText("Transmisión");
-        jPanel6.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 120, -1));
+        jPanel6.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 140, -1));
 
         jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel30.setText("Año");
-        jPanel6.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 120, -1));
+        jPanel6.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 140, -1));
 
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
         jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel31.setText("Precio");
-        jPanel6.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 120, -1));
+        jPanel6.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 140, -1));
 
         jLabel32.setForeground(new java.awt.Color(255, 255, 255));
         jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel32.setText("Tipo");
-        jPanel6.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 120, -1));
+        jPanel6.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 150, 140, -1));
 
         jLabel34.setForeground(new java.awt.Color(255, 255, 255));
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel34.setText("Fabricante");
-        jPanel6.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, 120, -1));
+        jPanel6.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, 140, -1));
 
+        comboTransmision.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboTransmisionItemStateChanged(evt);
+            }
+        });
         comboTransmision.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
@@ -376,8 +402,15 @@ public class VtnAutoAdmin extends javax.swing.JPanel
                 comboTransmisionMouseClicked(evt);
             }
         });
-        jPanel6.add(comboTransmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 140, -1));
+        jPanel6.add(comboTransmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 140, -1));
 
+        comboAnio.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboAnioItemStateChanged(evt);
+            }
+        });
         comboAnio.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
@@ -389,8 +422,15 @@ public class VtnAutoAdmin extends javax.swing.JPanel
                 comboAnioMouseEntered(evt);
             }
         });
-        jPanel6.add(comboAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 140, -1));
+        jPanel6.add(comboAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 170, 140, -1));
 
+        comboTipo.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboTipoItemStateChanged(evt);
+            }
+        });
         comboTipo.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
@@ -398,8 +438,15 @@ public class VtnAutoAdmin extends javax.swing.JPanel
                 comboTipoMouseClicked(evt);
             }
         });
-        jPanel6.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 100, 140, -1));
+        jPanel6.add(comboTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 170, 140, -1));
 
+        comboPrecio.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboPrecioItemStateChanged(evt);
+            }
+        });
         comboPrecio.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
@@ -407,8 +454,15 @@ public class VtnAutoAdmin extends javax.swing.JPanel
                 comboPrecioMouseClicked(evt);
             }
         });
-        jPanel6.add(comboPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 140, -1));
+        jPanel6.add(comboPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, 140, -1));
 
+        comboFabricante.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboFabricanteItemStateChanged(evt);
+            }
+        });
         comboFabricante.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
@@ -416,7 +470,12 @@ public class VtnAutoAdmin extends javax.swing.JPanel
                 comboFabricanteMouseClicked(evt);
             }
         });
-        jPanel6.add(comboFabricante, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 100, 140, -1));
+        jPanel6.add(comboFabricante, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 170, 140, -1));
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Consulta Autos");
+        jPanel6.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 40, -1, -1));
 
         gestionaAuto.addTab("Consulta Autos", jPanel6);
 
@@ -480,7 +539,7 @@ public class VtnAutoAdmin extends javax.swing.JPanel
     {//GEN-HEADEREND:event_eliminaAutoActionPerformed
         if (buscaProducto.getText().isEmpty())
         {
-            JOptionPane.showMessageDialog(this, "Faltó por llenar el campo nombre", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Faltó por llenar el campo modelo", "Advertencia", JOptionPane.WARNING_MESSAGE);
             buscaProducto.requestFocus();
         }
         int decision = JOptionPane.showConfirmDialog(this, "Advertencia, eso borrará completamente el auto", "Confirmar", JOptionPane.YES_NO_OPTION);
@@ -589,6 +648,46 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         // TODO add your handling code here:
     }//GEN-LAST:event_comboAnioMouseEntered
 
+    private void comboTransmisionItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboTransmisionItemStateChanged
+    {//GEN-HEADEREND:event_comboTransmisionItemStateChanged
+        Autos a = new Autos();
+        String campoFiltrado = "Transmision"; // Campo por el cual filtrar
+        String valorFiltrado = (String) comboTransmision.getSelectedItem(); // Valor a filtrar
+        a.desactivarOtrosCombos(verAutos, campoFiltrado, valorFiltrado, comboTransmision, comboTransmision, comboAnio, comboTipo, comboPrecio, comboFabricante);
+    }//GEN-LAST:event_comboTransmisionItemStateChanged
+
+    private void comboAnioItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboAnioItemStateChanged
+    {//GEN-HEADEREND:event_comboAnioItemStateChanged
+        Autos a = new Autos();
+        String campoFiltrado = "Anio"; // Campo por el cual filtrar
+        String valorFiltrado = (String) comboAnio.getSelectedItem(); // Valor a filtrar
+        a.desactivarOtrosCombos(verAutos, campoFiltrado, valorFiltrado, comboAnio, comboTransmision, comboAnio, comboTipo, comboPrecio, comboFabricante);
+    }//GEN-LAST:event_comboAnioItemStateChanged
+
+    private void comboTipoItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboTipoItemStateChanged
+    {//GEN-HEADEREND:event_comboTipoItemStateChanged
+        Autos a = new Autos();
+        String campoFiltrado = "Tipo"; // Campo por el cual filtrar
+        String valorFiltrado = (String) comboTipo.getSelectedItem(); // Valor a filtrar
+        a.desactivarOtrosCombos(verAutos, campoFiltrado, valorFiltrado, comboTipo, comboTransmision, comboAnio, comboTipo, comboPrecio, comboFabricante);
+    }//GEN-LAST:event_comboTipoItemStateChanged
+
+    private void comboPrecioItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboPrecioItemStateChanged
+    {//GEN-HEADEREND:event_comboPrecioItemStateChanged
+        Autos a = new Autos();
+        String campoFiltrado = "Precio"; // Campo por el cual filtrar
+        String valorFiltrado = (String) comboPrecio.getSelectedItem(); // Valor a filtrar
+        a.desactivarOtrosCombos(verAutos, campoFiltrado, valorFiltrado, comboPrecio, comboTransmision, comboAnio, comboTipo, comboPrecio, comboFabricante);
+    }//GEN-LAST:event_comboPrecioItemStateChanged
+
+    private void comboFabricanteItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboFabricanteItemStateChanged
+    {//GEN-HEADEREND:event_comboFabricanteItemStateChanged
+        Autos a = new Autos();
+        String campoFiltrado = "Fabricante"; // Campo por el cual filtrar
+        String valorFiltrado = (String) comboFabricante.getSelectedItem(); // Valor a filtrar
+        a.desactivarOtrosCombos(verAutos, campoFiltrado, valorFiltrado, comboFabricante, comboTransmision, comboAnio, comboTipo, comboPrecio, comboFabricante);
+    }//GEN-LAST:event_comboFabricanteItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField anio;
@@ -608,6 +707,10 @@ public class VtnAutoAdmin extends javax.swing.JPanel
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;

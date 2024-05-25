@@ -18,7 +18,7 @@ public class VtnInicio extends javax.swing.JFrame
     {
         initComponents();
     }
-    
+
     private String usuario;
 
     public void setUsuario(String usuario)
@@ -303,6 +303,8 @@ public class VtnInicio extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jButton2ActionPerformed
         VtnBusqueda vb = new VtnBusqueda();
         vb.setVisible(true);
+        vb.setUsuario(usuario);
+        vb.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -315,21 +317,21 @@ public class VtnInicio extends javax.swing.JFrame
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel3MouseClicked
     {//GEN-HEADEREND:event_jLabel3MouseClicked
-        VtnAuto va = new VtnAuto();
+        VtnAuto va  = new VtnAuto();
         va.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel9MouseClicked
     {//GEN-HEADEREND:event_jLabel9MouseClicked
-        VtnAuto va = new VtnAuto();
+        VtnAuto va  = new VtnAuto();
         va.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void lblUserMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_lblUserMouseClicked
     {//GEN-HEADEREND:event_lblUserMouseClicked
-        
+
     }//GEN-LAST:event_lblUserMouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButton4MouseClicked
@@ -341,70 +343,70 @@ public class VtnInicio extends javax.swing.JFrame
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel4MouseClicked
     {//GEN-HEADEREND:event_jLabel4MouseClicked
-        VtnAuto va = new VtnAuto();
+        VtnAuto va  = new VtnAuto();
         va.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel2MouseClicked
     {//GEN-HEADEREND:event_jLabel2MouseClicked
-        VtnAuto va = new VtnAuto();
+        VtnAuto va  = new VtnAuto();
         va.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel6MouseClicked
     {//GEN-HEADEREND:event_jLabel6MouseClicked
-        VtnAuto va = new VtnAuto();
+        VtnAuto va  = new VtnAuto();
         va.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel5MouseClicked
     {//GEN-HEADEREND:event_jLabel5MouseClicked
-        VtnAuto va = new VtnAuto();
+        VtnAuto va  = new VtnAuto();
         va.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel7MouseClicked
     {//GEN-HEADEREND:event_jLabel7MouseClicked
-        VtnAuto va = new VtnAuto();
+        VtnAuto va  = new VtnAuto();
         va.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel10MouseClicked
     {//GEN-HEADEREND:event_jLabel10MouseClicked
-        VtnAuto va = new VtnAuto();
+        VtnAuto va  = new VtnAuto();
         va.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel11MouseClicked
     {//GEN-HEADEREND:event_jLabel11MouseClicked
-        VtnAuto va = new VtnAuto();
+        VtnAuto va  = new VtnAuto();
         va.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel12MouseClicked
     {//GEN-HEADEREND:event_jLabel12MouseClicked
-        VtnAuto va = new VtnAuto();
+        VtnAuto va  = new VtnAuto();
         va.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel12MouseClicked
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel13MouseClicked
     {//GEN-HEADEREND:event_jLabel13MouseClicked
-        VtnAuto va = new VtnAuto();
+        VtnAuto va  = new VtnAuto();
         va.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel13MouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel8MouseClicked
     {//GEN-HEADEREND:event_jLabel8MouseClicked
-        VtnAuto va = new VtnAuto();
+        VtnAuto va  = new VtnAuto();
         va.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel8MouseClicked

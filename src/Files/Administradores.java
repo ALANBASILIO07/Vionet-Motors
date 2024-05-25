@@ -7,9 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +20,7 @@ import javax.swing.JTextField;
  */
 public class Administradores implements Serializable
 {
+    private int ID;
     private String usuario;
     private String contrasenia;
     
@@ -43,7 +47,7 @@ public class Administradores implements Serializable
         this.contrasenia = contrasenia;
     }
 
-    public void altaUsuario(JTextField jtf, JPasswordField jpf)
+    public void altaAdmin(JTextField jtf, JPasswordField jpf)
     {
         usuario = jtf.getText();
         contrasenia = "";
@@ -81,7 +85,7 @@ public class Administradores implements Serializable
         }
     }
 
-    public int buscarUsuario(JTextField jtf)
+    public int buscarAdmin(JTextField jtf)
     {
         usuario = jtf.getText();
 
@@ -99,6 +103,183 @@ public class Administradores implements Serializable
         } catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+        }
+        return 0;
+    }
+    
+    public void consultaGeneralAdmin(JTable jt)
+    {
+        DefaultTableModel tabla = (DefaultTableModel) jt.getModel();
+        // Limpiar la tabla actual
+        tabla.setRowCount(0);
+
+        // Conexión a la base de datos y consulta de autos
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "SELECT * FROM admin";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                ResultSet rs = stmt.executeQuery();
+                // Llenar la tabla con los datos de la base de datos
+                while (rs.next())
+                {
+                    tabla.addRow(new String[]
+                    {
+                        rs.getString("NombreAdmin"),
+                        rs.getString("ContraseñaAdmin")
+                    });
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+    
+    public void modifAdmin(JComboBox jcb, JTextField jtf, JTextField jtf2)
+    {
+        usuario = jtf.getText();
+        contrasenia = jtf2.getText();
+
+        String valor;
+        valor = (jcb.getSelectedItem().toString());
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "UPDATE admin SET NombreAdmin = ?, ContraseñaAdmin = ? WHERE NombreAdmin = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                // Establecer los parámetros
+                stmt.setString(1, usuario); // String
+                stmt.setString(2, contrasenia); // String
+                stmt.setString(3, valor);
+
+                // Ejecutar la sentencia
+                stmt.executeUpdate();
+
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos:  " + ex.getMessage());
+        }
+    }
+    
+    public void selecAdmin(JComboBox<String> jcb, JTextField jtf, JTextField jtf2)
+    {
+        // Obtener el modelo seleccionado del JComboBox
+        String adminSeleccionado = (String) jcb.getSelectedItem();
+
+        // Verificar si se ha seleccionado un elemento válido
+        if (adminSeleccionado != null && !adminSeleccionado.isEmpty())
+        {
+            // Conexión a la base de datos y consulta de datos del auto
+            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+            {
+                String sql = "SELECT * FROM admin WHERE NombreAdmin = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(sql))
+                {
+                    stmt.setString(1, adminSeleccionado);
+                    ResultSet rs = stmt.executeQuery();
+
+                    // Verificar si se ha encontrado el registro correspondiente
+                    if (rs.next())
+                    {
+                        jtf.setText(rs.getString("NombreAdmin")); // String)
+                        jtf2.setText(rs.getString("ContraseñaAdmin")); // (String)
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(null, "No se encontró el administrador seleccionado.");
+                    }
+                }
+            } catch (SQLException ex)
+            {
+                JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+            }
+        }
+    }
+    
+    public void agregaCombo(JComboBox<String> jcb)
+    {
+        // Limpiar el ComboBox actual
+        jcb.removeAllItems();
+
+        // Conexión a la base de datos y consulta de platillos
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "SELECT * FROM admin";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                ResultSet rs = stmt.executeQuery();
+                // Llenar el ComboBox con los datos de la base de datos
+                while (rs.next())
+                {
+                    jcb.addItem(rs.getString("NombreAdmin"));
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+    
+    public int buscaAdminEliminar(JTextField jtf, JTable jt)
+    {
+        DefaultTableModel tabla = (DefaultTableModel) jt.getModel();
+        // Limpiar la tabla actual
+        tabla.setRowCount(0);
+        usuario = jtf.getText();
+
+        try
+        {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass);
+            String sql = "SELECT * FROM admin WHERE NombreAdmin = ?;";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, usuario);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next())
+            {
+                tabla.addRow(new String[]
+                {
+                    rs.getString("NombreAdmin"),
+                    rs.getString("ContraseñaAdmin"),
+                });
+                return 1;
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+        }
+        return 0;
+    }
+    
+    public int eliminarAdmin(JTextField jtf, JTable jt)
+    {
+        DefaultTableModel tabla = (DefaultTableModel) jt.getModel();
+
+        usuario = tabla.getValueAt(jt.getSelectedRow(), 0).toString();
+
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            // Sentencia SQL para insertar el platillo
+            String sql = "DELETE FROM admin WHERE NombreAdmin = ?";
+            // Crear la declaración preparada
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                // Establecer los parámetros
+                stmt.setString(1, usuario);
+
+                // Ejecutar la sentencia
+                int rowsAffected = stmt.executeUpdate();
+
+                if (rowsAffected > 0)
+                {
+                    jtf.setText("");
+                    tabla.setRowCount(0);
+                    return 1;
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Ocurrió un error con la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
         }
         return 0;
     }

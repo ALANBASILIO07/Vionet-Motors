@@ -22,7 +22,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Autos implements Serializable
 {
-
     public int ID;
     public String modelo;
     public String transmision;
@@ -584,7 +583,7 @@ public class Autos implements Serializable
         }
     }
 
-    public void desactivarOtrosCombos(JTable jt, String cf, String vf,JComboBox<String> comboSeleccionado, JComboBox<String> comboTransmision, JComboBox<String> comboAnio, JComboBox<String> comboTipo, JComboBox<String> comboPrecio, JComboBox<String> comboFabricante)
+    public void desactivarOtrosCombos(JTable jt, String cf, String vf, JComboBox<String> comboSeleccionado, JComboBox<String> comboTransmision, JComboBox<String> comboAnio, JComboBox<String> comboTipo, JComboBox<String> comboPrecio, JComboBox<String> comboFabricante)
     {
         // Desactivar todos los JComboBox excepto el seleccionado
         comboTransmision.setEnabled(comboSeleccionado == comboTransmision);
@@ -840,5 +839,4 @@ public class Autos implements Serializable
             JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
         }
     }
-
 }
