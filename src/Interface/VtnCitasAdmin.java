@@ -7,6 +7,7 @@ package Interface;
 import Files.Autos;
 import Files.Citas;
 import Files.Cliente;
+import cjb.ci.Validaciones;
 import javax.swing.JOptionPane;
 
 /**
@@ -162,6 +163,14 @@ public class VtnCitasAdmin extends javax.swing.JPanel
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Número de Folio");
         jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 230, 30));
+
+        modifFolio.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifFolioKeyTyped(evt);
+            }
+        });
         jPanel3.add(modifFolio, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 230, 30));
 
         comboCita.addItemListener(new java.awt.event.ItemListener()
@@ -239,6 +248,13 @@ public class VtnCitasAdmin extends javax.swing.JPanel
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 buscaCitaActionPerformed(evt);
+            }
+        });
+        buscaCita.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                buscaCitaKeyTyped(evt);
             }
         });
 
@@ -322,13 +338,13 @@ public class VtnCitasAdmin extends javax.swing.JPanel
                 .addComponent(jLabel15)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel25)
-                            .addComponent(buscaCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jButton2)))
+                            .addComponent(buscaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel25))))
                 .addGap(30, 30, 30)
                 .addComponent(jLabel26)
                 .addGap(30, 30, 30)
@@ -530,6 +546,16 @@ public class VtnCitasAdmin extends javax.swing.JPanel
         String valorFiltrado = (String) comboFiltroCliente.getSelectedItem(); // Valor a filtrar
         ct.desactivarOtrosCombos(verCitas, campoFiltrado, valorFiltrado, comboFiltroCliente, comboFiltroCliente/*, comboFiltroModelo, comboFiltroAnio, comboFiltroPrecio*/);
     }//GEN-LAST:event_comboFiltroClienteItemStateChanged
+
+    private void modifFolioKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifFolioKeyTyped
+    {//GEN-HEADEREND:event_modifFolioKeyTyped
+        Validaciones.validaEntero(evt, 4, modifFolio.getText());
+    }//GEN-LAST:event_modifFolioKeyTyped
+
+    private void buscaCitaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_buscaCitaKeyTyped
+    {//GEN-HEADEREND:event_buscaCitaKeyTyped
+        Validaciones.validaEntero(evt, 4, buscaCita.getText());
+    }//GEN-LAST:event_buscaCitaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -125,6 +125,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="nameAdmin">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="nameAdminKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
@@ -151,6 +154,7 @@
             <Component class="javax.swing.JPasswordField" name="passwordAdmin">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordAdminActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="passwordAdminKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButton1">
@@ -305,8 +309,14 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="modifAdminUser">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modifAdminUserKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="modifPasswordAdmin">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="modifPasswordAdminKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="comboAdministradores">
               <Properties>
@@ -449,6 +459,7 @@
             <Component class="javax.swing.JTextField" name="buscaAdmin">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buscaAdminActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="buscaAdminKeyTyped"/>
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

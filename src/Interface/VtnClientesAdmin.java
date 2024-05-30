@@ -7,6 +7,7 @@ package Interface;
 import Files.Administradores;
 import Files.Autos;
 import Files.Cliente;
+import cjb.ci.Validaciones;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
@@ -101,6 +102,14 @@ public class VtnClientesAdmin extends javax.swing.JPanel
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Contraseña");
 
+        nameUser.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                nameUserKeyTyped(evt);
+            }
+        });
+
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Nombre de Usuario");
@@ -112,6 +121,13 @@ public class VtnClientesAdmin extends javax.swing.JPanel
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 passwordClienteActionPerformed(evt);
+            }
+        });
+        passwordCliente.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                passwordClienteKeyTyped(evt);
             }
         });
 
@@ -175,11 +191,27 @@ public class VtnClientesAdmin extends javax.swing.JPanel
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Número de Usuario");
 
+        modifCliente.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifClienteKeyTyped(evt);
+            }
+        });
+
         comboClientes.addItemListener(new java.awt.event.ItemListener()
         {
             public void itemStateChanged(java.awt.event.ItemEvent evt)
             {
                 comboClientesItemStateChanged(evt);
+            }
+        });
+
+        modifPasswordCliente.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifPasswordClienteKeyTyped(evt);
             }
         });
 
@@ -272,6 +304,13 @@ public class VtnClientesAdmin extends javax.swing.JPanel
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 buscaClienteActionPerformed(evt);
+            }
+        });
+        buscaCliente.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                buscaClienteKeyTyped(evt);
             }
         });
         jPanel4.add(buscaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 140, 200, 40));
@@ -481,6 +520,31 @@ public class VtnClientesAdmin extends javax.swing.JPanel
         Cliente c = new Cliente();
         c.selecCliente(comboClientes, modifCliente, modifPasswordCliente);
     }//GEN-LAST:event_comboClientesItemStateChanged
+
+    private void nameUserKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_nameUserKeyTyped
+    {//GEN-HEADEREND:event_nameUserKeyTyped
+        Validaciones.validaAlfabeticos(evt, 23, nameUser.getText());
+    }//GEN-LAST:event_nameUserKeyTyped
+
+    private void passwordClienteKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_passwordClienteKeyTyped
+    {//GEN-HEADEREND:event_passwordClienteKeyTyped
+        Validaciones.validaAlfanumerico(evt, 20, passwordCliente.toString());
+    }//GEN-LAST:event_passwordClienteKeyTyped
+
+    private void modifClienteKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifClienteKeyTyped
+    {//GEN-HEADEREND:event_modifClienteKeyTyped
+        Validaciones.validaAlfabeticos(evt, 23, modifCliente.getText());
+    }//GEN-LAST:event_modifClienteKeyTyped
+
+    private void modifPasswordClienteKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifPasswordClienteKeyTyped
+    {//GEN-HEADEREND:event_modifPasswordClienteKeyTyped
+        Validaciones.validaAlfanumerico(evt, 20, modifPasswordCliente.toString());
+    }//GEN-LAST:event_modifPasswordClienteKeyTyped
+
+    private void buscaClienteKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_buscaClienteKeyTyped
+    {//GEN-HEADEREND:event_buscaClienteKeyTyped
+        Validaciones.validaAlfabeticos(evt, 23, buscaCliente.getText());
+    }//GEN-LAST:event_buscaClienteKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

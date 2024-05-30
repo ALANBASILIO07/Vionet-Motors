@@ -6,6 +6,7 @@ package Interface;
 
 import Files.Administradores;
 import Files.Autos;
+import cjb.ci.Validaciones;
 import javax.swing.JOptionPane;
 
 /**
@@ -86,6 +87,14 @@ public class VtnAdminAdmin extends javax.swing.JPanel
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/agregar-admin.png"))); // NOI18N
 
+        nameAdmin.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                nameAdminKeyTyped(evt);
+            }
+        });
+
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Nombre de Usuario");
@@ -99,6 +108,13 @@ public class VtnAdminAdmin extends javax.swing.JPanel
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 passwordAdminActionPerformed(evt);
+            }
+        });
+        passwordAdmin.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                passwordAdminKeyTyped(evt);
             }
         });
 
@@ -179,6 +195,22 @@ public class VtnAdminAdmin extends javax.swing.JPanel
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("SELECCIONA ALGÚN CLIENTE");
+
+        modifAdminUser.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifAdminUserKeyTyped(evt);
+            }
+        });
+
+        modifPasswordAdmin.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifPasswordAdminKeyTyped(evt);
+            }
+        });
 
         comboAdministradores.addItemListener(new java.awt.event.ItemListener()
         {
@@ -295,6 +327,13 @@ public class VtnAdminAdmin extends javax.swing.JPanel
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 buscaAdminActionPerformed(evt);
+            }
+        });
+        buscaAdmin.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                buscaAdminKeyTyped(evt);
             }
         });
         jPanel4.add(buscaAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 140, 200, 40));
@@ -479,6 +518,31 @@ public class VtnAdminAdmin extends javax.swing.JPanel
         d.consultaGeneralAdmin(verAdministradores);
         d.agregaCombo(comboAdministradores);
     }//GEN-LAST:event_gestionaAdminMouseClicked
+
+    private void buscaAdminKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_buscaAdminKeyTyped
+    {//GEN-HEADEREND:event_buscaAdminKeyTyped
+        Validaciones.validaAlfabeticos(evt, 23, buscaAdmin.getText());
+    }//GEN-LAST:event_buscaAdminKeyTyped
+
+    private void modifAdminUserKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifAdminUserKeyTyped
+    {//GEN-HEADEREND:event_modifAdminUserKeyTyped
+        Validaciones.validaAlfabeticos(evt, 23, modifAdminUser.getText());
+    }//GEN-LAST:event_modifAdminUserKeyTyped
+
+    private void modifPasswordAdminKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifPasswordAdminKeyTyped
+    {//GEN-HEADEREND:event_modifPasswordAdminKeyTyped
+        Validaciones.validaAlfanumerico(evt, 20, modifPasswordAdmin.getText());
+    }//GEN-LAST:event_modifPasswordAdminKeyTyped
+
+    private void nameAdminKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_nameAdminKeyTyped
+    {//GEN-HEADEREND:event_nameAdminKeyTyped
+        Validaciones.validaAlfabeticos(evt, 23, nameAdmin.getText());
+    }//GEN-LAST:event_nameAdminKeyTyped
+
+    private void passwordAdminKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_passwordAdminKeyTyped
+    {//GEN-HEADEREND:event_passwordAdminKeyTyped
+        Validaciones.validaAlfanumerico(evt, 20, passwordAdmin.toString());
+    }//GEN-LAST:event_passwordAdminKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

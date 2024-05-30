@@ -4,6 +4,8 @@
  */
 package Interface;
 
+import Files.Autos;
+
 /**
  *
  * @author Alan Basilio
@@ -42,29 +44,34 @@ public class VtnAuto extends javax.swing.JFrame
         labelUser = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        labelImagenAuto = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        labelModelo = new javax.swing.JLabel();
+        labelFabricante = new javax.swing.JLabel();
+        labelTipo = new javax.swing.JLabel();
+        labelAnio = new javax.swing.JLabel();
+        labelTransmision = new javax.swing.JLabel();
+        labelPrecio = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        comboAutoCliente = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowOpened(java.awt.event.WindowEvent evt)
+            {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -107,19 +114,6 @@ public class VtnAuto extends javax.swing.JFrame
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 600, 250, 30));
 
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/lupa2.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 100, -1, 40));
-
-        jTextField1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 110, 310, -1));
-
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("REGRESAR");
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter()
@@ -144,19 +138,19 @@ public class VtnAuto extends javax.swing.JFrame
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setText("jLabel5");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 350));
+        labelImagenAuto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/Ferrari.jpg"))); // NOI18N
+        jPanel2.add(labelImagenAuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 350));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 180, 500, 350));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 230, 500, 350));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("MODELO:");
+        jLabel6.setText("FABRICANTE:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 180, 30));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("FABRICANTE:");
+        jLabel7.setText("MODELO:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 180, 30));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -171,7 +165,7 @@ public class VtnAuto extends javax.swing.JFrame
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("TRANSMISION");
+        jLabel10.setText("TRANSMISION:");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 180, 30));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -179,45 +173,35 @@ public class VtnAuto extends javax.swing.JFrame
         jLabel11.setText("PRECIO:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, 180, 30));
 
-        jLabel12.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("TOYOTA");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 180, 30));
+        labelModelo.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        labelModelo.setForeground(new java.awt.Color(255, 255, 255));
+        labelModelo.setText("SUPRA");
+        jPanel1.add(labelModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 180, 30));
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("SUPRA");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 180, 30));
+        labelFabricante.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        labelFabricante.setForeground(new java.awt.Color(255, 255, 255));
+        labelFabricante.setText("TOYOTA");
+        jPanel1.add(labelFabricante, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, 180, 30));
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("DEPORTIVO");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 180, 30));
+        labelTipo.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        labelTipo.setForeground(new java.awt.Color(255, 255, 255));
+        labelTipo.setText("DEPORTIVO");
+        jPanel1.add(labelTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 180, 30));
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("2000");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 180, 30));
+        labelAnio.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        labelAnio.setForeground(new java.awt.Color(255, 255, 255));
+        labelAnio.setText("2007");
+        jPanel1.add(labelAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 350, 180, 30));
 
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("MANUAL");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 180, 30));
+        labelTransmision.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        labelTransmision.setForeground(new java.awt.Color(255, 255, 255));
+        labelTransmision.setText("MANUAL");
+        jPanel1.add(labelTransmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 410, 180, 30));
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setText("$ 0.00");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 470, 180, 30));
-
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setText("COLOR:");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 530, 180, 30));
-
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setText("BLANCO");
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 530, 180, 30));
+        labelPrecio.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
+        labelPrecio.setForeground(new java.awt.Color(255, 255, 255));
+        labelPrecio.setText("$ 0.00");
+        jPanel1.add(labelPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 470, 180, 30));
 
         jButton3.setBackground(new java.awt.Color(0, 0, 0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/salir.png"))); // NOI18N
@@ -230,27 +214,43 @@ public class VtnAuto extends javax.swing.JFrame
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 20, 40, 40));
 
+        comboAutoCliente.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboAutoClienteItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(comboAutoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 180, 500, 30));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("SELECCIONA ALGÚN MODELO");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 500, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextField1ActionPerformed
-    {//GEN-HEADEREND:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel3MouseClicked
     {//GEN-HEADEREND:event_jLabel3MouseClicked
         VtnInicio vi = new VtnInicio();
         vi.setVisible(true);
+        vi.setUsuario(usuario);
+        vi.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel4MouseClicked
     {//GEN-HEADEREND:event_jLabel4MouseClicked
         VtnInicio vi = new VtnInicio();
         vi.setVisible(true);
+        vi.setUsuario(usuario);
+        vi.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButton3MouseClicked
@@ -269,8 +269,24 @@ public class VtnAuto extends javax.swing.JFrame
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
     {//GEN-HEADEREND:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        VtnCitas vi = new VtnCitas();
+        vi.setVisible(true);
+        vi.setUsuario(usuario);
+        vi.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
+    {//GEN-HEADEREND:event_formWindowOpened
+        Autos a = new Autos();
+        a.agregaCombo(comboAutoCliente);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void comboAutoClienteItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboAutoClienteItemStateChanged
+    {//GEN-HEADEREND:event_comboAutoClienteItemStateChanged
+        Autos a = new Autos();
+        a.selecAutoCliente(comboAutoCliente, labelModelo, labelTransmision, labelAnio, labelTipo, labelPrecio, labelFabricante, labelImagenAuto);
+    }//GEN-LAST:event_comboAutoClienteItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -318,31 +334,29 @@ public class VtnAuto extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboAutoCliente;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel labelAnio;
+    private javax.swing.JLabel labelFabricante;
+    private javax.swing.JLabel labelImagenAuto;
+    private javax.swing.JLabel labelModelo;
+    private javax.swing.JLabel labelPrecio;
+    private javax.swing.JLabel labelTipo;
+    private javax.swing.JLabel labelTransmision;
     private javax.swing.JLabel labelUser;
     // End of variables declaration//GEN-END:variables
 }

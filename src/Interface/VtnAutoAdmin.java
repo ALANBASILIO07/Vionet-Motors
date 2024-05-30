@@ -5,7 +5,15 @@
 package Interface;
 
 import Files.Autos;
+import cjb.ci.Validaciones;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,7 +29,10 @@ public class VtnAutoAdmin extends javax.swing.JPanel
     public VtnAutoAdmin()
     {
         initComponents();
+
     }
+
+    private File imagenSeleccionada;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,6 +60,8 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         tipo = new javax.swing.JComboBox<>();
         transmision = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        labelImagenAlta = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         modifModelo = new javax.swing.JTextField();
@@ -68,6 +81,8 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         modifID = new javax.swing.JTextField();
         modifAnio = new javax.swing.JFormattedTextField();
         jLabel11 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        labelImagenModifica = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         buscaProducto = new javax.swing.JTextField();
@@ -111,40 +126,72 @@ public class VtnAutoAdmin extends javax.swing.JPanel
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel3.add(modelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 230, 30));
-        jPanel3.add(fabricante, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 230, 30));
-        jPanel3.add(precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, 230, 30));
+
+        modelo.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modeloKeyTyped(evt);
+            }
+        });
+        jPanel3.add(modelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 230, 30));
+
+        fabricante.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                fabricanteKeyTyped(evt);
+            }
+        });
+        jPanel3.add(fabricante, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 230, 30));
+
+        precio.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                precioKeyTyped(evt);
+            }
+        });
+        jPanel3.add(precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 300, 230, 30));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Transmisión");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 230, 20));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 230, 20));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Modelo");
-        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 230, 20));
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 230, 20));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Fabricante");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 230, 20));
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 230, 20));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Tipo");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 380, 230, 20));
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 230, 20));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Precio");
-        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 230, 20));
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 270, 230, 20));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Año");
-        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 170, 230, 20));
-        jPanel3.add(anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 200, 230, 30));
+        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 230, 20));
+
+        anio.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                anioKeyTyped(evt);
+            }
+        });
+        jPanel3.add(anio, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 230, 30));
 
         jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
@@ -159,15 +206,35 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 500, -1, 60));
 
         tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Deportivo", "Exotico", "Todoterreno", "Sedan" }));
-        jPanel3.add(tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 410, 230, 30));
+        jPanel3.add(tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 410, 230, 30));
 
         transmision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Automatico" }));
-        jPanel3.add(transmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 410, 230, 30));
+        jPanel3.add(transmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, 230, 30));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Alta Autos");
         jPanel3.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, -1, -1));
+
+        jButton5.setText("SELECCIONAR IMÁGEN");
+        jButton5.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, 220, 30));
+
+        labelImagenAlta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        labelImagenAlta.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                labelImagenAltaMouseClicked(evt);
+            }
+        });
+        jPanel3.add(labelImagenAlta, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 300, 220, 130));
 
         gestionaAuto.addTab("Alta Autos", jPanel3);
 
@@ -177,39 +244,63 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Modelo");
-        jPanel5.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 230, 20));
-        jPanel5.add(modifModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 230, 30));
+        jPanel5.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 230, 20));
+
+        modifModelo.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifModeloKeyTyped(evt);
+            }
+        });
+        jPanel5.add(modifModelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 230, 30));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Fabricante");
-        jPanel5.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, 230, 20));
-        jPanel5.add(modifFabricante, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, 230, 30));
+        jPanel5.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, 230, 20));
+
+        modifFabricante.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifFabricanteKeyTyped(evt);
+            }
+        });
+        jPanel5.add(modifFabricante, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, 230, 30));
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Transmisión");
-        jPanel5.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, 230, 20));
+        jPanel5.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, 230, 20));
 
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Año");
-        jPanel5.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 240, 230, 20));
+        jPanel5.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, 230, 20));
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Tipo");
-        jPanel5.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 450, 230, 20));
-        jPanel5.add(modifPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 370, 230, 30));
+        jPanel5.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 490, 230, 20));
+
+        modifPrecio.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifPrecioKeyTyped(evt);
+            }
+        });
+        jPanel5.add(modifPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 410, 230, 30));
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Precio");
-        jPanel5.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 340, 230, 20));
+        jPanel5.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 380, 230, 20));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("SELECCIONA ALGÚN AUTO");
-        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 230, -1));
+        jPanel5.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 230, 30));
 
         comboAuto.addItemListener(new java.awt.event.ItemListener()
         {
@@ -218,7 +309,7 @@ public class VtnAutoAdmin extends javax.swing.JPanel
                 comboAutoItemStateChanged(evt);
             }
         });
-        jPanel5.add(comboAuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 230, -1));
+        jPanel5.add(comboAuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 230, 30));
 
         jButton4.setBackground(new java.awt.Color(51, 51, 51));
         jButton4.setForeground(new java.awt.Color(51, 51, 51));
@@ -233,24 +324,60 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 500, -1, 60));
 
         modifTransmision.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Automatico" }));
-        jPanel5.add(modifTransmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 480, 230, 30));
+        jPanel5.add(modifTransmision, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 520, 230, 30));
 
         modifTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Deportivo", "Exotico", "Todoterreno", "Sedan" }));
-        jPanel5.add(modifTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 480, 230, 30));
+        jPanel5.add(modifTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 520, 230, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Número de Control (ID)");
-        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 230, 30));
-        jPanel5.add(modifID, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 160, 230, 30));
+        jPanel5.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 230, 30));
+
+        modifID.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifIDKeyTyped(evt);
+            }
+        });
+        jPanel5.add(modifID, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, 230, 30));
 
         modifAnio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
-        jPanel5.add(modifAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 230, 30));
+        modifAnio.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                modifAnioKeyTyped(evt);
+            }
+        });
+        jPanel5.add(modifAnio, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 310, 230, 30));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Modifica Autos");
         jPanel5.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
+
+        jButton3.setText("VISTA PREVIA IMÁGENES");
+        jButton3.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 120, 220, 30));
+
+        labelImagenModifica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/Auto1.jpg"))); // NOI18N
+        labelImagenModifica.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        labelImagenModifica.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                labelImagenModificaMouseClicked(evt);
+            }
+        });
+        jPanel5.add(labelImagenModifica, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 200, 220, 130));
 
         gestionaAuto.addTab("Modifica Autos", jPanel5);
 
@@ -267,6 +394,13 @@ public class VtnAutoAdmin extends javax.swing.JPanel
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
                 buscaProductoActionPerformed(evt);
+            }
+        });
+        buscaProducto.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                buscaProductoKeyTyped(evt);
             }
         });
         jPanel4.add(buscaProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 200, -1));
@@ -503,14 +637,14 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         } else
         {
             Autos a = new Autos();
-            a.altaAuto(modelo, transmision, anio, tipo, precio, fabricante);
+            a.altaAuto(modelo, transmision, anio, tipo, precio, fabricante, imagenSeleccionada);
             JOptionPane.showMessageDialog(this, "Auto agregado con éxito");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton4ActionPerformed
     {//GEN-HEADEREND:event_jButton4ActionPerformed
-        if (comboAuto.getSelectedIndex() == -1 || modifPrecio.getText().isEmpty() == true || modifAnio.getText().isEmpty() || modifFabricante.getText().isEmpty() || modifModelo.getText().isEmpty() || modifTipo.getSelectedItem().toString().isEmpty() || modifTransmision.getSelectedItem().toString().isEmpty())
+        /*if (comboAuto.getSelectedIndex() == -1 || modifPrecio.getText().isEmpty() == true || modifAnio.getText().isEmpty() || modifFabricante.getText().isEmpty() || modifModelo.getText().isEmpty() || modifTipo.getSelectedItem().toString().isEmpty() || modifTransmision.getSelectedItem().toString().isEmpty())
         {
             JOptionPane.showMessageDialog(this, "No se ha seleccionado algún auto", "Alerta", JOptionPane.WARNING_MESSAGE);
             comboAuto.requestFocus();
@@ -527,7 +661,51 @@ public class VtnAutoAdmin extends javax.swing.JPanel
             modifPrecio.setText("");
             modifTipo.setSelectedIndex(-1);
             modifTransmision.setSelectedIndex(-1);
+        }*/
+        if (comboAuto.getSelectedIndex() == -1 || modifPrecio.getText().isEmpty() || modifAnio.getText().isEmpty() || modifFabricante.getText().isEmpty() || modifModelo.getText().isEmpty() || modifTipo.getSelectedItem().toString().isEmpty() || modifTransmision.getSelectedItem().toString().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "No se ha seleccionado algún auto", "Alerta", JOptionPane.WARNING_MESSAGE);
+            comboAuto.requestFocus();
+        } else
+        {
+            Autos a = new Autos();
+
+            // Seleccionar la imagen usando JFileChooser
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Seleccione una imagen");
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            int returnValue = fileChooser.showOpenDialog(this);
+            File file = null;
+            if (returnValue == JFileChooser.APPROVE_OPTION)
+            {
+                file = fileChooser.getSelectedFile();
+            }
+
+            try
+            {
+                // Modificar el auto incluyendo la imagen
+                a.modifAuto(comboAuto, modifID, modifModelo, modifTransmision, modifAnio, modifTipo, modifPrecio, modifFabricante, file);
+            } catch (IOException ex)
+            {
+                Logger.getLogger(VtnAutoAdmin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            JOptionPane.showMessageDialog(this, "Auto modificado con éxito");
+            a.consultaGeneralAuto(verAutos);
+
+            // Limpiar campos después de modificar
+            modifID.setText("");
+            modifModelo.setText("");
+            modifAnio.setText("");
+            modifFabricante.setText("");
+            modifPrecio.setText("");
+            modifTipo.setSelectedIndex(-1);
+            modifTransmision.setSelectedIndex(-1);
+
+            // Limpiar el JLabel de la imagen
+            labelImagenModifica.setIcon(null);
         }
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void buscaProductoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_buscaProductoActionPerformed
@@ -608,7 +786,7 @@ public class VtnAutoAdmin extends javax.swing.JPanel
     private void comboAutoItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboAutoItemStateChanged
     {//GEN-HEADEREND:event_comboAutoItemStateChanged
         Autos a = new Autos();
-        a.selecAuto(comboAuto, modifID, modifModelo, modifTransmision, modifAnio, modifTipo, modifPrecio, modifFabricante);
+        a.selecAuto(comboAuto, modifID, modifModelo, modifTransmision, modifAnio, modifTipo, modifPrecio, modifFabricante, labelImagenModifica);
     }//GEN-LAST:event_comboAutoItemStateChanged
 
     private void comboAnioMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_comboAnioMouseClicked
@@ -688,6 +866,90 @@ public class VtnAutoAdmin extends javax.swing.JPanel
         a.desactivarOtrosCombos(verAutos, campoFiltrado, valorFiltrado, comboFabricante, comboTransmision, comboAnio, comboTipo, comboPrecio, comboFabricante);
     }//GEN-LAST:event_comboFabricanteItemStateChanged
 
+    private void modeloKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modeloKeyTyped
+    {//GEN-HEADEREND:event_modeloKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, modelo.getText());
+    }//GEN-LAST:event_modeloKeyTyped
+
+    private void fabricanteKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_fabricanteKeyTyped
+    {//GEN-HEADEREND:event_fabricanteKeyTyped
+        Validaciones.validaAlfabeticos(evt, 23, fabricante.getText());
+    }//GEN-LAST:event_fabricanteKeyTyped
+
+    private void anioKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_anioKeyTyped
+    {//GEN-HEADEREND:event_anioKeyTyped
+        Validaciones.validaEntero(evt, 4, anio.getText());
+    }//GEN-LAST:event_anioKeyTyped
+
+    private void precioKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_precioKeyTyped
+    {//GEN-HEADEREND:event_precioKeyTyped
+        Validaciones.validaFlotantes(evt, 8, precio.getText());
+    }//GEN-LAST:event_precioKeyTyped
+
+    private void modifIDKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifIDKeyTyped
+    {//GEN-HEADEREND:event_modifIDKeyTyped
+        Validaciones.validaEntero(evt, 4, modifID.getText());
+    }//GEN-LAST:event_modifIDKeyTyped
+
+    private void modifModeloKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifModeloKeyTyped
+    {//GEN-HEADEREND:event_modifModeloKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, modifModelo.getText());
+    }//GEN-LAST:event_modifModeloKeyTyped
+
+    private void modifFabricanteKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifFabricanteKeyTyped
+    {//GEN-HEADEREND:event_modifFabricanteKeyTyped
+        Validaciones.validaAlfabeticos(evt, 23, modifFabricante.getText());
+    }//GEN-LAST:event_modifFabricanteKeyTyped
+
+    private void modifAnioKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifAnioKeyTyped
+    {//GEN-HEADEREND:event_modifAnioKeyTyped
+        Validaciones.validaEntero(evt, 4, modifAnio.getText());
+    }//GEN-LAST:event_modifAnioKeyTyped
+
+    private void modifPrecioKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_modifPrecioKeyTyped
+    {//GEN-HEADEREND:event_modifPrecioKeyTyped
+        Validaciones.validaFlotantes(evt, 8, modifPrecio.getText());
+    }//GEN-LAST:event_modifPrecioKeyTyped
+
+    private void buscaProductoKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_buscaProductoKeyTyped
+    {//GEN-HEADEREND:event_buscaProductoKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, buscaProducto.getText());
+    }//GEN-LAST:event_buscaProductoKeyTyped
+
+    private void labelImagenModificaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelImagenModificaMouseClicked
+    {//GEN-HEADEREND:event_labelImagenModificaMouseClicked
+
+    }//GEN-LAST:event_labelImagenModificaMouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton3ActionPerformed
+    {//GEN-HEADEREND:event_jButton3ActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION)
+        {
+            imagenSeleccionada = fileChooser.getSelectedFile();
+            ImageIcon icon = new ImageIcon(imagenSeleccionada.getAbsolutePath());
+            labelImagenModifica.setIcon(new ImageIcon(icon.getImage().getScaledInstance(220, 130, Image.SCALE_SMOOTH)));
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton5ActionPerformed
+    {//GEN-HEADEREND:event_jButton5ActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        int returnValue = fileChooser.showOpenDialog(null);
+        if (returnValue == JFileChooser.APPROVE_OPTION)
+        {
+            imagenSeleccionada = fileChooser.getSelectedFile();
+            ImageIcon icon = new ImageIcon(imagenSeleccionada.getAbsolutePath());
+            labelImagenAlta.setIcon(new ImageIcon(icon.getImage().getScaledInstance(220, 130, Image.SCALE_SMOOTH)));
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void labelImagenAltaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelImagenAltaMouseClicked
+    {//GEN-HEADEREND:event_labelImagenAltaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelImagenAltaMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField anio;
@@ -705,7 +967,9 @@ public class VtnAutoAdmin extends javax.swing.JPanel
     private javax.swing.JTabbedPane gestionaAuto;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -739,6 +1003,8 @@ public class VtnAutoAdmin extends javax.swing.JPanel
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel labelImagenAlta;
+    private javax.swing.JLabel labelImagenModifica;
     private javax.swing.JTextField modelo;
     private javax.swing.JFormattedTextField modifAnio;
     private javax.swing.JTextField modifFabricante;

@@ -1,6 +1,13 @@
 package Files;
 
 import Interface.VtnAutoAdmin;
+import com.mysql.jdbc.Blob;
+import com.mysql.jdbc.Statement;
+import java.awt.Image;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,10 +15,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.Year;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -22,6 +35,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Autos implements Serializable
 {
+
     public int ID;
     public String modelo;
     public String transmision;
@@ -29,6 +43,12 @@ public class Autos implements Serializable
     public String tipo;
     public double precio;
     public String fabricante;
+    public byte[] imagen;
+
+    // Estancias base de datos
+    private static Connection Conection;
+    private static Statement Consulta;
+    private static ResultSet Resultado;
 
     /*Contraseña base de datos*/
     String bdpass = "100%Freestyle";
@@ -47,6 +67,26 @@ public class Autos implements Serializable
         this.tipo = tipo;
         this.precio = precio;
         this.fabricante = fabricante;
+    }
+
+    public byte[] getImagen()
+    {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen)
+    {
+        this.imagen = imagen;
+    }
+
+    public String getBdpass()
+    {
+        return bdpass;
+    }
+
+    public void setBdpass(String bdpass)
+    {
+        this.bdpass = bdpass;
     }
 
     public int getID()
@@ -119,6 +159,7 @@ public class Autos implements Serializable
         this.fabricante = fabricante;
     }
 
+    /*
     public void altaAuto(JTextField jtf, JComboBox jtf2, JTextField jtf3, JComboBox jtf4, JTextField jtf5, JTextField jtf6)
     {
         modelo = jtf.getText();
@@ -158,6 +199,51 @@ public class Autos implements Serializable
                 }
             }
         } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error de conexión a la base de datos: " + ex.getMessage());
+        }
+    }*/
+    public void altaAuto(JTextField jtf, JComboBox<String> jtf2, JTextField jtf3, JComboBox<String> jtf4, JTextField jtf5, JTextField jtf6, File imagen)
+    {
+        modelo = jtf.getText();
+        transmision = jtf2.getSelectedItem().toString();
+        anio = Integer.parseInt(jtf3.getText());
+        tipo = jtf4.getSelectedItem().toString();
+        precio = Double.parseDouble(jtf5.getText());
+        fabricante = jtf6.getText();
+
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "INSERT INTO auto (Modelo, Transmision, Anio, Tipo, Precio, Fabricante, Imagen) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                stmt.setString(1, modelo);
+                stmt.setString(2, transmision);
+                stmt.setInt(3, anio);
+                stmt.setString(4, tipo);
+                stmt.setDouble(5, precio);
+                stmt.setString(6, fabricante);
+
+                if (imagen != null)
+                {
+                    FileInputStream fis = new FileInputStream(imagen);
+                    stmt.setBinaryStream(7, fis, (int) imagen.length());
+                } else
+                {
+                    stmt.setNull(7, java.sql.Types.BLOB);
+                }
+
+                int rowsAffected = stmt.executeUpdate();
+                if (rowsAffected > 0)
+                {
+                    jtf.setText("");
+                    jtf3.setText("");
+                    jtf5.setText("");
+                    jtf6.setText("");
+                    //File.setIcon(null);
+                }
+            }
+        } catch (Exception ex)
         {
             JOptionPane.showMessageDialog(null, "Error de conexión a la base de datos: " + ex.getMessage());
         }
@@ -278,7 +364,7 @@ public class Autos implements Serializable
 
     }
 
-    public void modifAuto(JComboBox jcb, JTextField txtID, JTextField jtf, JComboBox jtf2, JTextField jtf3, JComboBox jtf4, JTextField jtf5, JTextField jtf6)
+    /*public void modifAuto(JComboBox jcb, JTextField txtID, JTextField jtf, JComboBox jtf2, JTextField jtf3, JComboBox jtf4, JTextField jtf5, JTextField jtf6)
     {
         modelo = jtf.getText();
         transmision = jtf2.getSelectedItem().toString();
@@ -313,8 +399,56 @@ public class Autos implements Serializable
         {
             JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos:  " + ex.getMessage());
         }
+    }*/
+    public void modifAuto(JComboBox<String> jcb, JTextField txtID, JTextField jtf, JComboBox<String> jtf2, JTextField jtf3, JComboBox<String> jtf4, JTextField jtf5, JTextField jtf6, File imagenFile) throws FileNotFoundException, IOException
+    {
+        modelo = jtf.getText();
+        transmision = jtf2.getSelectedItem().toString();
+        anio = Integer.parseInt(jtf3.getText());
+        tipo = jtf4.getSelectedItem().toString();
+        precio = Double.parseDouble(jtf5.getText());
+        fabricante = jtf6.getText();
+
+        String valor = jcb.getSelectedItem().toString();
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "UPDATE auto SET Modelo = ?, Transmision = ?, Anio = ?, Tipo = ?, Precio = ?, Fabricante = ?, Imagen = ? WHERE Modelo = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                // Establecer los parámetros
+                stmt.setString(1, modelo); // Modelo es String
+                stmt.setString(2, transmision); // Transmisión es String
+                stmt.setInt(3, anio); // Año es int
+                stmt.setString(4, tipo); // Tipo es String
+                stmt.setDouble(5, precio); // Precio es Double
+                stmt.setString(6, fabricante); // Fabricante es String
+
+                // Leer la imagen y convertirla a un array de bytes
+                byte[] imagenBytes = null;
+                if (imagenFile != null)
+                {
+                    try (FileInputStream fis = new FileInputStream(imagenFile))
+                    {
+                        imagenBytes = fis.readAllBytes();
+                    } catch (IOException ex)
+                    {
+                        JOptionPane.showMessageDialog(null, "Error al leer el archivo de imagen: " + ex.getMessage());
+                    }
+                }
+                stmt.setBytes(7, imagenBytes); // Imagen es un array de bytes
+
+                stmt.setString(8, valor); // Valor del modelo para la cláusula WHERE
+
+                // Ejecutar la sentencia
+                stmt.executeUpdate();
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al actualizar los datos de la base de datos: " + ex.getMessage());
+        }
     }
 
+    /*
     public void selecAuto(JComboBox<String> jcb, JTextField txtID, JTextField jtf, JComboBox<String> jtf2, JTextField jtf3, JComboBox<String> jtf4, JTextField jtf5, JTextField jtf6)
     {
         // Obtener el modelo seleccionado del JComboBox
@@ -347,6 +481,161 @@ public class Autos implements Serializable
                         jtf4.setSelectedItem(rs.getString("Tipo")); // Tipo (String)
                         jtf5.setText(rs.getString("Precio")); // Precio (Double como String)
                         jtf6.setText(rs.getString("Fabricante")); // Fabricante (String)
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(null, "No se encontró el auto con el modelo seleccionado.");
+                    }
+                }
+            } catch (SQLException ex)
+            {
+                JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+            }
+        }
+    }*/
+    public void selecAuto(JComboBox<String> jcb, JTextField txtID, JTextField jtf, JComboBox<String> jtf2, JTextField jtf3, JComboBox<String> jtf4, JTextField jtf5, JTextField jtf6, JLabel lblImagen)
+    {
+        // Obtener el modelo seleccionado del JComboBox
+        String modeloSeleccionado = (String) jcb.getSelectedItem();
+
+        // Verificar si se ha seleccionado un elemento válido
+        if (modeloSeleccionado != null && !modeloSeleccionado.isEmpty())
+        {
+            // Conexión a la base de datos y consulta de datos del auto
+            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+            {
+                String sql = "SELECT * FROM Auto WHERE Modelo = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(sql))
+                {
+                    stmt.setString(1, modeloSeleccionado);
+                    ResultSet rs = stmt.executeQuery();
+
+                    // Verificar si se ha encontrado el registro correspondiente
+                    if (rs.next())
+                    {
+                        txtID.setText(rs.getString("ID")); // ID (String)
+                        jtf.setText(rs.getString("Modelo")); // Modelo (String)
+                        jtf2.setSelectedItem(rs.getString("Transmision")); // Transmisión (String)
+
+                        // Obtener solo el año (primeros 4 caracteres)
+                        String fechaCompleta = rs.getString("Anio");
+                        String anio = fechaCompleta.substring(0, 4);
+                        jtf3.setText(anio); // Año (solo el año como String)
+
+                        jtf4.setSelectedItem(rs.getString("Tipo")); // Tipo (String)
+                        jtf5.setText(rs.getString("Precio")); // Precio (Double como String)
+                        jtf6.setText(rs.getString("Fabricante")); // Fabricante (String)
+
+                        // Obtener la imagen y mostrarla en el JLabel
+                        Blob imagenBlob = (Blob) rs.getBlob("Imagen");
+                        if (imagenBlob != null)
+                        {
+                            int blobLength = (int) imagenBlob.length();
+                            byte[] blobAsBytes = imagenBlob.getBytes(1, blobLength);
+                            ImageIcon icon = new ImageIcon(blobAsBytes);
+                            lblImagen.setIcon(new ImageIcon(icon.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH)));
+                        } else
+                        {
+                            lblImagen.setIcon(null);  // Si no hay imagen, limpiar el JLabel
+                        }
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(null, "No se encontró el auto con el modelo seleccionado.");
+                    }
+                }
+            } catch (SQLException ex)
+            {
+                JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+            }
+        }
+    }
+
+    /*
+    public void selecAutoCliente(JComboBox<String> jcb, JLabel jtf, JLabel jtf2, JLabel jtf3, JLabel jtf4, JLabel jtf5, JLabel jtf6)
+    {
+        // Obtener el modelo seleccionado del JComboBox
+        String modeloSeleccionado = (String) jcb.getSelectedItem();
+
+        // Verificar si se ha seleccionado un elemento válido
+        if (modeloSeleccionado != null && !modeloSeleccionado.isEmpty())
+        {
+            // Conexión a la base de datos y consulta de datos del auto
+            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+            {
+                String sql = "SELECT * FROM Auto WHERE Modelo = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(sql))
+                {
+                    stmt.setString(1, modeloSeleccionado);
+                    ResultSet rs = stmt.executeQuery();
+
+                    // Verificar si se ha encontrado el registro correspondiente
+                    if (rs.next())
+                    {
+                        jtf.setText(rs.getString("Modelo")); // Modelo (String)
+                        jtf2.setText(rs.getString("Transmision")); // Transmisión (String)
+
+                        // Obtener solo el año (primeros 4 caracteres)
+                        String fechaCompleta = rs.getString("Anio");
+                        String anio = fechaCompleta.substring(0, 4);
+                        jtf3.setText(anio); // Año (solo el año como String)
+
+                        jtf4.setText(rs.getString("Tipo")); // Tipo (String)
+                        jtf5.setText(rs.getString("Precio")); // Precio (Double como String)
+                        jtf6.setText(rs.getString("Fabricante")); // Fabricante (String)
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(null, "No se encontró el auto con el modelo seleccionado.");
+                    }
+                }
+            } catch (SQLException ex)
+            {
+                JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+            }
+        }
+    }*/
+    public void selecAutoCliente(JComboBox<String> jcb, JLabel jtf, JLabel jtf2, JLabel jtf3, JLabel jtf4, JLabel jtf5, JLabel jtf6, JLabel lblImagenCliente)
+    {
+        // Obtener el modelo seleccionado del JComboBox
+        String modeloSeleccionado = (String) jcb.getSelectedItem();
+
+        // Verificar si se ha seleccionado un elemento válido
+        if (modeloSeleccionado != null && !modeloSeleccionado.isEmpty())
+        {
+            // Conexión a la base de datos y consulta de datos del auto
+            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+            {
+                String sql = "SELECT * FROM Auto WHERE Modelo = ?";
+                try (PreparedStatement stmt = conn.prepareStatement(sql))
+                {
+                    stmt.setString(1, modeloSeleccionado);
+                    ResultSet rs = stmt.executeQuery();
+
+                    // Verificar si se ha encontrado el registro correspondiente
+                    if (rs.next())
+                    {
+                        jtf.setText(rs.getString("Modelo")); // Modelo (String)
+                        jtf2.setText(rs.getString("Transmision")); // Transmisión (String)
+
+                        // Obtener solo el año (primeros 4 caracteres)
+                        String fechaCompleta = rs.getString("Anio");
+                        String anio = fechaCompleta.substring(0, 4);
+                        jtf3.setText(anio); // Año (solo el año como String)
+
+                        jtf4.setText(rs.getString("Tipo")); // Tipo (String)
+                        jtf5.setText(rs.getString("Precio")); // Precio (Double como String)
+                        jtf6.setText(rs.getString("Fabricante")); // Fabricante (String)
+
+                        // Obtener la imagen y mostrarla en el JLabel
+                        Blob imagenBlob = (Blob) rs.getBlob("Imagen");
+                        if (imagenBlob != null)
+                        {
+                            int blobLength = (int) imagenBlob.length();
+                            byte[] blobAsBytes = imagenBlob.getBytes(1, blobLength);
+                            ImageIcon icon = new ImageIcon(blobAsBytes);
+                            lblImagenCliente.setIcon(new ImageIcon(icon.getImage().getScaledInstance(lblImagenCliente.getWidth(), lblImagenCliente.getHeight(), Image.SCALE_SMOOTH)));
+                        } else
+                        {
+                            lblImagenCliente.setIcon(null);  // Si no hay imagen, limpiar el JLabel
+                        }
                     } else
                     {
                         JOptionPane.showMessageDialog(null, "No se encontró el auto con el modelo seleccionado.");
@@ -591,7 +880,7 @@ public class Autos implements Serializable
         comboTipo.setEnabled(comboSeleccionado == comboTipo);
         comboPrecio.setEnabled(comboSeleccionado == comboPrecio);
         comboFabricante.setEnabled(comboSeleccionado == comboFabricante);
-        
+
         consultaFiltrada(jt, cf, vf);
     }
 
@@ -833,6 +1122,125 @@ public class Autos implements Serializable
                         rs.getString("Fabricante"),
                     });
                 }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+
+    public void mostrarAutos(JLabel[] lblImagenes, JLabel[] lblModelos)
+    {
+        // Conexión a la base de datos y consulta de los datos de los autos
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            String sql = "SELECT Modelo, Imagen FROM Auto LIMIT 6";
+            try (Statement stmt = (Statement) conn.createStatement())
+            {
+                ResultSet rs = stmt.executeQuery(sql);
+
+                int index = 0;
+                while (rs.next() && index < 6)
+                {
+                    // Obtener el modelo y la imagen
+                    String modelo = rs.getString("Modelo");
+                    Blob imagenBlob = (Blob) rs.getBlob("Imagen");
+
+                    // Configurar el JLabel del modelo
+                    lblModelos[index].setText(modelo);
+
+                    // Configurar el JLabel de la imagen
+                    if (imagenBlob != null)
+                    {
+                        int blobLength = (int) imagenBlob.length();
+                        byte[] blobAsBytes = imagenBlob.getBytes(1, blobLength);
+                        ImageIcon icon = new ImageIcon(blobAsBytes);
+                        lblImagenes[index].setIcon(new ImageIcon(icon.getImage().getScaledInstance(lblImagenes[index].getWidth(), lblImagenes[index].getHeight(), Image.SCALE_SMOOTH)));
+                    } else
+                    {
+                        lblImagenes[index].setIcon(null);  // Si no hay imagen, limpiar el JLabel
+                    }
+                    index++;
+                }
+
+                // Limpiar los JLabel restantes si hay menos de 6 autos
+                for (int i = index; i < 6; i++)
+                {
+                    lblModelos[i].setText("");
+                    lblImagenes[i].setIcon(null);
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+
+    public void desactivarOtrosCombosBusqueda(JComboBox<String> comboSeleccionado, JComboBox<String> comboTransmision, JComboBox<String> comboAnio, JComboBox<String> comboTipo, JComboBox<String> comboPrecio, JComboBox<String> comboFabricante)
+    {
+        // Desactivar todos los JComboBox excepto el seleccionado
+        comboTransmision.setEnabled(comboSeleccionado == comboTransmision);
+        comboAnio.setEnabled(comboSeleccionado == comboAnio);
+        comboTipo.setEnabled(comboSeleccionado == comboTipo);
+        comboPrecio.setEnabled(comboSeleccionado == comboPrecio);
+        comboFabricante.setEnabled(comboSeleccionado == comboFabricante);
+    }
+
+    public void consultaFiltradaBusqueda(String campoFiltrado, String valorFiltrado, JLabel[] lblImagenes, JLabel[] lblModelos, JPanel panelContenedor)
+    {
+        // Conexión a la base de datos y consulta de autos filtrada por campo
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            // Generar la consulta SQL dinámicamente
+            String sql = "SELECT Modelo, Imagen FROM Auto WHERE " + campoFiltrado + " = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                stmt.setString(1, valorFiltrado);
+                ResultSet rs = stmt.executeQuery();
+
+                ArrayList<JLabel> listaImagenes = new ArrayList<>();
+                ArrayList<JLabel> listaModelos = new ArrayList<>();
+
+                int index = 0;
+                while (rs.next())
+                {
+                    // Obtener el modelo y la imagen
+                    String modelo = rs.getString("Modelo");
+                    Blob imagenBlob = (Blob) rs.getBlob("Imagen");
+
+                    JLabel lblModelo = new JLabel(modelo);
+                    JLabel lblImagen = new JLabel();
+
+                    // Configurar el JLabel de la imagen
+                    if (imagenBlob != null)
+                    {
+                        int blobLength = (int) imagenBlob.length();
+                        byte[] blobAsBytes = imagenBlob.getBytes(1, blobLength);
+                        ImageIcon icon = new ImageIcon(blobAsBytes);
+                        lblImagen.setIcon(new ImageIcon(icon.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH)));
+                    } else
+                    {
+                        lblImagen.setIcon(null);  // Si no hay imagen, limpiar el JLabel
+                    }
+
+                    listaModelos.add(lblModelo);
+                    listaImagenes.add(lblImagen);
+                    index++;
+                }
+
+                // Limpiar el panel contenedor
+                panelContenedor.removeAll();
+
+                // Añadir los JLabel al panel
+                for (int i = 0; i < listaModelos.size(); i++)
+                {
+                    panelContenedor.add(listaModelos.get(i));
+                    panelContenedor.add(listaImagenes.get(i));
+                }
+
+                // Refrescar el panel contenedor
+                panelContenedor.revalidate();
+                panelContenedor.repaint();
             }
         } catch (SQLException ex)
         {

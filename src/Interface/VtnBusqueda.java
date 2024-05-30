@@ -4,6 +4,10 @@
  */
 package Interface;
 
+import Files.Autos;
+import cjb.ci.Validaciones;
+import javax.swing.JLabel;
+
 /**
  *
  * @author Alan Basilio
@@ -20,11 +24,18 @@ public class VtnBusqueda extends javax.swing.JFrame
     }
     
     private String usuario;
+    private String categoria;
     
     public void setUsuario(String usuario)
     {
         this.usuario = usuario;
         labelUser.setText(usuario);
+    }
+    
+    public void setCategoria(String categoria)
+    {
+        this.categoria = categoria;
+        labelCategoria.setText(categoria);
     }
 
     /**
@@ -45,34 +56,44 @@ public class VtnBusqueda extends javax.swing.JFrame
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        comboFabricanteBusqueda = new javax.swing.JComboBox<>();
+        comboPrecioBusqueda = new javax.swing.JComboBox<>();
+        comboTipoBusqueda = new javax.swing.JComboBox<>();
+        comboAnioBusqueda = new javax.swing.JComboBox<>();
+        comboTransmisionBusqueda = new javax.swing.JComboBox<>();
         labelUser = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        busquedaAuto = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
+        labelCategoria = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        PanelAutos = new javax.swing.JPanel();
+        labelAuto1 = new javax.swing.JLabel();
+        labelModelo4 = new javax.swing.JLabel();
+        labelAuto4 = new javax.swing.JLabel();
+        labelAuto3 = new javax.swing.JLabel();
+        labelModelo3 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        labelModelo2 = new javax.swing.JLabel();
+        labelAuto2 = new javax.swing.JLabel();
+        labelModelo1 = new javax.swing.JLabel();
+        labelAuto5 = new javax.swing.JLabel();
+        labelModelo5 = new javax.swing.JLabel();
+        labelAuto6 = new javax.swing.JLabel();
+        labelModelo6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter()
+        {
+            public void windowOpened(java.awt.event.WindowEvent evt)
+            {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -81,6 +102,13 @@ public class VtnBusqueda extends javax.swing.JFrame
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jPanel2MouseClicked(evt);
+            }
+        });
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -109,20 +137,134 @@ public class VtnBusqueda extends javax.swing.JFrame
         jLabel10.setText("Transmisión");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 160, 30));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ford", "Honda", "Toyota", "Lamborghini", "Porsche", "Eclipse", "Jaguar" }));
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 160, -1));
+        comboFabricanteBusqueda.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboFabricanteBusquedaItemStateChanged(evt);
+            }
+        });
+        comboFabricanteBusqueda.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                comboFabricanteBusquedaMouseClicked(evt);
+            }
+        });
+        comboFabricanteBusqueda.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                comboFabricanteBusquedaActionPerformed(evt);
+            }
+        });
+        comboFabricanteBusqueda.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                comboFabricanteBusquedaKeyTyped(evt);
+            }
+        });
+        jPanel2.add(comboFabricanteBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 510, 160, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "500000", "300000", "200000", "150000", "120000", "70000", "50000", "35000" }));
-        jPanel2.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 160, -1));
+        comboPrecioBusqueda.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboPrecioBusquedaItemStateChanged(evt);
+            }
+        });
+        comboPrecioBusqueda.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                comboPrecioBusquedaMouseClicked(evt);
+            }
+        });
+        comboPrecioBusqueda.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                comboPrecioBusquedaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(comboPrecioBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 160, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Deportivo", "Exotico", "Todoterreno", "Sedan" }));
-        jPanel2.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 160, -1));
+        comboTipoBusqueda.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboTipoBusquedaItemStateChanged(evt);
+            }
+        });
+        comboTipoBusqueda.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                comboTipoBusquedaMouseClicked(evt);
+            }
+        });
+        comboTipoBusqueda.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                comboTipoBusquedaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(comboTipoBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 160, -1));
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2023", "2022", "2007", "2005", "2003" }));
-        jPanel2.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 160, -1));
+        comboAnioBusqueda.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboAnioBusquedaItemStateChanged(evt);
+            }
+        });
+        comboAnioBusqueda.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                comboAnioBusquedaMouseClicked(evt);
+            }
+        });
+        comboAnioBusqueda.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                comboAnioBusquedaActionPerformed(evt);
+            }
+        });
+        comboAnioBusqueda.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                comboAnioBusquedaKeyTyped(evt);
+            }
+        });
+        jPanel2.add(comboAnioBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 160, -1));
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "Automatico", " " }));
-        jPanel2.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 160, -1));
+        comboTransmisionBusqueda.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                comboTransmisionBusquedaItemStateChanged(evt);
+            }
+        });
+        comboTransmisionBusqueda.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                comboTransmisionBusquedaMouseClicked(evt);
+            }
+        });
+        comboTransmisionBusqueda.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                comboTransmisionBusquedaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(comboTransmisionBusqueda, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 160, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 200, 630));
 
@@ -135,25 +277,28 @@ public class VtnBusqueda extends javax.swing.JFrame
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("VIONET MOTORS");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, 240, 30));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 20, 240, 30));
 
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/user.png"))); // NOI18N
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 20, 60, 50));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener()
+        busquedaAuto.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jTextField1ActionPerformed(evt);
+                busquedaAutoActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 110, 310, -1));
-
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/lupa2.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1130, 100, -1, 40));
+        busquedaAuto.addKeyListener(new java.awt.event.KeyAdapter()
+        {
+            public void keyTyped(java.awt.event.KeyEvent evt)
+            {
+                busquedaAutoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(busquedaAuto, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 130, 310, 30));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("REGRESAR");
@@ -177,148 +322,10 @@ public class VtnBusqueda extends javax.swing.JFrame
         });
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, -1, 20));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI Black", 2, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("DEPORTIVO");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 200, 30));
-
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/Auto1.jpg"))); // NOI18N
-        jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jLabel12.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jLabel12MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 220, 130));
-
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Mercedes Benz");
-        jLabel13.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jLabel13MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 380, 220, -1));
-
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/Auto4.jpg"))); // NOI18N
-        jLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jLabel16.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jLabel16MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 430, 220, 130));
-
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setText("Bel Air");
-        jLabel17.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jLabel17MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 570, 220, -1));
-
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/Auto5.jpg"))); // NOI18N
-        jLabel18.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jLabel18.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jLabel18MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 220, 130));
-
-        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel19.setText("Corvette");
-        jLabel19.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jLabel19MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 570, 220, -1));
-
-        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/Auto2.jpg"))); // NOI18N
-        jLabel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jLabel20.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jLabel20MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 240, 220, 130));
-
-        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel21.setText("BMW");
-        jLabel21.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jLabel21MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, 220, -1));
-
-        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/Auto3.jpg"))); // NOI18N
-        jLabel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jLabel22.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jLabel22MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 240, 220, 130));
-
-        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setText("Masserati");
-        jLabel23.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jLabel23MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 380, 220, -1));
-
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/Auto6.jpg"))); // NOI18N
-        jLabel24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jLabel24.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jLabel24MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 430, 220, 130));
-
-        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setText("Mercedes Benz F1");
-        jLabel25.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                jLabel25MouseClicked(evt);
-            }
-        });
-        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 570, 220, -1));
+        labelCategoria.setFont(new java.awt.Font("Segoe UI Black", 2, 14)); // NOI18N
+        labelCategoria.setForeground(new java.awt.Color(255, 255, 255));
+        labelCategoria.setText("CATEGORIA");
+        jPanel1.add(labelCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 200, 30));
 
         jButton3.setBackground(new java.awt.Color(0, 0, 0));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/salir.png"))); // NOI18N
@@ -331,41 +338,211 @@ public class VtnBusqueda extends javax.swing.JFrame
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 20, 40, 40));
 
+        jButton1.setBackground(new java.awt.Color(51, 51, 51));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/lupa.png"))); // NOI18N
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 110, 50, 50));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Busca algún Modelo");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 110, 310, -1));
+
+        PanelAutos.setBackground(new java.awt.Color(0, 0, 0));
+        PanelAutos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelAuto1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        labelAuto1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                labelAuto1MouseClicked(evt);
+            }
+        });
+        PanelAutos.add(labelAuto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 220, 130));
+
+        labelModelo4.setForeground(new java.awt.Color(255, 255, 255));
+        labelModelo4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelModelo4.setText("Auto 4");
+        labelModelo4.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                labelModelo4MouseClicked(evt);
+            }
+        });
+        PanelAutos.add(labelModelo4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 220, -1));
+
+        labelAuto4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        labelAuto4.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                labelAuto4MouseClicked(evt);
+            }
+        });
+        PanelAutos.add(labelAuto4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 220, 130));
+
+        labelAuto3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        labelAuto3.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                labelAuto3MouseClicked(evt);
+            }
+        });
+        PanelAutos.add(labelAuto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 40, 220, 130));
+
+        labelModelo3.setForeground(new java.awt.Color(255, 255, 255));
+        labelModelo3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelModelo3.setText("Auto 3");
+        labelModelo3.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                labelModelo3MouseClicked(evt);
+            }
+        });
+        PanelAutos.add(labelModelo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 180, 220, -1));
+
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel25.setText("Mercedes Benz F1");
+        jLabel25.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jLabel25MouseClicked(evt);
+            }
+        });
+        PanelAutos.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 570, 220, -1));
+
+        labelModelo2.setForeground(new java.awt.Color(255, 255, 255));
+        labelModelo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelModelo2.setText("Auto 2");
+        labelModelo2.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                labelModelo2MouseClicked(evt);
+            }
+        });
+        PanelAutos.add(labelModelo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, 220, -1));
+
+        labelAuto2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        labelAuto2.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                labelAuto2MouseClicked(evt);
+            }
+        });
+        PanelAutos.add(labelAuto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 220, 130));
+
+        labelModelo1.setForeground(new java.awt.Color(255, 255, 255));
+        labelModelo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelModelo1.setText("Auto 1");
+        labelModelo1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                labelModelo1MouseClicked(evt);
+            }
+        });
+        PanelAutos.add(labelModelo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 220, -1));
+
+        labelAuto5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        labelAuto5.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                labelAuto5MouseClicked(evt);
+            }
+        });
+        PanelAutos.add(labelAuto5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 220, 130));
+
+        labelModelo5.setForeground(new java.awt.Color(255, 255, 255));
+        labelModelo5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelModelo5.setText("Auto 5");
+        labelModelo5.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                labelModelo5MouseClicked(evt);
+            }
+        });
+        PanelAutos.add(labelModelo5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, 220, -1));
+
+        labelAuto6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        labelAuto6.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                labelAuto6MouseClicked(evt);
+            }
+        });
+        PanelAutos.add(labelAuto6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 220, 220, 130));
+
+        labelModelo6.setForeground(new java.awt.Color(255, 255, 255));
+        labelModelo6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelModelo6.setText("Auto 6");
+        labelModelo6.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                labelModelo6MouseClicked(evt);
+            }
+        });
+        PanelAutos.add(labelModelo6, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 370, 220, -1));
+
+        jPanel1.add(PanelAutos, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 930, 440));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextField1ActionPerformed
-    {//GEN-HEADEREND:event_jTextField1ActionPerformed
+    private void busquedaAutoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_busquedaAutoActionPerformed
+    {//GEN-HEADEREND:event_busquedaAutoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_busquedaAutoActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel3MouseClicked
     {//GEN-HEADEREND:event_jLabel3MouseClicked
         VtnInicio vi = new VtnInicio();
         vi.setVisible(true);
+        vi.setUsuario(usuario);
+        vi.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel4MouseClicked
     {//GEN-HEADEREND:event_jLabel4MouseClicked
         VtnInicio vi = new VtnInicio();
         vi.setVisible(true);
+        vi.setUsuario(usuario);
+        vi.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
 
-    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel12MouseClicked
-    {//GEN-HEADEREND:event_jLabel12MouseClicked
-        VtnAuto va = new VtnAuto();
+    private void labelAuto1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelAuto1MouseClicked
+    {//GEN-HEADEREND:event_labelAuto1MouseClicked
+        VtnAuto va  = new VtnAuto();
         va.setVisible(true);
-    }//GEN-LAST:event_jLabel12MouseClicked
-
-    private void jLabel13MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel13MouseClicked
-    {//GEN-HEADEREND:event_jLabel13MouseClicked
-        VtnAuto va = new VtnAuto();
+        va.setUsuario(usuario);
         va.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel13MouseClicked
+    }//GEN-LAST:event_labelAuto1MouseClicked
+
+    private void labelModelo4MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelModelo4MouseClicked
+    {//GEN-HEADEREND:event_labelModelo4MouseClicked
+        VtnAuto va  = new VtnAuto();
+        va.setVisible(true);
+        va.setUsuario(usuario);
+        va.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_labelModelo4MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButton3MouseClicked
     {//GEN-HEADEREND:event_jButton3MouseClicked
@@ -374,75 +551,379 @@ public class VtnBusqueda extends javax.swing.JFrame
         this.dispose();
     }//GEN-LAST:event_jButton3MouseClicked
 
-    private void jLabel20MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel20MouseClicked
-    {//GEN-HEADEREND:event_jLabel20MouseClicked
-        VtnAuto va = new VtnAuto();
+    private void labelAuto2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelAuto2MouseClicked
+    {//GEN-HEADEREND:event_labelAuto2MouseClicked
+        VtnAuto va  = new VtnAuto();
+        va.setVisible(true);
+        va.setUsuario(usuario);
         va.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel20MouseClicked
+    }//GEN-LAST:event_labelAuto2MouseClicked
 
-    private void jLabel22MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel22MouseClicked
-    {//GEN-HEADEREND:event_jLabel22MouseClicked
-        VtnAuto va = new VtnAuto();
+    private void labelAuto4MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelAuto4MouseClicked
+    {//GEN-HEADEREND:event_labelAuto4MouseClicked
+        VtnAuto va  = new VtnAuto();
+        va.setVisible(true);
+        va.setUsuario(usuario);
         va.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel22MouseClicked
+    }//GEN-LAST:event_labelAuto4MouseClicked
 
-    private void jLabel16MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel16MouseClicked
-    {//GEN-HEADEREND:event_jLabel16MouseClicked
-        VtnAuto va = new VtnAuto();
+    private void labelModelo2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelModelo2MouseClicked
+    {//GEN-HEADEREND:event_labelModelo2MouseClicked
+        VtnAuto va  = new VtnAuto();
+        va.setVisible(true);
+        va.setUsuario(usuario);
         va.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel16MouseClicked
+    }//GEN-LAST:event_labelModelo2MouseClicked
 
-    private void jLabel21MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel21MouseClicked
-    {//GEN-HEADEREND:event_jLabel21MouseClicked
-        VtnAuto va = new VtnAuto();
+    private void labelAuto3MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelAuto3MouseClicked
+    {//GEN-HEADEREND:event_labelAuto3MouseClicked
+        VtnAuto va  = new VtnAuto();
+        va.setVisible(true);
+        va.setUsuario(usuario);
         va.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel21MouseClicked
+    }//GEN-LAST:event_labelAuto3MouseClicked
 
-    private void jLabel23MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel23MouseClicked
-    {//GEN-HEADEREND:event_jLabel23MouseClicked
-        VtnAuto va = new VtnAuto();
+    private void labelModelo3MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelModelo3MouseClicked
+    {//GEN-HEADEREND:event_labelModelo3MouseClicked
+        VtnAuto va  = new VtnAuto();
+        va.setVisible(true);
+        va.setUsuario(usuario);
         va.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel23MouseClicked
-
-    private void jLabel17MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel17MouseClicked
-    {//GEN-HEADEREND:event_jLabel17MouseClicked
-        VtnAuto va = new VtnAuto();
-        va.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel17MouseClicked
-
-    private void jLabel18MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel18MouseClicked
-    {//GEN-HEADEREND:event_jLabel18MouseClicked
-        VtnAuto va = new VtnAuto();
-        va.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel18MouseClicked
-
-    private void jLabel19MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel19MouseClicked
-    {//GEN-HEADEREND:event_jLabel19MouseClicked
-        VtnAuto va = new VtnAuto();
-        va.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel19MouseClicked
-
-    private void jLabel24MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel24MouseClicked
-    {//GEN-HEADEREND:event_jLabel24MouseClicked
-        VtnAuto va = new VtnAuto();
-        va.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel24MouseClicked
+    }//GEN-LAST:event_labelModelo3MouseClicked
 
     private void jLabel25MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel25MouseClicked
     {//GEN-HEADEREND:event_jLabel25MouseClicked
-        VtnAuto va = new VtnAuto();
+        VtnAuto va  = new VtnAuto();
+        va.setVisible(true);
+        va.setUsuario(usuario);
         va.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel25MouseClicked
+
+    private void busquedaAutoKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_busquedaAutoKeyTyped
+    {//GEN-HEADEREND:event_busquedaAutoKeyTyped
+        Validaciones.validaAlfanumerico(evt, 23, busquedaAuto.getText());
+    }//GEN-LAST:event_busquedaAutoKeyTyped
+
+    private void comboAnioBusquedaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_comboAnioBusquedaKeyTyped
+    {//GEN-HEADEREND:event_comboAnioBusquedaKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboAnioBusquedaKeyTyped
+
+    private void comboFabricanteBusquedaKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_comboFabricanteBusquedaKeyTyped
+    {//GEN-HEADEREND:event_comboFabricanteBusquedaKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboFabricanteBusquedaKeyTyped
+
+    private void jPanel2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jPanel2MouseClicked
+    {//GEN-HEADEREND:event_jPanel2MouseClicked
+        
+    }//GEN-LAST:event_jPanel2MouseClicked
+
+    private void comboPrecioBusquedaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_comboPrecioBusquedaMouseClicked
+    {//GEN-HEADEREND:event_comboPrecioBusquedaMouseClicked
+        Autos a = new Autos();
+        a.desactivarOtrosCombosBusqueda(comboPrecioBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
+        // JLabel necesarios en la interfaz
+        /*JLabel[] lblImagenes =
+        {
+            labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
+        };
+
+        JLabel[] lblModelos =
+        {
+            labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
+        };
+        a.consultaFiltradaBusqueda("Precio", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+    }//GEN-LAST:event_comboPrecioBusquedaMouseClicked
+
+    private void labelModelo1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelModelo1MouseClicked
+    {//GEN-HEADEREND:event_labelModelo1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelModelo1MouseClicked
+
+    private void labelAuto5MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelAuto5MouseClicked
+    {//GEN-HEADEREND:event_labelAuto5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelAuto5MouseClicked
+
+    private void labelModelo5MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelModelo5MouseClicked
+    {//GEN-HEADEREND:event_labelModelo5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelModelo5MouseClicked
+
+    private void labelAuto6MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelAuto6MouseClicked
+    {//GEN-HEADEREND:event_labelAuto6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelAuto6MouseClicked
+
+    private void labelModelo6MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelModelo6MouseClicked
+    {//GEN-HEADEREND:event_labelModelo6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelModelo6MouseClicked
+
+    private void comboPrecioBusquedaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_comboPrecioBusquedaActionPerformed
+    {//GEN-HEADEREND:event_comboPrecioBusquedaActionPerformed
+        Autos a = new Autos();
+        a.desactivarOtrosCombosBusqueda(comboPrecioBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
+        // JLabel necesarios en la interfaz
+        /*JLabel[] lblImagenes =
+        {
+            labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
+        };
+
+        JLabel[] lblModelos =
+        {
+            labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
+        };
+        a.consultaFiltradaBusqueda("Precio", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+    }//GEN-LAST:event_comboPrecioBusquedaActionPerformed
+
+    private void comboTipoBusquedaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_comboTipoBusquedaMouseClicked
+    {//GEN-HEADEREND:event_comboTipoBusquedaMouseClicked
+        Autos a = new Autos();
+        a.desactivarOtrosCombosBusqueda(comboTipoBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
+        // JLabel necesarios en la interfaz
+        /*JLabel[] lblImagenes =
+        {
+            labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
+        };
+
+        JLabel[] lblModelos =
+        {
+            labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
+        };
+        a.consultaFiltradaBusqueda("Tipo", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+    }//GEN-LAST:event_comboTipoBusquedaMouseClicked
+
+    private void comboTipoBusquedaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_comboTipoBusquedaActionPerformed
+    {//GEN-HEADEREND:event_comboTipoBusquedaActionPerformed
+        Autos a = new Autos();
+        a.desactivarOtrosCombosBusqueda(comboTipoBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
+        // JLabel necesarios en la interfaz
+        /*JLabel[] lblImagenes =
+        {
+            labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
+        };
+
+        JLabel[] lblModelos =
+        {
+            labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
+        };
+        a.consultaFiltradaBusqueda("Tipo", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+    }//GEN-LAST:event_comboTipoBusquedaActionPerformed
+
+    private void comboAnioBusquedaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_comboAnioBusquedaActionPerformed
+    {//GEN-HEADEREND:event_comboAnioBusquedaActionPerformed
+        Autos a = new Autos();
+        a.desactivarOtrosCombosBusqueda(comboAnioBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
+        // JLabel necesarios en la interfaz
+        /*JLabel[] lblImagenes =
+        {
+            labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
+        };
+
+        JLabel[] lblModelos =
+        {
+            labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
+        };
+        a.consultaFiltradaBusqueda("Anio", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+    }//GEN-LAST:event_comboAnioBusquedaActionPerformed
+
+    private void comboAnioBusquedaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_comboAnioBusquedaMouseClicked
+    {//GEN-HEADEREND:event_comboAnioBusquedaMouseClicked
+        Autos a = new Autos();
+        a.desactivarOtrosCombosBusqueda(comboAnioBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
+        // JLabel necesarios en la interfaz
+        /*JLabel[] lblImagenes =
+        {
+            labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
+        };
+
+        JLabel[] lblModelos =
+        {
+            labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
+        };
+        a.consultaFiltradaBusqueda("Anio", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+    }//GEN-LAST:event_comboAnioBusquedaMouseClicked
+
+    private void comboTransmisionBusquedaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_comboTransmisionBusquedaActionPerformed
+    {//GEN-HEADEREND:event_comboTransmisionBusquedaActionPerformed
+        Autos a = new Autos();
+        a.desactivarOtrosCombosBusqueda(comboTransmisionBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
+        // JLabel necesarios en la interfaz
+        /*JLabel[] lblImagenes =
+        {
+            labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
+        };
+
+        JLabel[] lblModelos =
+        {
+            labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
+        };
+        a.consultaFiltradaBusqueda("Transmision", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+    }//GEN-LAST:event_comboTransmisionBusquedaActionPerformed
+
+    private void comboTransmisionBusquedaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_comboTransmisionBusquedaMouseClicked
+    {//GEN-HEADEREND:event_comboTransmisionBusquedaMouseClicked
+        Autos a = new Autos();
+        a.desactivarOtrosCombosBusqueda(comboTransmisionBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
+        // JLabel necesarios en la interfaz
+        /*JLabel[] lblImagenes =
+        {
+            labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
+        };
+
+        JLabel[] lblModelos =
+        {
+            labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
+        };
+        a.consultaFiltradaBusqueda("Transmision", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+    }//GEN-LAST:event_comboTransmisionBusquedaMouseClicked
+
+    private void comboFabricanteBusquedaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_comboFabricanteBusquedaActionPerformed
+    {//GEN-HEADEREND:event_comboFabricanteBusquedaActionPerformed
+        Autos a = new Autos();
+        a.desactivarOtrosCombosBusqueda(comboFabricanteBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
+        // JLabel necesarios en la interfaz
+        /*JLabel[] lblImagenes =
+        {
+            labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
+        };
+
+        JLabel[] lblModelos =
+        {
+            labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
+        };
+        a.consultaFiltradaBusqueda("Fabricante", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+    }//GEN-LAST:event_comboFabricanteBusquedaActionPerformed
+
+    private void comboFabricanteBusquedaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_comboFabricanteBusquedaMouseClicked
+    {//GEN-HEADEREND:event_comboFabricanteBusquedaMouseClicked
+        Autos a = new Autos();
+        a.desactivarOtrosCombosBusqueda(comboFabricanteBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
+        // JLabel necesarios en la interfaz
+        /*JLabel[] lblImagenes =
+        {
+            labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
+        };
+
+        JLabel[] lblModelos =
+        {
+            labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
+        };
+        a.consultaFiltradaBusqueda("Fabricante", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+    }//GEN-LAST:event_comboFabricanteBusquedaMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt)//GEN-FIRST:event_formWindowOpened
+    {//GEN-HEADEREND:event_formWindowOpened
+        Autos a = new Autos();
+        a.agregaComboFabricante(comboFabricanteBusqueda);
+        a.agregaComboAnio(comboAnioBusqueda);
+        a.agregaComboPrecio(comboPrecioBusqueda);
+        a.agregaComboTipo(comboTipoBusqueda);
+        a.agregaComboTransmision(comboTransmisionBusqueda);
+        JLabel[] lblImagenes =
+        {
+            labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
+        };
+
+        JLabel[] lblModelos =
+        {
+            labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
+        };
+        a.mostrarAutos(lblImagenes, lblModelos);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void comboPrecioBusquedaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboPrecioBusquedaItemStateChanged
+    {//GEN-HEADEREND:event_comboPrecioBusquedaItemStateChanged
+        Autos a = new Autos();
+        a.desactivarOtrosCombosBusqueda(comboPrecioBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
+        // JLabel necesarios en la interfaz
+        /*JLabel[] lblImagenes =
+        {
+            labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
+        };
+
+        JLabel[] lblModelos =
+        {
+            labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
+        };
+        a.consultaFiltradaBusqueda("Precio", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+    }//GEN-LAST:event_comboPrecioBusquedaItemStateChanged
+
+    private void comboTipoBusquedaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboTipoBusquedaItemStateChanged
+    {//GEN-HEADEREND:event_comboTipoBusquedaItemStateChanged
+        Autos a = new Autos();
+        a.desactivarOtrosCombosBusqueda(comboPrecioBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
+        // JLabel necesarios en la interfaz
+        /*JLabel[] lblImagenes =
+        {
+            labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
+        };
+
+        JLabel[] lblModelos =
+        {
+            labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
+        };
+        a.consultaFiltradaBusqueda("Tipo", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+    }//GEN-LAST:event_comboTipoBusquedaItemStateChanged
+
+    private void comboAnioBusquedaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboAnioBusquedaItemStateChanged
+    {//GEN-HEADEREND:event_comboAnioBusquedaItemStateChanged
+        Autos a = new Autos();
+        a.desactivarOtrosCombosBusqueda(comboPrecioBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
+        // JLabel necesarios en la interfaz
+        /*JLabel[] lblImagenes =
+        {
+            labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
+        };
+
+        JLabel[] lblModelos =
+        {
+            labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
+        };
+        a.consultaFiltradaBusqueda("Anio", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+    }//GEN-LAST:event_comboAnioBusquedaItemStateChanged
+
+    private void comboTransmisionBusquedaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboTransmisionBusquedaItemStateChanged
+    {//GEN-HEADEREND:event_comboTransmisionBusquedaItemStateChanged
+        Autos a = new Autos();
+        a.desactivarOtrosCombosBusqueda(comboPrecioBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
+        // JLabel necesarios en la interfaz
+        /*JLabel[] lblImagenes =
+        {
+            labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
+        };
+
+        JLabel[] lblModelos =
+        {
+            labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
+        };
+        a.consultaFiltradaBusqueda("Transmision", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+    }//GEN-LAST:event_comboTransmisionBusquedaItemStateChanged
+
+    private void comboFabricanteBusquedaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboFabricanteBusquedaItemStateChanged
+    {//GEN-HEADEREND:event_comboFabricanteBusquedaItemStateChanged
+        Autos a = new Autos();
+        a.desactivarOtrosCombosBusqueda(comboPrecioBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
+        // JLabel necesarios en la interfaz
+        /*JLabel[] lblImagenes =
+        {
+            labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
+        };
+
+        JLabel[] lblModelos =
+        {
+            labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
+        };
+        a.consultaFiltradaBusqueda("Fabricante", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+    }//GEN-LAST:event_comboFabricanteBusquedaItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -490,28 +971,19 @@ public class VtnBusqueda extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelAutos;
+    private javax.swing.JTextField busquedaAuto;
+    private javax.swing.JComboBox<String> comboAnioBusqueda;
+    private javax.swing.JComboBox<String> comboFabricanteBusqueda;
+    private javax.swing.JComboBox<String> comboPrecioBusqueda;
+    private javax.swing.JComboBox<String> comboTipoBusqueda;
+    private javax.swing.JComboBox<String> comboTransmisionBusqueda;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -522,7 +994,19 @@ public class VtnBusqueda extends javax.swing.JFrame
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel labelAuto1;
+    private javax.swing.JLabel labelAuto2;
+    private javax.swing.JLabel labelAuto3;
+    private javax.swing.JLabel labelAuto4;
+    private javax.swing.JLabel labelAuto5;
+    private javax.swing.JLabel labelAuto6;
+    private javax.swing.JLabel labelCategoria;
+    private javax.swing.JLabel labelModelo1;
+    private javax.swing.JLabel labelModelo2;
+    private javax.swing.JLabel labelModelo3;
+    private javax.swing.JLabel labelModelo4;
+    private javax.swing.JLabel labelModelo5;
+    private javax.swing.JLabel labelModelo6;
     private javax.swing.JLabel labelUser;
     // End of variables declaration//GEN-END:variables
 }

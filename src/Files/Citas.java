@@ -134,6 +134,45 @@ public class Citas implements Serializable
             JOptionPane.showMessageDialog(null, "Error de conexión a la base de datos: " + ex.getMessage());
         }
     }
+    
+    public void altaCitaCliente(String NombreCliente, JComboBox<String> comboModeloAuto, JComboBox<String> comboAnioAuto, JComboBox<String> comboPrecioAuto)
+    {
+        modeloAuto = comboModeloAuto.getSelectedItem().toString();
+        anioAuto = Integer.parseInt(comboAnioAuto.getSelectedItem().toString());
+        precioAuto = Double.parseDouble(comboPrecioAuto.getSelectedItem().toString());
+
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        {
+            // Sentencia SQL para insertar la cita
+            String sql = "INSERT INTO cita (NombreCliente, ModeloAuto, AnioAuto, PrecioAuto) VALUES (?, ?, ?, ?)";
+
+            // Crear la declaración preparada
+            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            {
+                // Establecer los parámetros
+                stmt.setString(1, nombreCliente);
+                stmt.setString(2, modeloAuto);
+                stmt.setInt(3, anioAuto);
+                stmt.setDouble(4, precioAuto);
+
+                // Ejecutar la sentencia
+                int rowsAffected = stmt.executeUpdate();
+
+                if (rowsAffected > 0)
+                {
+                    // Reiniciar los JComboBox a sus valores por defecto
+                    comboModeloAuto.setSelectedIndex(-1);
+                    comboAnioAuto.setSelectedIndex(-1);
+                    comboPrecioAuto.setSelectedIndex(-1);
+
+                    JOptionPane.showMessageDialog(null, "Cita registrada exitosamente.");
+                }
+            }
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error de conexión a la base de datos: " + ex.getMessage());
+        }
+    }
 
     public void consultaGeneralCita(JTable jt)
     {
