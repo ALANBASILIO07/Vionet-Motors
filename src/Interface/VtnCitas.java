@@ -26,7 +26,7 @@ public class VtnCitas extends javax.swing.JFrame
     public void setUsuario(String usuario)
     {
         this.usuario = usuario;
-        labelUser.setText(usuario);
+        labelUserCita.setText(usuario);
     }
 
     /**
@@ -42,7 +42,7 @@ public class VtnCitas extends javax.swing.JFrame
         jPanel1 = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
-        labelUser = new javax.swing.JLabel();
+        labelUserCita = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -84,10 +84,10 @@ public class VtnCitas extends javax.swing.JFrame
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/user.png"))); // NOI18N
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 20, 50, 50));
 
-        labelUser.setForeground(new java.awt.Color(255, 255, 255));
-        labelUser.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        labelUser.setText("USUARIO");
-        jPanel1.add(labelUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 30, 130, 30));
+        labelUserCita.setForeground(new java.awt.Color(255, 255, 255));
+        labelUserCita.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelUserCita.setText("USUARIO");
+        jPanel1.add(labelUserCita, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 30, 130, 30));
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/flecha.png"))); // NOI18N
@@ -208,7 +208,7 @@ public class VtnCitas extends javax.swing.JFrame
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
     {//GEN-HEADEREND:event_jButton2ActionPerformed
         Citas ct = new Citas();
-        ct.altaCitaCliente(usuario, comboModeloAuto, comboAnioAuto, comboPrecioAuto);
+        ct.altaCitaCliente(labelUserCita.getText(), comboModeloAuto, comboAnioAuto, comboPrecioAuto);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -271,6 +271,6 @@ public class VtnCitas extends javax.swing.JFrame
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel labelUser;
+    private javax.swing.JLabel labelUserCita;
     // End of variables declaration//GEN-END:variables
 }

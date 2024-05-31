@@ -7,6 +7,7 @@ package Interface;
 import Files.Autos;
 import cjb.ci.Validaciones;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,16 +23,16 @@ public class VtnBusqueda extends javax.swing.JFrame
     {
         initComponents();
     }
-    
+
     private String usuario;
     private String categoria;
-    
+
     public void setUsuario(String usuario)
     {
         this.usuario = usuario;
         labelUser.setText(usuario);
     }
-    
+
     public void setCategoria(String categoria)
     {
         this.categoria = categoria;
@@ -340,6 +341,13 @@ public class VtnBusqueda extends javax.swing.JFrame
 
         jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/lupa.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 110, 50, 50));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -526,75 +534,12 @@ public class VtnBusqueda extends javax.swing.JFrame
         this.dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
 
-    private void labelAuto1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelAuto1MouseClicked
-    {//GEN-HEADEREND:event_labelAuto1MouseClicked
-        VtnAuto va  = new VtnAuto();
-        va.setVisible(true);
-        va.setUsuario(usuario);
-        va.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_labelAuto1MouseClicked
-
-    private void labelModelo4MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelModelo4MouseClicked
-    {//GEN-HEADEREND:event_labelModelo4MouseClicked
-        VtnAuto va  = new VtnAuto();
-        va.setVisible(true);
-        va.setUsuario(usuario);
-        va.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_labelModelo4MouseClicked
-
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jButton3MouseClicked
     {//GEN-HEADEREND:event_jButton3MouseClicked
         VtnLoginVionet vtnL = new VtnLoginVionet();
         vtnL.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3MouseClicked
-
-    private void labelAuto2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelAuto2MouseClicked
-    {//GEN-HEADEREND:event_labelAuto2MouseClicked
-        VtnAuto va  = new VtnAuto();
-        va.setVisible(true);
-        va.setUsuario(usuario);
-        va.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_labelAuto2MouseClicked
-
-    private void labelAuto4MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelAuto4MouseClicked
-    {//GEN-HEADEREND:event_labelAuto4MouseClicked
-        VtnAuto va  = new VtnAuto();
-        va.setVisible(true);
-        va.setUsuario(usuario);
-        va.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_labelAuto4MouseClicked
-
-    private void labelModelo2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelModelo2MouseClicked
-    {//GEN-HEADEREND:event_labelModelo2MouseClicked
-        VtnAuto va  = new VtnAuto();
-        va.setVisible(true);
-        va.setUsuario(usuario);
-        va.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_labelModelo2MouseClicked
-
-    private void labelAuto3MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelAuto3MouseClicked
-    {//GEN-HEADEREND:event_labelAuto3MouseClicked
-        VtnAuto va  = new VtnAuto();
-        va.setVisible(true);
-        va.setUsuario(usuario);
-        va.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_labelAuto3MouseClicked
-
-    private void labelModelo3MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelModelo3MouseClicked
-    {//GEN-HEADEREND:event_labelModelo3MouseClicked
-        VtnAuto va  = new VtnAuto();
-        va.setVisible(true);
-        va.setUsuario(usuario);
-        va.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_labelModelo3MouseClicked
 
     private void jLabel25MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabel25MouseClicked
     {//GEN-HEADEREND:event_jLabel25MouseClicked
@@ -622,7 +567,7 @@ public class VtnBusqueda extends javax.swing.JFrame
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jPanel2MouseClicked
     {//GEN-HEADEREND:event_jPanel2MouseClicked
-        
+
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void comboPrecioBusquedaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_comboPrecioBusquedaMouseClicked
@@ -642,37 +587,12 @@ public class VtnBusqueda extends javax.swing.JFrame
         a.consultaFiltradaBusqueda("Precio", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
     }//GEN-LAST:event_comboPrecioBusquedaMouseClicked
 
-    private void labelModelo1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelModelo1MouseClicked
-    {//GEN-HEADEREND:event_labelModelo1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_labelModelo1MouseClicked
-
-    private void labelAuto5MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelAuto5MouseClicked
-    {//GEN-HEADEREND:event_labelAuto5MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_labelAuto5MouseClicked
-
-    private void labelModelo5MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelModelo5MouseClicked
-    {//GEN-HEADEREND:event_labelModelo5MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_labelModelo5MouseClicked
-
-    private void labelAuto6MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelAuto6MouseClicked
-    {//GEN-HEADEREND:event_labelAuto6MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_labelAuto6MouseClicked
-
-    private void labelModelo6MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelModelo6MouseClicked
-    {//GEN-HEADEREND:event_labelModelo6MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_labelModelo6MouseClicked
-
     private void comboPrecioBusquedaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_comboPrecioBusquedaActionPerformed
     {//GEN-HEADEREND:event_comboPrecioBusquedaActionPerformed
         Autos a = new Autos();
         a.desactivarOtrosCombosBusqueda(comboPrecioBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
         // JLabel necesarios en la interfaz
-        /*JLabel[] lblImagenes =
+        JLabel[] lblImagenes =
         {
             labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
         };
@@ -681,7 +601,7 @@ public class VtnBusqueda extends javax.swing.JFrame
         {
             labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
         };
-        a.consultaFiltradaBusqueda("Precio", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+        //a.consultaFiltradaBusqueda("Precio", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);
     }//GEN-LAST:event_comboPrecioBusquedaActionPerformed
 
     private void comboTipoBusquedaMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_comboTipoBusquedaMouseClicked
@@ -832,7 +752,6 @@ public class VtnBusqueda extends javax.swing.JFrame
         {
             labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
         };
-
         JLabel[] lblModelos =
         {
             labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
@@ -861,6 +780,7 @@ public class VtnBusqueda extends javax.swing.JFrame
     {//GEN-HEADEREND:event_comboTipoBusquedaItemStateChanged
         Autos a = new Autos();
         a.desactivarOtrosCombosBusqueda(comboPrecioBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
+        labelCategoria.setText(comboTipoBusqueda.getSelectedItem().toString());
         // JLabel necesarios en la interfaz
         /*JLabel[] lblImagenes =
         {
@@ -924,6 +844,121 @@ public class VtnBusqueda extends javax.swing.JFrame
         };
         a.consultaFiltradaBusqueda("Fabricante", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
     }//GEN-LAST:event_comboFabricanteBusquedaItemStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
+    {//GEN-HEADEREND:event_jButton1ActionPerformed
+        JLabel[] lblImagenes =
+        {
+            labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
+        };
+
+        JLabel[] lblModelos =
+        {
+            labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
+        };
+        if (busquedaAuto.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Ingrese el modelo de algún auto");
+            busquedaAuto.requestFocus();
+        } else
+        {
+            Autos a = new Autos();
+            int flagBusca;
+            flagBusca = a.buscaAutoMostrar(busquedaAuto.getText(), lblImagenes, lblModelos);
+            if (flagBusca == 0)
+            {
+                JOptionPane.showMessageDialog(this, "No se encontró ningún modelo con ese nombre");
+            }
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void labelModelo3MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelModelo3MouseClicked
+    {//GEN-HEADEREND:event_labelModelo3MouseClicked
+        VtnAuto va  = new VtnAuto();
+        va.setVisible(true);
+        va.setUsuario(usuario);
+        va.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_labelModelo3MouseClicked
+
+    private void labelAuto3MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelAuto3MouseClicked
+    {//GEN-HEADEREND:event_labelAuto3MouseClicked
+        VtnAuto va  = new VtnAuto();
+        va.setVisible(true);
+        va.setUsuario(usuario);
+        va.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_labelAuto3MouseClicked
+
+    private void labelModelo6MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelModelo6MouseClicked
+    {//GEN-HEADEREND:event_labelModelo6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelModelo6MouseClicked
+
+    private void labelAuto6MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelAuto6MouseClicked
+    {//GEN-HEADEREND:event_labelAuto6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelAuto6MouseClicked
+
+    private void labelModelo2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelModelo2MouseClicked
+    {//GEN-HEADEREND:event_labelModelo2MouseClicked
+        VtnAuto va  = new VtnAuto();
+        va.setVisible(true);
+        va.setUsuario(usuario);
+        va.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_labelModelo2MouseClicked
+
+    private void labelAuto2MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelAuto2MouseClicked
+    {//GEN-HEADEREND:event_labelAuto2MouseClicked
+        VtnAuto va  = new VtnAuto();
+        va.setVisible(true);
+        va.setUsuario(usuario);
+        va.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_labelAuto2MouseClicked
+
+    private void labelAuto5MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelAuto5MouseClicked
+    {//GEN-HEADEREND:event_labelAuto5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelAuto5MouseClicked
+
+    private void labelModelo5MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelModelo5MouseClicked
+    {//GEN-HEADEREND:event_labelModelo5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelModelo5MouseClicked
+
+    private void labelModelo4MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelModelo4MouseClicked
+    {//GEN-HEADEREND:event_labelModelo4MouseClicked
+        VtnAuto va  = new VtnAuto();
+        va.setVisible(true);
+        va.setUsuario(usuario);
+        va.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_labelModelo4MouseClicked
+
+    private void labelAuto4MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelAuto4MouseClicked
+    {//GEN-HEADEREND:event_labelAuto4MouseClicked
+        VtnAuto va  = new VtnAuto();
+        va.setVisible(true);
+        va.setUsuario(usuario);
+        va.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_labelAuto4MouseClicked
+
+    private void labelModelo1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelModelo1MouseClicked
+    {//GEN-HEADEREND:event_labelModelo1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_labelModelo1MouseClicked
+
+    private void labelAuto1MouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_labelAuto1MouseClicked
+    {//GEN-HEADEREND:event_labelAuto1MouseClicked
+        VtnAuto va  = new VtnAuto();
+        va.setVisible(true);
+        va.setUsuario(usuario);
+        va.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_labelAuto1MouseClicked
 
     /**
      * @param args the command line arguments

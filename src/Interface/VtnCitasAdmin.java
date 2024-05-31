@@ -467,7 +467,7 @@ public class VtnCitasAdmin extends javax.swing.JPanel
             JOptionPane.showMessageDialog(this, "Faltó por llenar el campo folio", "Advertencia", JOptionPane.WARNING_MESSAGE);
             buscaCita.requestFocus();
         }
-        int decision = JOptionPane.showConfirmDialog(this, "Advertencia, eso borrará completamente el auto", "Confirmar", JOptionPane.YES_NO_OPTION);
+        int decision = JOptionPane.showConfirmDialog(this, "Advertencia, eso borrará completamente la cita", "Confirmar", JOptionPane.YES_NO_OPTION);
         if (decision == JOptionPane.YES_OPTION)
         {
             Citas ct = new Citas();

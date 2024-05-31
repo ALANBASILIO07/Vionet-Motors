@@ -150,7 +150,7 @@ public class Citas implements Serializable
             try (PreparedStatement stmt = conn.prepareStatement(sql))
             {
                 // Establecer los parámetros
-                stmt.setString(1, nombreCliente);
+                stmt.setString(1, NombreCliente);
                 stmt.setString(2, modeloAuto);
                 stmt.setInt(3, anioAuto);
                 stmt.setDouble(4, precioAuto);

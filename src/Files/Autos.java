@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -1245,6 +1246,55 @@ public class Autos implements Serializable
         } catch (SQLException ex)
         {
             JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+        }
+    }
+
+    public int buscaAutoMostrar(String modelo, JLabel[] lblImagenes, JLabel[] lblModelos)
+    {
+        try
+        {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass);
+            String sql = "SELECT Modelo, Imagen FROM Auto WHERE Modelo = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, modelo);
+            ResultSet rs = stmt.executeQuery();
+
+            int index = 0;
+            while (rs.next() && index < 6)
+            {
+                String autoModelo = rs.getString("Modelo");
+                Blob imagenBlob = (Blob) rs.getBlob("Imagen");
+
+                lblModelos[index].setText(autoModelo);
+
+                if (imagenBlob != null)
+                {
+                    int blobLength = (int) imagenBlob.length();
+                    byte[] blobAsBytes = imagenBlob.getBytes(1, blobLength);
+                    ImageIcon icon = new ImageIcon(blobAsBytes);
+                    lblImagenes[index].setIcon(new ImageIcon(icon.getImage().getScaledInstance(lblImagenes[index].getWidth(), lblImagenes[index].getHeight(), Image.SCALE_SMOOTH)));
+                } else
+                {
+                    lblImagenes[index].setIcon(null);
+                }
+                index++;
+            }
+
+            for (int i = index; i < 6; i++)
+            {
+                lblModelos[i].setText("");
+                lblImagenes[i].setIcon(null);
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+
+            return (index > 0) ? 1 : 0;
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+            return 0;
         }
     }
 }
