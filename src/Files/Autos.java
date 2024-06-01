@@ -1187,65 +1187,53 @@ public class Autos implements Serializable
         comboFabricante.setEnabled(comboSeleccionado == comboFabricante);
     }
 
-    public void consultaFiltradaBusqueda(String campoFiltrado, String valorFiltrado, JLabel[] lblImagenes, JLabel[] lblModelos, JPanel panelContenedor)
+    public int consultaFiltradaBusqueda(String campoFiltrado, String valorFiltrado, JLabel[] lblImagenes, JLabel[] lblModelos)
     {
         // Conexión a la base de datos y consulta de autos filtrada por campo
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass))
+        try
         {
-            // Generar la consulta SQL dinámicamente
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/concesionario", "root", bdpass);
             String sql = "SELECT Modelo, Imagen FROM Auto WHERE " + campoFiltrado + " = ?";
-            try (PreparedStatement stmt = conn.prepareStatement(sql))
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, valorFiltrado);
+            ResultSet rs = stmt.executeQuery();
+
+            int index = 0;
+            while (rs.next() && index < 6)
             {
-                stmt.setString(1, valorFiltrado);
-                ResultSet rs = stmt.executeQuery();
+                String autoModelo = rs.getString("Modelo");
+                Blob imagenBlob = (Blob) rs.getBlob("Imagen");
 
-                ArrayList<JLabel> listaImagenes = new ArrayList<>();
-                ArrayList<JLabel> listaModelos = new ArrayList<>();
+                lblModelos[index].setText(autoModelo);
 
-                int index = 0;
-                while (rs.next())
+                if (imagenBlob != null)
                 {
-                    // Obtener el modelo y la imagen
-                    String modelo = rs.getString("Modelo");
-                    Blob imagenBlob = (Blob) rs.getBlob("Imagen");
-
-                    JLabel lblModelo = new JLabel(modelo);
-                    JLabel lblImagen = new JLabel();
-
-                    // Configurar el JLabel de la imagen
-                    if (imagenBlob != null)
-                    {
-                        int blobLength = (int) imagenBlob.length();
-                        byte[] blobAsBytes = imagenBlob.getBytes(1, blobLength);
-                        ImageIcon icon = new ImageIcon(blobAsBytes);
-                        lblImagen.setIcon(new ImageIcon(icon.getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH)));
-                    } else
-                    {
-                        lblImagen.setIcon(null);  // Si no hay imagen, limpiar el JLabel
-                    }
-
-                    listaModelos.add(lblModelo);
-                    listaImagenes.add(lblImagen);
-                    index++;
-                }
-
-                // Limpiar el panel contenedor
-                panelContenedor.removeAll();
-
-                // Añadir los JLabel al panel
-                for (int i = 0; i < listaModelos.size(); i++)
+                    int blobLength = (int) imagenBlob.length();
+                    byte[] blobAsBytes = imagenBlob.getBytes(1, blobLength);
+                    ImageIcon icon = new ImageIcon(blobAsBytes);
+                    lblImagenes[index].setIcon(new ImageIcon(icon.getImage().getScaledInstance(lblImagenes[index].getWidth(), lblImagenes[index].getHeight(), Image.SCALE_SMOOTH)));
+                } else
                 {
-                    panelContenedor.add(listaModelos.get(i));
-                    panelContenedor.add(listaImagenes.get(i));
+                    lblImagenes[index].setIcon(null);
                 }
-
-                // Refrescar el panel contenedor
-                panelContenedor.revalidate();
-                panelContenedor.repaint();
+                index++;
             }
+
+            for (int i = index; i < 6; i++)
+            {
+                lblModelos[i].setText("");
+                lblImagenes[i].setIcon(null);
+            }
+
+            rs.close();
+            stmt.close();
+            conn.close();
+
+            return (index > 0) ? 1 : 0;
         } catch (SQLException ex)
         {
-            JOptionPane.showMessageDialog(null, "Error al obtener los datos de la base de datos: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+            return 0;
         }
     }
 

@@ -22,6 +22,13 @@ public class VtnBusqueda extends javax.swing.JFrame
     public VtnBusqueda()
     {
         initComponents();
+        /*
+        comboAnioBusqueda.setEnabled(false);
+        comboFabricanteBusqueda.setEnabled(false);
+        comboPrecioBusqueda.setEnabled(false);
+        comboTipoBusqueda.setEnabled(false);
+        comboTransmisionBusqueda.setEnabled(false);
+        */
     }
 
     private String usuario;
@@ -37,6 +44,17 @@ public class VtnBusqueda extends javax.swing.JFrame
     {
         this.categoria = categoria;
         labelCategoria.setText(categoria);
+    }
+    
+    public void repintar()
+    {
+        busqueda b = new busqueda();
+        b.setSize(930, 440);
+        b.setLocation(0, 0);
+        PanelAutos.removeAll();
+        PanelAutos.add(b);
+        PanelAutos.revalidate();
+        PanelAutos.repaint();
     }
 
     /**
@@ -756,15 +774,18 @@ public class VtnBusqueda extends javax.swing.JFrame
         {
             labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
         };
-        a.mostrarAutos(lblImagenes, lblModelos);
     }//GEN-LAST:event_formWindowOpened
 
     private void comboPrecioBusquedaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboPrecioBusquedaItemStateChanged
     {//GEN-HEADEREND:event_comboPrecioBusquedaItemStateChanged
         Autos a = new Autos();
+        /*if (comboPrecioBusqueda.isEnabled())
+        {
+            
+        }*/
         a.desactivarOtrosCombosBusqueda(comboPrecioBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
         // JLabel necesarios en la interfaz
-        /*JLabel[] lblImagenes =
+        JLabel[] lblImagenes =
         {
             labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
         };
@@ -773,25 +794,34 @@ public class VtnBusqueda extends javax.swing.JFrame
         {
             labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
         };
-        a.consultaFiltradaBusqueda("Precio", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+        a.consultaFiltradaBusqueda("Precio", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos);
     }//GEN-LAST:event_comboPrecioBusquedaItemStateChanged
 
     private void comboTipoBusquedaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboTipoBusquedaItemStateChanged
     {//GEN-HEADEREND:event_comboTipoBusquedaItemStateChanged
-        Autos a = new Autos();
+        /*if (comboPrecioBusqueda.isEnabled() == false)
+        {
+            this.repintar();
+        }else
+        {
+            
+        }
+        
+        
+        /*Autos a = new Autos();
         a.desactivarOtrosCombosBusqueda(comboPrecioBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
         labelCategoria.setText(comboTipoBusqueda.getSelectedItem().toString());
         // JLabel necesarios en la interfaz
-        /*JLabel[] lblImagenes =
+        JLabel[] lblImagenesT =
         {
             labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
         };
 
-        JLabel[] lblModelos =
+        JLabel[] lblModelosT =
         {
             labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
         };
-        a.consultaFiltradaBusqueda("Tipo", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+        a.consultaFiltradaBusqueda("Tipo", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenesT, lblModelosT);*/
     }//GEN-LAST:event_comboTipoBusquedaItemStateChanged
 
     private void comboAnioBusquedaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboAnioBusquedaItemStateChanged
@@ -799,7 +829,7 @@ public class VtnBusqueda extends javax.swing.JFrame
         Autos a = new Autos();
         a.desactivarOtrosCombosBusqueda(comboPrecioBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
         // JLabel necesarios en la interfaz
-        /*JLabel[] lblImagenes =
+        JLabel[] lblImagenes =
         {
             labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
         };
@@ -808,7 +838,7 @@ public class VtnBusqueda extends javax.swing.JFrame
         {
             labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
         };
-        a.consultaFiltradaBusqueda("Anio", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+        //a.consultaFiltradaBusqueda("Anio", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos);
     }//GEN-LAST:event_comboAnioBusquedaItemStateChanged
 
     private void comboTransmisionBusquedaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboTransmisionBusquedaItemStateChanged
@@ -816,7 +846,7 @@ public class VtnBusqueda extends javax.swing.JFrame
         Autos a = new Autos();
         a.desactivarOtrosCombosBusqueda(comboPrecioBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
         // JLabel necesarios en la interfaz
-        /*JLabel[] lblImagenes =
+        JLabel[] lblImagenes =
         {
             labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
         };
@@ -825,7 +855,7 @@ public class VtnBusqueda extends javax.swing.JFrame
         {
             labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
         };
-        a.consultaFiltradaBusqueda("Transmision", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+        //a.consultaFiltradaBusqueda("Transmision", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos);
     }//GEN-LAST:event_comboTransmisionBusquedaItemStateChanged
 
     private void comboFabricanteBusquedaItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_comboFabricanteBusquedaItemStateChanged
@@ -833,7 +863,7 @@ public class VtnBusqueda extends javax.swing.JFrame
         Autos a = new Autos();
         a.desactivarOtrosCombosBusqueda(comboPrecioBusqueda, comboTransmisionBusqueda, comboAnioBusqueda, comboTipoBusqueda, comboPrecioBusqueda, comboFabricanteBusqueda);
         // JLabel necesarios en la interfaz
-        /*JLabel[] lblImagenes =
+        JLabel[] lblImagenes =
         {
             labelAuto1, labelAuto2, labelAuto3, labelAuto4, labelAuto5, labelAuto6
         };
@@ -842,7 +872,7 @@ public class VtnBusqueda extends javax.swing.JFrame
         {
             labelModelo1, labelModelo2, labelModelo3, labelModelo4, labelModelo5, labelModelo6
         };
-        a.consultaFiltradaBusqueda("Fabricante", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos, PanelAutos);*/
+        //a.consultaFiltradaBusqueda("Fabricante", comboPrecioBusqueda.getSelectedItem().toString(), lblImagenes, lblModelos);
     }//GEN-LAST:event_comboFabricanteBusquedaItemStateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
