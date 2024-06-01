@@ -121,12 +121,12 @@ public class VtnAdministrador extends javax.swing.JFrame
         lblUser.setForeground(new java.awt.Color(255, 255, 255));
         lblUser.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblUser.setText("USUARIO");
-        jPanel1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 30, 130, 30));
+        jPanel1.add(lblUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 20, 130, 30));
 
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Materials/user.png"))); // NOI18N
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 20, 60, 50));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 10, 60, 50));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -142,9 +142,10 @@ public class VtnAdministrador extends javax.swing.JFrame
                 jButton3MouseClicked(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 20, 40, 40));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 10, 40, 40));
 
         Contenido.setBackground(new java.awt.Color(0, 0, 0));
+        Contenido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPanel1.add(Contenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 1000, 640));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 700));
